@@ -1,0 +1,34 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\chapter{The Beta Function}
+\section{A Derivation}
+    $$\Gamma(\alpha)\Gamma(\beta)=\left(\int_{0}^{\infty}x^{\alpha-1}e^{-x}dx\right)\left(\int_{0}^{\infty}y^{\beta-1}e^{-y}dy\right)$$
+    $$=\int_{0}^{\infty}dx\int_{0}^{\infty}dy x^{\alpha-1}y^{\beta-1}e^{-x-y}$$
+    We can instead write this integral in terms of $x+y$ as it happens over the first quadrant. So, let $u=x+y$.
+    $$=\int_{0}^{\infty}du\int_{0}^{u}dx\cdot x^{\alpha-1}(u-x)^{\beta-1}e^{-u}$$
+    Now, let's use scaling substitutions. $t=\frac{x}{u}$.
+    $$=\int_{0}^{\infty}du\int_{0}^{1}u\cdot dt\cdot (ut)^{\alpha-1}(u-ut)^{\beta-1}e^{-u}$$
+    $$=\int_{0}^{\infty}du\cdot u u^{\alpha-1}u^{\beta-1}e^{-u}\int_{0}^{1}dt\cdot t^{\alpha-1}(1-t)^{\beta-1}=\Gamma(\alpha+\beta)\cdot\int_{0}^{1}dt\cdot t^{\alpha-1}(1-t)^{\beta-1}$$
+    $$\boxed{\int_{0}^{1}dt\cdot t^{\alpha-1}(1-t)^{\beta-1}=\frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha+\beta)}=B(\alpha,\beta)}$$
+
+    \subsection{Alternate Form}
+        Substituting $t=\frac{u}{u+1}$,
+        $$B(\alpha, \beta)=\int_{0}^{\infty}\frac{u^{\alpha-1}}{(u+1)^{\alpha+\beta}}du$$
+
+\section{Using Integral Forms}
+    \subsection{Nice Result}
+        Using a substitution for $x^n$, we can eventually see that
+        $$\int_{0}^{\infty}\frac{x^{m-1}dx}{x^{n}+1}=\frac{\pi}{n}\csc\frac{m\pi}{n}\,\forall\, m,n\mid 0<\frac{m}{n}<1$$
+
+    \subsection{Derivatives}
+        Taking derivatives with respect to $m$,
+        $$\int_{0}^{\infty}\frac{x^{m-1}\ln x}{x^4 + 1}dx=-\frac{\pi^{2}}{n^2}\csc\frac{m\pi}{n}\cot\frac{m\pi}{n}$$
+        This gives us access to "natural logs" without worrying about expansions.
+        Differentiating again,
+        $$\int_{0}^{\infty}\frac{x^{m-1}\ln^{2}x}{x^{n}+1}dx=\frac{\pi^{3}}{n^{3}}\csc\frac{m\pi}{n}\left(2\csc^{2}\frac{m\pi}{n}-1\right)$$
+    
+    \subsection{More Derivations}
+        Expanding and rearranging $\Gamma(\alpha)\Gamma(\beta)$ results in
+        $$\int_{0}^{\frac{\pi}{2}}\cos^{2\alpha-1}\theta\sin^{2\beta-1}\theta d\theta=\frac{1}{2}B(\alpha,\beta)$$
+
+\end{document}

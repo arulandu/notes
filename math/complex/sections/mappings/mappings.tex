@@ -1,0 +1,133 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\chapter{Mappings}
+\section{Mapping Basics}
+\subsection{Visulization of Complex Functions}
+    \subsection{Animation}
+        Complex functions are usually visualized by graphing the input space and then the output space
+        with perhaps an animation transforming a grid on the complex plane. Suppose, in a linear algebra sense,
+        that the function operates on the entire domain, transforming it into the codomain.
+
+    \subsubsection{Color Map}
+        A color spectrum is used to denote different points on the complex plane. The output is a 2D color plot
+        where the color at some point denotes the mapped value of that point through the function.
+
+\subsection{Conformal Map}
+    A conformal map is a map that preserves angles and orientations.
+
+\subsection{Anti-conformal Map}
+    An anti-conformal map is a map that preserves angles and but reverses orientation.
+
+\section{Functions and "Maps"}
+$$f(z)=u+iv$$
+\subsection{Tangents}
+    Curve of constant y:
+        $$u_{x}+iv_{x}$$
+    Curve of constant x:
+        $$u_{y}+iv_{y}$$
+
+\subsection{Conformal Requirements}
+    Confromal maps requires:
+        $$u_{y}+iv_{y}=i(u_{x}+iv_{x})$$
+    The multiplication by $i$ (rotates by $90^{\circ}$) allows angles and orientation to be preserved.
+
+\subsection{Cauchy-Riemann Equations}
+    By equating the imaginary and real parts of the conformal requirement above,
+    $$u_{x}=v_{y}$$
+    $$u_{y}=-v_{x}$$
+    If these equations are satisfied for some function $f$, then $f$ is a conformal map.
+
+\subsection{Substitutions}
+    Note the following substitutions,
+    $$x=\frac{z+\overline{z}}{2}\text{, }y=\frac{z-\overline{z}}{2i}$$
+    These allow conversion of a function from in terms of $x,y\in\mathbb{Z}$ to $z\in\mathbb{C}$.
+
+\subsection{Dependence on $z$ and $\overline{z}$}
+    For $f=u+iv$,
+    $$\frac{\partial f}{\partial z}=\frac{\partial f}{\partial x}\cdot\frac{\partial x}{\partial z}+\frac{\partial f}{\partial y}\cdot\frac{\partial y}{\partial z}=(u_{x}+iv_{x})\frac{1}{2}+(u_{y}+iv_{y})\frac{1}{2i}=\frac{u_{x}+v_{y}}{2}+i\frac{v_{x}-u_{y}}{2}$$
+    $$\frac{\partial f}{\partial \overline{z}}=\frac{\partial f}{\partial x}\cdot\frac{\partial x}{\partial \overline{z}}+\frac{\partial f}{\partial y}\cdot\frac{\partial y}{\partial \overline{z}}=(u_{x}+iv_{x})\frac{1}{2}+(u_{y}+iv_{y})\frac{-1}{2i}=\frac{u_{x}-v_{y}}{2}+i\frac{v_{x}+u_{y}}{2}$$
+    $\therefore$ if Cauchy-Riemann is satisfied, $f$ is only in terms of $z$ as $\frac{\partial f}{\partial \overline{z}}=0$.
+
+
+\section{Stereographic Projection}
+
+\subsection{1D-2D Case}
+    Consider mapping the real axis to a unit circle. For each point on the real axis, draw a line segment to the top of the circle $i$ and map it to the point of intersection of that extended linesegment with the circle.
+    Note that this works from the real axis to the circle, but this does not work from the circle to the real axis.
+    The circle is known as \textbf{compact} (topology) while the real axis is not.
+    But, notice that every point except the top of the circle is mapped to. Thus, by adding the \textbf{point of infinity} at $i$ which allows for a 2-way mapping.
+
+\subsection{2D-3D Case}
+    In the same way, the entire complex plane can be mapped to a unit where the point at (1, 0, 0) is the point at infinity. Since by adding one point, the plane can be compactified, this is known as \textbf{one point compactification}.
+    Note that $i\infty$, $(1-\sqrt{3})\infty$, etc. all map to the same point of infinity. Just how the origin has no argument, the point at $\infty$ has no argument. This sphere is known as the \textbf{Reimann Sphere}.
+
+\section{Inversion}
+\subsection{Function}
+    The inversion function is defined as follows:
+    $$f(z)=\frac{1}{z}$$
+    $$f(z)=\frac{1}{x+iy}=\frac{x}{x^{2}+y^{2}}+i\frac{-y}{x^{2}+y^{2}}$$
+    Curves of constant y has a tangent "vector":
+    $$\frac{\partial f}{\partial x}=\frac{y^{2}-x^{2}}{(x^{2}+y^{2})^{2}}+i\frac{2xy}{(x^{2}+y^{2})^{2}}$$
+    Curves of constant x has tangent "vector":
+    $$\frac{\partial f}{\partial y}=\frac{-2xy}{(x^{2}+y^{2})^{2}}+i\frac{y^{2}-x^{2}}{(x^{2}+y{2})^{2}}$$
+    Notice $i\frac{\partial f}{\partial y}=\frac{\partial f}{\partial x}$.
+
+\subsection{Mappings}
+    Inversion turns "circle/lines" into "circle/lines". Circles remain finite and don't go to infinity while lines all do. 
+    Under inversion, $0^{\pm}\rightarrow\pm\infty$ and $\pm\infty\rightarrow0^{\pm}$. Inversion maps points with arbitrarily large modulus' to points with arbitrarily small modulus' (near origin).
+    
+    \subsubsection{Circles}
+        Circle's are determined by any 3 non-collinear points (one-to-one). Circles that pass through the origin are mapped to lines not passing through the origin.
+
+    \subsection{Lines}
+        If a line doesn't pass through the origin, under inversion, the line is mapped to a circle passing through the origin and the other 2 mapped points defining the line.
+
+\section{Mobius Transformation}
+    A mobius transformation is a function of the form $$f(z)=\frac{az+b}{cz+d}\mid ad-bc\neq 0$$
+    This is the most general transformation that maps the whole Riemann sphere (including the point at infinity) to itself in a confromal and one-to-one manner.
+    \subsection{Inversion and Identity}
+        Note that the inversion mapping is simply when $a=0,\, b=1,\, c=1,\, d=0$. And the identity tranformation is when $a=z,\, b=0,\, c=0,\, d=1$
+    \subsection{$c=0$}
+        If $c=0$ this is just a dilation and a translation. In this case, circles and lines are kept separate and "do not mix".
+    \subsection{Composition}
+        Begin with:
+        $$z$$
+        Rotate/dilate by $c$:
+        $$cz$$
+        Translate by $d$:
+        $$cz+d$$
+        Invert:
+        $$\frac{1}{cz+d}$$
+        Rotate/dilate by $\frac{bc-ad}{c}$:
+        $$\frac{bc-ad}{c(cz+d)}$$
+        Translate by $\frac{a}{c}$:
+        $$\frac{bc-ad}{c(az+d)}+\frac{a}{c}$$
+        Simplify:
+        $$\frac{az+b}{cz+d}$$
+        This shows that any mobius transformation is simply a composition of conformal, one-to-one, circle/line preserving functions. So, a mobius transformation must be 
+        one-to-one and conformal while preserving circle/line.
+
+    \subsection{Finding a transformation}
+        Mobius transformations are defined by 3 unique maps.
+        Find a Mobious transformation that maps $2$ to $0$, $i$ to $\infty$, and $1+i$ to $1$. 
+        $$\frac{z-2}{z-i}\cdot\frac{1+i-i}{1+i-2}\cdot 1 = -\frac{1+i}{2}\frac{z-2}{z-i}$$
+        Does the line $2x+y=5$ map to a circle or a line? => Maps to a circle.
+        What about the circle $x^{2}+y^{2}+2y=3$? => Maps to a line.
+
+    \subsection{Another Example}
+        Find a mobius transformation that maps the exterior of the circle $|z|=1$ to the region above the line $x+y=1$.
+        We can start by mapping the circular boundary to the line. Picking 3 points (1, -1, i) on the circle and determining orientation (clock-wise),
+        we can choose the points that the 3 points map to. 1 maps to i, -1 maps to 1, and i maps to $\infty$.
+        Since i goes to $\infty$, the transformation is of the form,
+        $$\frac{az+b}{z-i}$$
+        Pluggin in the two mappings we get,
+        $$\frac{a+b}{1-i}=i$$
+        $$\frac{-a+b}{-1-i}=1$$
+        Solving the equations,
+        $$b=0\text{, } a=1+i$$
+        $$\therefore f(z)=\frac{(1+i)z}{z-i}$$
+        This checks out using the origin as a test point, so this is true.
+        Note that there are an infinite number of mobius transformations that do this mapping.
+    
+\end{document}

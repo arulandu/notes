@@ -1,0 +1,224 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\chapter{Convergence}
+\section{Cauchy's Convergence Criterion}
+The sequence $\{a_{k}\}_{k=0}^{\infty}$ of complex numbers converges
+iff given any $\epsilon > 0\,\exists\, N\mid |a_{m}-a_{n}|<\epsilon$
+whenever $m,n>N$. If $\{a_{k}\}_{k=0}^{\infty}$ converges to $L$,
+then $|a_{m}-a_{n}|\leq |a_{m}-L|+|a_{n}-L|$
+
+\section{Limit Superior}
+$\limsup |a_{k}|=L$ means given any $\epsilon > 0$, $|a_{k}|>L-\epsilon$
+for infinitely many $k$, but $|a_{k}|<L+\epsilon$ for only finitely many $k$.
+
+\section{Laurent Series}
+The Taylor series is guaranteed to converge inside the disk of convergence and 
+is guaranteed to converge outside the disk of convergence. Convergence on the bondary
+of the disk is unpredictable. Laurent series are similar to taylor series but negative 
+power terms are allowed. 
+$$f(z)=\sum_{k=-\infty}^{\infty}c_{k}(z-z_{0})^{k}:
+c_{k}=\frac{1}{2\pi i}\oint_{C}\frac{f(z)}{(z-z_{0})^{n+1}}$$
+Laurent series converge on an annulus: $r<|z-z_{0}|<R$. There can be multiple annuli of convergence
+with the same center. There is a Laurent series that converges on the disk of convergence of the Taylor
+series but without the center (punctured). The negative power terms limit the small circle and the
+positive power terms limit the outer radius of convergence. Note that by FTCI,
+$$\oint_{C}f(z)dz=2\pi i\cdot c_{-1}$$ 
+This is because $c_{-1}$ is the coefficient of $\frac{1}{z}$.
+If a Laurent series converging in a punctured disk about $z_{0}$ has an infinite number of negative power
+terms, $0$ is an essential singularity of the function.
+
+\section{Types of Singularities}
+$z_{0}$ is an isolated singularity of $f(z)$ if $f$ is not analytic at $z_{0}$ but 
+$\exists\, R:f(z)$ is analytic on $0<|z-z_{0}|<R$. It is a pointat which the function 
+is not analytic (singular), but the funtion is analytic on a punctured disk centered at
+that point. There are 3 types. Type I is if $|f(z)|$ is bounded on $0<|z-z_{0}|<R$. This is
+a removable singularity. Type II is if $|f(z)|$ is not bounded but $|\frac{1}{f(z)}|$ is bounded.
+Type II singularities can be removed by multiplying by $(z-z_{0})^{m}$ for some $m$. These are
+known as poles of order $m$. If $m=1$, it is called a simple pole. After multiplying, $f(z_{0})\neq 0$
+otherwise the $\frac{1}{|f(z)|}$ does not exist at $z_{0}$. Type III is neither type I nor II
+and is known as an essential singularity. 
+
+\section{Weirstrass Theorem}
+This theorem states that if a function has an essential singularity, it gets arbitrarily close to
+every complex number infintely many times on every punctured disk centered at the singularity.
+
+\section{Picard's Little Theorem}
+If $f$ is entire and non-constant, f takes on all values on the complex plane with the exception of 
+at most 1 point.
+
+\section{Picard's Great Theorem}
+If $f$ is analytic and has an essential singularity at some point $w$. Then, on any punctured disk
+centered at $w$, $f(z)$ takes on all possible complex values with at most a single exception infinitely
+many times. This exceptional value is known as Picard's Exceptional Value.
+
+\section{Equality and Convergence}
+If there is a sequence of distinct points converging to $z_{0}$ at which $f(z)$ and $g(z)$ are both
+analytic and $f(z_{k})=g(z_{k})$, then the Taylor series centered at $z_{0}$ for these two functions
+is the same. By analytic continuation, for diferent series, this can be done for much of the complex plane.
+Note that the Taylor series has no knowledge of branch cuts. Through continutation around a singular point,
+Taylor series can give different values of $f$. From this, we can determine if there is a singular point.
+
+\section{Residue}
+If $z_{0}$ is an isolated singularity of $f(z)$, we define the \textbf{residue} of $f$ at $z_{0}$
+as $$\text{Res}[f;z_{0}]=\frac{1}{2\pi i}\oint_{|z-z_0|=\epsilon}f(z)dz=C_{-1}$$
+for small values of $\epsilon$ where $C_{-1}$ is the coefficient of $(z-z_{0})^{-1}$
+in the Laurent Series converging to $f(z)$ on the punctured disk $0<|z-z_{0}|<R$.
+
+\section{Residue Formula}
+Suppose $z_{0}$ is a pole of order $m$ of $f(z)$. Then,
+$$f(z)=\frac{c_{-m}}{(z-z_{0})^{m}}+\cdots+\frac{c_{-1}}{z-z_0}+\cdots$$
+Making this function analytic at $z_{0}$,
+$$(z-z_0)^{m}f(z)=c_{-m}+c_{-m+1}(z-z_{0})+\cdots+c_{-1}(z-z_0)^{m-1}+\cdots$$
+Taking $m-1$ derivatives, we can set take the limit as $z\rightarrow z_{0}$ to isolate the $c_{-1}$ term.
+So,
+$$\lim_{z\rightarrow z_0}\left[\frac{d^{m-1}}{dz^{m-1}}(z-z_0)^{m}f(z)\right]=(m-1)!c_{-1}$$
+Rearranging,
+$$\boxed{\text{Res}[f;z_0]=c_{-1}=\frac{1}{(m-1)!}\lim_{z\rightarrow z_{0}}
+\left[\frac{d^{m-1}}{dz^{m-1}}(z-z_0)^{m}f(z)\right]}$$
+This is known as the \textbf{Residue Formula}.
+
+\section{Using Residues}
+Consider $\oint_{|z+2|=3}\frac{z^{3}e^{\frac{3}{z}}}{(z-2)^2}dz$. This has two singularities and the contour
+only contains the essential singularity at $0$. We could use a Laurent Series with $R=2$ centered at $0$, but 
+this may not be easy. Instead, we can consider the integral around all the singularities and subtract the residue
+at $2$. (Let $I$ be the integrand)
+$$=\oint_{|z|=5}Idz-2\pi i\text{Res}[I;2]$$
+The large integral can be done with a laurent series centered at $0$ with $r=2$. 
+$$\Rightarrow \frac{z^{3}}{z^{2}}\frac{e^{\frac{3}{z}}}{(1-\frac{2}{z})^{2}}$$
+We need the $\frac{1}{z}$ term. After expanding with the binomial expansion,
+$$\Rightarrow \cdots + \frac{1}{z}\cdot \frac{57}{2}+\cdots \Rightarrow 57\pi i$$
+For the residue, we have a pole of order $2$. So,
+$$\text{Res}[I;2]=\frac{1}{(2-1)!}\lim_{z\rightarrow 2}\frac{d}{dz}\left[
+    (z-2)^{2}I
+\right]=\lim_{z\rightarrow 2}\left[3z^{2}e^{\frac{3}{z}}
+-z^{3}\cdot \frac{3}{z^{2}}e^{\frac{3}{z}}\right]
+=6e^{\frac{3}{2}}$$
+So, the original integral is
+$$\therefore =\pi i(57-12e^{\frac{3}{2}})$$
+So,
+$$\text{Res}[I,0]=\frac{57}{2}-6e^{\frac{3}{2}}$$
+This gives us a way to find the residue at an essential singularity.
+
+\section{Real Integrals}
+Consider the $\arctan$ integral $I=\int_{-\infty}^{\infty}\frac{dx}{x^{2}+9}$.
+$$I=\lim_{R\rightarrow\infty}\int_{-R}^{R}\frac{dx}{x^{2}+9}$$
+Closing the loop with an arc from $R$ to $-R$ such that $3i$ is inside, this loop $C$ has integral
+$$\oint_{C}\frac{dz}{z^{2}+9}=2\pi i \text{Res}[\frac{1}{z^{2}+9},3i]$$
+Since this is a simple pole,
+$$=2\pi i\lim_{z\rightarrow 3i}\frac{z-3i}{z^{2}+9}=\frac{\pi}{3}$$
+Calling the general integral in the limit $I(R)$,
+$$\oint_{C}\frac{dz}{z^{2}+9}=I(R)+\int_{0}^{\pi}\frac{iRe^{it}dt}{(Re^{it})^{2}+9}$$
+Using integral bounds, we can bound this part by:
+$$\frac{R}{R^{2}-\frac{R^{2}}{2}}\cdot \pi \rightarrow 0$$
+So, the original integral is simply $\frac{\pi}{3}$.
+
+\subsection{Multiple Contributions}
+Consider $\int_{-\infty}^{\infty}\frac{x^{2}dx}{(x^{2}+1)(x^{2}+4)}$.
+Adding a semicircle, the integral of the closed loop is (let integrand be $\xi$)
+$$\oint_{C}\xi dz=2\pi i\left(\text{Res}[\xi, i]+\text{Res}[\xi, 2i]\right)$$
+Using L'Hopitals,
+$$=2\pi i\left(\frac{i}{6}-\frac{i}{3}\right)=\frac{\pi}{3}$$
+This loop integral is also,
+$$=I(R)+\int_{0}^{\pi}\frac{(Re^{it})^{2}iRe^{it}dt}{(R^{2}e^{2it}+1)(R^{2}e^{2it}+4)}$$
+Using integral bounds, we see the integral part goes to 0. So,
+$$I=\frac{\pi}{3}$$
+
+\subsection{Arc at Infinity}
+Consider $P\int_{-\infty}^{\infty}\frac{(2x+5)dx}{x^{2}+2x+10}$. This integral diverges as a $\log$, but if we 
+take it symmetrically, we can get a defined value. This is known as the \textbf{Cauchy Principle Value}.
+Using L'Hopitals and residues, the integral of the closed loop (complete with semicircle) is
+$$=(1+2i)\pi$$
+This is also
+$$=I(R)+\int_{0}^{\infty}\frac{(2Re^{it}+5)iRe^{it}dt}{(Re^{it}+1)^{2}+9}$$
+As $R\rightarrow \infty$,
+$$=I(R)+\pi\cdot 2i\Rightarrow I=\pi$$
+
+\subsection{Auxiliary Parameters}
+Consider $\int_{-\infty}^{\infty}\frac{dx}{(x^{2}+9)^{2}}$. We can consider instead
+$\int_{-\infty}^{\infty}\frac{dx}{x^{2}+a}$. Using a semicircle, calculating the residue, and bounding 
+the semicircle till it's muted, we see this $=\pi a^{-\frac{1}{2}}$.
+We can take a derivative with respect to $a$ on both sides giving the value for the general case.
+$$-\int_{-\infty}^{\infty}\frac{dx}{(x^{2}+a)^{2}}=-\frac{1}{2}\pi a^{-\frac{3}{2}}
+\Rightarrow I=\frac{\pi}{54}$$
+
+\subsection{Closing Below}
+Previously, we only closed the loop on the upper-half of the plane. Regardless of which direction the loop is closed,
+one the direction of the closed loop is accounted for ($-$ for clockwise), the value will be the same.
+
+\subsection{Trignometric Real Integrals}
+Consider $\int_{-\infty}^{\infty}\frac{\cos x}{x^{2}+1}dx$. If we try to close the loop, we notice that on the imaginary axis,
+as the hemisphere grows, $\cos(iy)\rightarrow \infty$. This is a problem. Note that $\cos(x)=\Re(e^{ix})$.
+So,
+$$=\Re\left[\int_{-\infty}^{\infty}\frac{e^{ix}}{x^{2}+1}dx\right]$$
+The integral over the close loop is
+$$=2\pi i\cdot \frac{e^{ii}}{2i}=\frac{\pi}{e}=I(R)+
+\int_{0}^{\pi}\frac{e^{iRe^{it}}}{R^{2}e^{2it}+1}iRe^{it}dt$$
+Noticing $|e^{iRe^{it}}|=e^{-R\sin t}$, we bound the integral part,
+$$<\left|\int_{0}^{\infty}\frac{R}{R^{2}-\frac{R^{2}}{2}}\cdot e^{-R\sin t}dt\right|$$
+In the upper half of the plane, the exponential is $<1$. So,
+$$<\frac{2\pi}{R}\rightarrow 0$$
+So, the original integral $=\frac{\pi}{e}$ as well.
+
+\section{Jordan's Lemma}
+Let $p(z)$ and $q(z)$ be polynomials with $\text{degree}(q(z))\geq \text{degree}(p(z))+1$. Then,
+$$\lim_{R\rightarrow\infty}\int_{|z|=R\text{ upper half}}\frac{p(z)}{q(z)}e^{iz}dz=0$$
+In the worst case, the degree of $q(z)$ is exactly one greater than that of $p(z)$. Parameterizing
+the upper semicircle, we can use integral bounds. Consider $p(z)=1,q(z)=z$. Then,
+$$\left|\int_{0}^{\pi}\frac{e^{iRe^{it}}}{Re^{it}}iRe^{it}dt\right|
+=\int_{0}^{\pi}e^{-R\sin t}dt=2\int_{0}^{\frac{\pi}{2}}e^{-R\sin t}dt$$
+Graphing, we see $\sin t>\frac{2t}{\pi}$ (above the secant line). So,
+$$<2\int_{0}^{\frac{\pi}{2}}e^{-R\cdot \frac{2t}{\pi}}dt=\frac{\pi}{R}\left[1-e^{-R}\right]
+\rightarrow 0$$
+
+\section{Harder Real Integrals}
+\subsection{Long Trig Integrals}
+Consider $\int_{-\infty}^{\infty}\frac{x\sin (2x)}{x^{2}-ix+2}dx$. Using the definition of $\sin(2x)$,
+$$=\int_{-\infty}^{\infty}\frac{x\cdot \frac{e^{2ix}-e^{-2ix}}{2i}}{(x-2i)(x+i)}dx$$
+Breaking apart,
+$$=\frac{1}{2i}\left[\oint_{C+}\frac{ze^{2iz}}{(z-2i)(z+i)}dz
+-\oint_{C-}\frac{ze^{-2iz}}{(z-2i)(z+i)}dz\right]$$
+Here C+ is the upper semicircle and C- is the lower one. Using residues,
+$$=\pi \frac{2ie^{-4}}{3i}+\pi\frac{-ie^{-2}}{-3i}=\frac{\pi}{3}(e^{-2}+2e^{-4})$$
+Using Jordan's Lemma's Result and integral bounds, the semicircles have $0$ contribution
+so the original integral is this as well.
+
+\subsection{Keyhole Contour}
+Consider $\int_{0}^{\infty}\frac{dx}{x^{2}+2x+2}$. A keyhole contour involves two full circles and introducing a
+branch cut with an arbitrary power $\alpha$ in hopes to get an indeterminant form and use L'Hopitals to finally evaluate.
+
+\subsection{Pizza Slice Contour}
+Consider $\int_{0}^{\infty}\frac{dx}{x^{3}+1}=I$. Closing the curve with a "pizza slice" avoiding the other singularities,
+$$\oint_{C}\frac{dz}{z^{3}+1}=I-\int_{0}^{\infty}\frac{e^{i\frac{2\pi}{3}}dx}{(xe^{i\frac{2\pi}{3}})}
+=I-e^{i\frac{2\pi}{3}}I=-2ie^{i\frac{\pi}{3}}\sin\frac{\pi}{3}I$$
+Using residues,
+$$=2\pi i\text{Res}[\frac{1}{z^{3}+1};e^{i\frac{\pi}{3}}]=2\pi i\cdot \frac{1}{3e^{i\frac{2\pi}{3}}}
+=\frac{2\pi i}{3}e^{-i\frac{2\pi}{3}}$$
+Equating and rearranging,
+$$I=\frac{\pi}{3\sin\frac{\pi}{3}}=\frac{2\pi}{3\sqrt{3}}$$
+Consider this generally for
+$$\int_{0}^{\infty}\frac{x^{\alpha -1}dx}{x^{n}+1}=I(\alpha)$$
+Here, the integral around the "pizza slice" around one singularity is, (circular portions are 0)
+$$=I(\alpha)+\int_{R}^{\epsilon}\frac{(xe^{\frac{2i\pi}{n}})e^{i\frac{2\pi}{n}}dx}{x^{n}+1}
+=I(\alpha)-e^{i\frac{2\alpha \pi}{n}}I(\alpha)
+=e^{i\frac{\alpha \pi}{n}}(-2i\sin \frac{\alpha\pi}{n})I(\alpha)
+$$
+Looking at this from the perspective of residues,
+$$=2\pi i\cdot \frac{(e^{i\frac{\pi}{n}})^{\alpha -1}}{n(e^{i\frac{\pi}{n}})^{n-1}}$$
+Equating, cancelling, and rearranging,
+$$\boxed{I(\alpha)=\frac{\pi}{n}\csc \frac{\alpha \pi}{n}}$$
+
+\subsection{Pole on the Contour}
+Consider $P\int_{-\infty}^{\infty}\frac{\sin x dx}{x^{2}-x-6}$. Notice this has two simple poles on the contour.
+Call the integrand $\xi$. Then,
+$$=\lim_{\epsilon\rightarrow 0^{+}}\lim_{\delta\rightarrow 0^{+}}
+\int_{-\infty}^{-2-\epsilon}\xi dx+\int_{-2+\epsilon}^{3-\delta}\xi dx
++\int_{3+\delta}^{\infty}\xi dx$$
+Here, we can use $\Im$ to deal with $\sin$ and close around each simple pole either above or below.
+WLOG, if we close above, the closed loop integral is
+$$=I-\frac{ie^{-2i}}{5}\int_{\pi}^{0}dt+\frac{ie^{3i}}{5}\int_{\pi}^{0}dt$$
+So, the original integral is
+$$\frac{\pi}{5}\left[\cos 3-\cos 2\right]$$
+For a simple pole, the contribution halfway aroudn the pole is simply half the residue at that pole.
+
+\end{document}

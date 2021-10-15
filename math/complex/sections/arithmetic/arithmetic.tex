@@ -1,0 +1,53 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\chapter{Complex Arithmetic and Elementary Functions}
+\section{Utilizing Trig Functions}
+    \subsection{Rewriting with Trig Functions}
+        $$\text{Simplify } \frac{e^{iz}-e^{3iz}}{e^{2iz}}$$
+        Factoring out the exponent average,
+        $$=\frac{e^{2iz}(e^{-iz}-e^{iz})}{e^{2iz}}=-(e^{iz}-e^{-iz})=-2i\sin(z)$$
+        $$\text{Simplify } \frac{e^{3iz}+e^{11iz}}{e^{2iz}-e^{5iz}}$$
+        $$\frac{e^{7iz}(e^{-4iz}+e^{4iz})}{e^{\frac{7iz}{2}}(e^{-\frac{3iz}{2}}-e^{\frac{3iz}{2}})}=e^{\frac{7iz}{2}}\frac{\cos(4z)}{\sin(\frac{3z}{2})}$$
+        This allows easy isolation of the real and imaginary parts of the function.
+
+    \subsection{A Cool Function}
+        Find a closed form for the sum $\sum_{k=0}^{N}\sin(k\theta)$ for real values of $\theta$.
+        Using geometric series,
+        $$\sum_{k=0}^{N}e^{ik\theta}=\frac{1-e^{i(N+1)\theta}}{1-e^{i\theta}}$$
+        $$=\frac{e^{i\frac{N+1}{2}\theta}}{e^{i\frac{\theta}{2}}}\cdot\frac{e^{-i\frac{N+1}{2}\theta}-e^{i\frac{N+1}{2}\theta}}{e^{-i\frac{\theta}{2}}-e^{i\frac{\theta}{2}}}=e^{i\frac{N}{2}\theta}\cdot\frac{\sin(\frac{N+1}{2}\theta)}{\sin(\frac{\theta}{2})}$$
+        So for the original series,
+        $$\sum_{k=0}^{N}\sin(k\theta)=\Im(\sum_{k=0}^{N}e^{ik\theta})\frac{\sin(\frac{N\theta}{2})\cdot\sin(\frac{(N+1)\theta}{2})}{\sin(\frac{\theta}{2})}$$
+
+\section{Complex Powers}
+    Find the principal value of $(1-i\sqrt{3})^{2+i}$.
+    $$=(2e^{-i\frac{\pi}{3}})^{2+i}=(e^{\ln(2)-i\frac{\pi}{3}})^{2+i}=e^{2\ln(2)-i\frac{2\pi}{3}+i\ln(2)+\frac{\pi}{3}}=e^{2\ln(2)+\frac{\pi}{3}}e^{i(\ln(2)-\frac{2\pi}{3})}$$
+    $$=3e^{\frac{\pi}{3}}\text{cis}(\ln(2)-\frac{2\pi}{3})$$
+    Note that taking complex powers mixes the modulus and the argument.
+
+    \subsubsection{Branch Cuts and Color Maps}
+        Branch cuts are evident in color maps for functions that show a discontinuity in argument. With some fractional powers,
+        this exists. For pure complex powers, the discontinuity is shown in the modulus instead of the argument (concentric circles of color).
+
+\section{Logarithms}
+    Find $\text{Log}(-\sqrt{3}-i)$. 
+    $$=\text{Log}(2e^{-i\frac{5\pi}{6}})=\ln(2)-i\frac{5\pi}{6}$$
+
+    \subsection{Standard Definition}
+        $$\text{Log}z=\ln|z|+i\text{Arg}(z)$$
+
+    \subsection{Notation}
+        Note that the capital logarithm $\textbf{Log}()$, is the \textbf{principal complex logarithm}.
+        The lowercase natural logarithm $\ln$ is the \textbf{real logarithm}. The lowercase logarithm $\textbf{log}()$ is 
+        an \textbf{arbitrary complex logarithm} that does not use the principal argument. Note that the base
+        of all of these logarithms is $e$ in mathematics.
+
+    \subsection{Conundrums}
+        $$\text{Log}(z^{2})\stackrel{?}{=}2\text{Log}(z)$$
+        $$\ln|z|^{2}+i\text{Arg}(z^{2})=2\ln|z|+2i\text{Arg}(z)$$
+        Note that $\text{Arg}(z^{2})$ {\it only} equals $2\text{Arg}(z)$ when $-\pi< 2\text{Arg}(z)\leq \pi$.
+        $\therefore$ the original statement is only true when $-\pi<2\text{Arg}(z)\leq \pi$. In general, if the sides are not equal, they will differ
+        by a multiple of $2\pi i$.
+
+
+\end{document}

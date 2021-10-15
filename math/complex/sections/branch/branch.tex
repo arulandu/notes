@@ -1,0 +1,42 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\chapter{Regions and Branch Cuts}
+\section{Terminology}
+    \subsection{Neighborhood}
+        A \textbf{neighborhood} of a point is a disk of some nonzero radius centered at that point.
+    
+    \subsection{Open}
+        A region is said to be \textbf{open} if it doesn't contain its boundary.
+        Every point in the region has a neighborhood also contained in the region.
+    
+    \subsection{Closed}
+        Closed regions are not a major topic in this class as it focuses majorly on topology.
+    
+    \subsection{Connected}
+        A region is said to be \textbf{connected} if you can get from any one point in the region to another point in the region without leaving the region.
+        There is a curve contained in the region from initial to final.
+
+
+    \subsection{Domain}
+        A region is said to be a \textbf{domain} if it is open and connected.
+
+    \subsection{Simply Connected}
+        A connected region is said to be \textbf{simply connected} if its boundary is connected (only works for complex analysis - not 3D).
+        In a more general topological sense, every closed loop in a simply connected region can be deformed to a point in that region without leaving the region. (no holes).
+
+\section{Modifying Regions and Branch Cuts}
+    Consider $|z|>0$. This by itself is a non-simply connected domain. But, suppose points along a ray from the origin to the point at infinity is deleted from the domain.
+    This simply connects the domain. This cut is called a branch cut.
+
+\section{Branch Points}
+    Consider $f(z)=\sqrt{z^{2}-1}$. Notice that the negative real axis is a branch cut. 
+    However, suppose we manipulated the function $f(z)=\sqrt{z^{2}-1}=i\sqrt{1-z^{2}}$. This now has 2 branch cuts on the real axis.
+    \subsection{Main Idea}
+        Algebraic manipulation can change branch cuts but branch points always stay the same. Branch points are where endpoints of the branch cuts.
+        Not only that, algebraic manipulation can change the function itself!
+
+    \subsection{Technical Definition}
+        Can't be defined properly 
+
+\end{document}

@@ -1,0 +1,152 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\chapter{Integration}
+\section{Heat Equation}
+The heat flow is proportional to the cross sectional area and is inversely 
+proportional to the length. The thermal conductivity is this constant of proportionality.
+$$\text{heat flow }=\kappa\frac{A(T_{h}-T_{c})}{L}=\kappa A\frac{\partial T}{\partial x}$$
+$$\text{net heatflow into region }=\kappa A\left[\frac{T_{2}-T}{\Delta x}-\frac{T-T_{1}}{\Delta x}\right]\Rightarrow\kappa A\frac{\partial^{2}T}{\partial x}L$$
+$$=\kappa\frac{\partial^{2}T}{\partial x^{2}} V$$
+From chemistry,
+$$Q=mc_{p}\Delta T$$
+So,
+$$\kappa\frac{\partial^{2}T}{\partial x} V=mc_{p}\frac{\partial T}{\partial t}$$
+Rearranging,
+$$\frac{\partial T}{\partial t}=\frac{\kappa}{\rho c_{p}}\left(\frac{\partial^{2}T}{\partial x^{2}}+\frac{\partial^{2}T}{\partial y^{2}}\right)$$
+This gives us the heat equation:
+$$\boxed{\frac{\partial T}{\partial t}=\frac{\kappa}{\rho c_{p}}\nabla^{2}T}$$
+In steady-state or equilibrium temperature distributions, temperature is time independent so $\nabla^{2}T=0$. 
+Thus, steady-state temperature distributions are harmonic functions.
+
+\section{Contour Integrals}
+Given a function $f$ and a contour $C$, define the contour integral $\int_{C}f(z)dz$ by parameterizing
+$C:z(0)=$ starting point of $C$, $z(1)=$ ending point of C. Then,
+$$\int_{C}f(z)dz=\lim_{n\rightarrow\infty}\sum_{k=1}^{n}f\left(z\left(\frac{k}{n}\right)\right)\left(z\left(\frac{k}{n}\right)-z\left(\frac{k-1}{n}\right)\right)$$
+
+\section{Integral Bounds}
+If $|f(z)|<M\,\forall\, z\in C$, then
+$$|\int_{C}f(z)dz|\leq \lim_{n\rightarrow\infty}\sum_{k=1}^{n}\left|f\left(z\left(\frac{k}{n}\right)\right)\right|\left|z\left(\frac{k}{n}\right)-z\left(\frac{k-1}{n}\right)\right|$$
+$$<M\cdot\lim_{n\rightarrow\infty}\sum_{k=1}^{n}\left|z\left(\frac{k}{n}\right)-z\left(\frac{k-1}{n}\right)\right|\leq ML$$
+
+\section{Fundamental Theorem of Contour Integrals}
+\subsection{Definition}
+If $F(z)$ can be found for which $F'(z)=f(z)\,\forall\, z\in \mathbb{C}$,
+then, $$\int_{c}f(z)dz=F(z_{end})-F(z_{start})$$
+\subsection{Proof}
+Parameterize $C:z(t),t\in[0,1]$. Let $z_{k}=z\left(\frac{k}{n}\right)$
+$$F(z(1))-F(z(0))=F(z_{n})-F(z_{0})=F(z_{n})-F(z_{1})+F(z_{1})-F_{z_{0}}$$
+$$=\sum_{k=1}^{n}(F_{z_{k}}-F_{z_{k-1}})=\sum_{k=1}^{n}(F(z_{k-1})+F'(z_{k-1})(z_{k}-z_{k-1})+\xi(z_{k},z_{k-1})-F(z_{k-1}))$$
+$$=\sum_{k=1}^{n}F'(z_{k-1})(z_{k}-z_{k-1})+\sum_{k=1}^{n}\xi(z_{k},z_{k-1})$$
+As $n\rightarrow\infty$, we get the Fundamental Theorem of Contour Integerals.
+
+\subsection{Corollary}
+If $F'(z)=f(z)\,\forall\, z\in D$ where $D$ is a domain, then
+$\int_{c}f(z)dz$ is independent of path for every controur $C\subset D$.
+\subsection{Branch Cuts}
+$$\int_{C}\frac{dz}{z^{2}+1}=\int_{C}\left(\frac{1}{z-i}-\frac{1}{z+i}\right)\frac{dz}{2i}$$
+If C avoids the following branch cuts, this is valid:
+$$=\frac{1}{2i}\left(\log (z-i)-\log (z+i)\right)_{\text{start}}^{\text{end}}$$
+If C crosses the branch cuts, this no longer works. We just need to manipulate the branch cuts
+so that the function does not cross it. So if $C$ crosses the top branch cut in a downwards facing parabola,
+we can do the following to move the top branch cut.
+$$=\frac{1}{2i}\left(\log (-i(z-i))+\frac{i\pi}{2}-\log (z+i)\right)_{\text{start}}^{\text{end}}$$
+
+\section{Path Independence}
+If $C_{1},C_{2}$ are on $C$,
+$$\int_{C_{1}}f(z)dz-\int_{C_{2}}f(z)dz=\oint_{C}f(z)dz=\oint_{c}((udx-vdy)+i(vdx+udy))$$
+Using Green's theorem (not rigorous),
+$$=\iint_{D}((-v_{x}-u_{y}+i(u_{x}-v_{y}))dA$$
+This $=0$ if $f(z)$ satisfies Cauchy reimann. So, whenever $f(z)$ is analytic throughout a region that allows
+one contour to be deformed to the other.
+
+\section{Contour Deformation}
+If $C_{1}$ and $C_{2}$ both begin at $z_{1}$ and end at $z_{2}$ and $C_{1}$ can be continuously deformed into $C_{2}$ 
+without leaving the domain $D$ of analyticity of $f(z)$, then
+$$\int_{C_{1}}f(z)dz=\int_{C_{2}}f(z)dz$$
+
+\section{Cauchy's Integral Formula}
+Suppose $f(z)$ is analytic on a simply connected domain $D$ containing the closed loop $C$ with $z_{0}$ in its interior.
+$$f(z_{0})=\frac{1}{2\pi i}\oint_{C}\frac{f(z)}{z-z_{0}}dz$$
+
+\section{Cauchy's Integral Formula for Derivatives}
+For analytic $f$ at $z_{0}$.
+$$f(z)-f(z_{0})=\frac{1}{2\pi i}\oint_{C}\frac{f(\xi)}{\xi -z}d\xi - \frac{1}{2\pi i}\oint \frac{f(\xi)}{\xi-z_{0}}d\xi$$
+$$=\frac{1}{2\pi i}\oint_{C}f(\xi)\frac{z-z_{0}}{(\xi-z)(\xi-z_{0})}d\xi$$
+Manipulating,
+$$\frac{f(z)-f(z_{0})}{z-z_{0}}=\frac{1}{2\pi i}\oint_{C}\frac{f(\xi)}{(\xi-z)(\xi-z_{0})}d\xi$$
+Taking limits as $z\rightarrow z_{0}$,
+$$f'(z_{0})=\frac{1}{2\pi i}\oint_{C}\frac{f(\xi)}{(\xi-z)^{2}}d\xi$$
+This shows that for a function that is analytic at $z_{0}$, it's derivative also exists. This differentiation can continue yeilding the following:
+$$f^{(k)}(z_{0})=\frac{k!}{2\pi i}\oint_{C}\frac{f(\xi)}{(\xi-z)^{k+1}}d\xi$$.
+Thus a function that is analytic at a given point is infinitely differentiable at that given point.
+
+\section{Liouville's Theorem}
+\subsection{Statement}
+A bounded entire function is constant.
+
+\subsection{Proof}
+$$f'(z_{0})=\frac{1}{2\pi i}\oint_{|z-z_{0}|=R}\frac{f(\xi)}{(\xi-z)^{2}}d\xi$$
+for an arbitrary point $z_{0}$ by CIFFD.
+Using integral bounds, suppose
+$$|f(z)|<M \,\forall\, z\in\mathbb{C}$$
+then,
+$$|f'(z)|<\frac{1}{2\pi}\frac{M}{R^{2}}2\pi R=\frac{M}{R}$$
+As $R\rightarrow\infty$, this statement still holds true so $f'(z)=0$ so $f(z)$ is constant.
+
+\section{Another Statement}
+Suppose $f(z)$ is entire and $|f(z)|<10|z|^{3}\sqrt{|z|}\,\forall\, z:|z|>30$.
+Then $f(z)$ is a polynomial of degree 3 at most.
+
+\subsection{Proof}
+For any point $z_{0}$,
+$$f^{(4)}(z_{0})=\frac{4!}{2\pi i}\oint_{|z-z_{0}|=R}\frac{f(\xi)}{(\xi-z_{0})^{5}}d\xi$$
+is true by CIFFD. For $R > 30+|z_{0}|$,
+$$|f^{(4)}(z_{0})|<\frac{24}{2\pi}\cdot\frac{10R^{\frac{7}{2}}}{R^{5}}\cdot 2\pi R=\frac{240}{R^{\frac{1}{2}}}$$
+Expanding $R$ without bound, this must still be true to $f^{(4)}(z)=0$.
+
+\subsection{General Statemnt}
+If a entire function is bounded by any power of $z$, it must be a polynomial function or constant. Any non-polynomial 
+entire functions must grow faster than any power of $z$ (think exponential).
+
+\section{Poisson's Formula}
+$$f(z)=\frac{1}{2\pi i}\oint_{|\xi|=R}\frac{f(\xi)}{\xi-z}d\xi$$
+Adding a term,
+$$f(z)=\frac{1}{2\pi i}\oint_{|\xi|=R}\frac{f(\xi)}{\xi-z}d\xi+\frac{1}{2\pi i}\oint_{|\xi|=R}\frac{f(\xi)\overline{z}}{R^{2}-\xi\overline{z}}d\xi$$
+Note that the modulus of the singularity is $|\xi|=|\frac{R^{2}}{z}|=\frac{R^{2}}{z}>R$ for $|z|<R$. This means that the added term is $0$.
+$$=\frac{1}{2\pi i}\oint_{|\xi|=R}f(\xi)\left(\frac{1}{\xi -z}+\frac{\overline{z}}{R^{2}-\xi\overline{z}}\right)d\xi$$
+Note that when this fraction is combined, the numerator is independent of $z$. 
+$$=\frac{1}{2\pi i}\oint_{|\xi|=R}\frac{R^{2}-r^{2}}{(Re^{it}-z)(R^{2}-Re^{it}z)}$$
+$$=\frac{1}{2\pi i}\oint_{|\xi|=R}\frac{R^{2}-r^{2}}{Re^{it}}\cdot\frac{1}{(Re^{it}-z)(Re^{-it}-\overline{z})}$$
+$$=\frac{R^{2}-r^{2}}{2\pi i}\oint_{|\xi|=R}\frac{f(\xi)}{Re^{it}|Re^{it}-z|^{2}}$$
+Completing the substitution of $\xi=Re^{it}$,
+$$=\frac{R^{2}-r^{2}}{2\pi i}\int_{0}^{2\pi}\frac{f(Re^{it})}{Re^{it}|Re^{it}-z|^{2}}\cdot iRe^{it}dt$$
+Simplifying,
+$$=\frac{R^{2}-r^{2}}{2\pi}\int_{0}^{2\pi}\frac{f(Re^{it})}{|Re^{it}-z|^{2}}dt$$
+Taking the real part,
+$$u(x,y)=\frac{R^{2}-r^{2}}{2\pi}\int_{0}^{2\pi}\frac{u(R\cos t, R\sin t)}{|Re^{it}-z|^{2}}$$
+This shows that if we know the value of a harmonic function everywhere on circle, we can use this to find information of its values inside.
+
+\section{Harnack's Inequality}
+Manipulating Poisson's formula above,
+$$u(r\cos \theta, r\sin\theta)=\frac{R^{2}-r^{2}}{2\pi}\int_{0}^{2\pi}\frac{u(R\cos t, R\sin t)}{R^{2}-2Rr\cos(t-\theta)+r^{2}}dt$$
+Taking bounds,
+$$u(r\cos \theta, r\sin\theta)\leq\frac{R^{2}-r^{2}}{2\pi}\int_{0}^{2\pi}\frac{u(R\cos t, R\sin t)}{(R-r)^{2}}dt$$
+$$=\frac{R+r}{R-r}\frac{1}{2\pi}\int_{0}^{2\pi}u(R\cos t, R\sin t)dt=\frac{R+r}{R-r}u(0,0)$$
+Using the same manipulation on the other side,
+$$
+\frac{R-r}{R+r}u(0,0)
+\leq u(r\cos \theta, r\sin\theta)
+$$
+This yields Harnack's Inequality,
+$$
+\frac{R-r}{R+r}u(0,0)
+\leq u(r\cos \theta, r\sin\theta)
+\leq \frac{R+r}{R-r}u(0,0)dt
+$$
+
+\section{Reimann Mapping Theorem}
+Any simply connected domain whose boundary consists of more than two points can be mapped in a one to one invertible analytic way
+to the interior of a unit disk.
+
+\end{document}

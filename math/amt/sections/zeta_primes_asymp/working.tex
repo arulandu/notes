@@ -1,0 +1,194 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\chapter{Exploring the Zeta Function}
+\section{Legendre Duplication Identity}
+    $$\int_{0}^{1}t^{z-1}(1-t)^{z-1}dt=\frac{\Gamma(z)\Gamma(z)}{\Gamma(2z)}$$
+    Now, let $u=2t-1$. This allows more symmetry in integral bounds.
+    $$=\int_{-1}^{1}\left(\frac{1+u}{2}\right)^{z-1}\left(\frac{1-u}{2}\right)^{z-1}\frac{du}{2}=\frac{1}{2^{2z-1}}\int_{-1}^{1}(1-u^{2})^{z-1}du$$
+    By symmetry,
+    $$=\frac{2}{2^2z-1}\int_{0}^{1}(1-u^2)^{z-1}du$$.
+    Let $v=u^{2}$,
+    $$=\frac{2}{2^{2z-1}}\int_{0}^{1}(1-v)^{z-1}\frac{1}{2}v^{-\frac{1}{2}}dv=\frac{1}{2z-1}\frac{\Gamma(z)\Gamma(\frac{1}{2})}{\Gamma(z+\frac{1}{2})}=$$
+    Rewriting,
+    $$\boxed{\Gamma(2z)=2^{2z-1}\frac{\Gamma(z)\Gamma(z+\frac{1}{2})}{\sqrt{\pi}}}$$
+    This is the Legendre Duplication Identity.
+
+\section{digamma?}
+    We want to now shift $\Gamma$ by $\frac{1}{2}$.
+    $$\Gamma(\frac{1}{2}+\epsilon)=\frac{\sqrt{\pi}}{2^{2\epsilon-1}}\frac{\Gamma(2\epsilon)}{\Gamma(\epsilon)}=\frac{\sqrt{\pi}}{2^{2\epsilon-1}}\frac{2\epsilon\Gamma(2\epsilon)}{2\epsilon\Gamma(\epsilon)}=2^{-2\epsilon}\sqrt{\pi}\frac{\Gamma(1+2\epsilon)}{\Gamma(1+\epsilon)}$$
+    This shift allows us to generate many integrals using expansions like before (this time using Legendre's). Namely, $\int_{0}^{\infty}\sqrt{x}\ln^{2}x e^{-x}$. 
+
+\section{Regulators}
+    Regulators can be used to prevent the divergence of an integral "long enough" to extract its value. This can only be used if the integral converges.
+    In essence, when an integral converges, sometimes the only way to use the gamma function is to split the integral up into two separately divergent integrals.
+    Regulators allow us to continue with this without breaking convergence.
+    Find $\int_{0}^{\frac{\pi}{2}}\frac{\ln\sin\theta}{\cos\theta}d\theta$. Adding a regulator and auxiliarly parameter, lets consider instead
+    $$\int_{0}^{\frac{\pi}{2}}\cos^{-1+\delta}\theta\cdot\sin^{\epsilon}\theta d\theta=\frac{\Gamma(\frac{\delta}{2})\Gamma(\frac{1+\epsilon}{2})}{2\Gamma(1+\epsilon+\delta)}{2}=\frac{1}{\delta}\cdot 2^{\delta}\frac{\Gamma(1+\frac{\delta}{2})\Gamma(1+\epsilon)\Gamma(1+\frac{\epsilon+\delta}{2})}{\Gamma(1+\frac{\epsilon}{2})\Gamma(1+\epsilon+\delta)}$$
+    Expanding and cancelling,
+    $$=\frac{1}{\delta}e^{\delta\ln 2}\exp\left\{\sum_{k=2}^{\infty}\frac{(-1)^{k}\zeta(k)}{k}\left[\left(\frac{\delta}{2}\right)^{k}+\epsilon^{k}+\left(\frac{\epsilon+\delta}{2}\right)^{k}-\left(\frac{\epsilon}{2}\right)^{k}-(\epsilon+\delta)^{k}\right]\right\}$$
+    $$=\frac{1}{\delta}e^{\delta\ln 2}\exp\left\{\frac{\zeta(2)}{2}-\frac{\delta^{2}}{2}-\frac{3}{2}\epsilon\delta+\cdots\right\}$$
+    Isolating the $\epsilon\delta$ term as it is the only one that relates to the original integral,
+    $$\Rightarrow\frac{1}{\delta}\left(-\frac{3}{4}\zeta(2)\epsilon\delta\right)\Rightarrow-\frac{\pi^{2}}{8}$$
+
+\section{Integral for the Zeta Function}
+    $$\int_{0}^{\infty}\frac{x^{n-1}}{e^{ax}-1}dx=\int_{0}^{\infty}\frac{x^{n-1}}{e^{ax}}\cdot\frac{1}{1-e^{-ax}}dx=\int_{0}^{\infty}x^{n-1}e^{-ax}\sum_{k=0}^{\infty}(e^{-ax})^{k}dx$$
+    Changing the order of integration and summation (not rigorous but it will work),
+    $$=\sum_{k=0}^{\infty}\int_{0}^{\infty}x^{n-1}e^{-(k+1)ax}dx=\sum_{k=0}^{\infty}\frac{1}{a^{n}(k+1)^{n}}\int{0}^{\infty}u^{n-1}e^{-u}du$$
+    $$=a^{-n}\Gamma(n)\sum_{k=1}^{\infty}\frac{1}{k^{n}}=a^{-n}\Gamma(n)\zeta(n)$$
+    Differentiating with respect to a,
+    $$=\int_{0}^{\infty}\frac{x^{n}e^{ax}}{(e^{ax}-1)^{2}}=a^{-n-1}\Gamma(n+1)\zeta(n)$$
+    Maniuplating to get another integral,
+    $$a^{-n-1}\Gamma(n+1)\zeta(n)=\int_{0}^{\infty}\frac{x^{n}(e^{ax}-1+1)}{(e^{ax}-1)^{2}}$$
+    $$=\int_{0}^{\infty}\frac{x^{n}}{(e^{ax}-1)}dx+\int_{0}^{\infty}\frac{x^{n}}{(e^{ax}-1)^{2}}dx$$
+    $$\therefore \int_{0}^{\infty}\frac{x^{n}}{(e^{ax}-1)^{2}}=a^{-n-1}\Gamma(n+1)(\zeta(n)-\zeta(n+1))$$
+
+\section{Product representation for zeta}
+    We have said before that
+    $$\lambda(s)=1+\frac{1}{3^{s}}+\frac{1}{5^{s}}+\cdots=\zeta(s)-\frac{1}{2^{s}}\zeta(s)=(1-\frac{1}{2^{s}})\zeta(s)$$
+    This is found by subtracting all the even numbers. Let's continue but this time subtracting all the multiples of 3.
+    $$(1-\frac{1}{3^{s}})(1-\frac{1}{2^{s}})\zeta(s)=1+\frac{1}{3^{s}}+\cdots-\left(\frac{1}{3^{s}}+\frac{1}{9^{2}}+\cdots\right)$$
+    Continuing to do so with all of the primes,
+    $$\zeta(s)\prod_{p\in\mathbb{P}}(1-p^{-s})=1\Rightarrow\boxed{\zeta(s)=\prod_{p\in\mathbb{P}}(1-p^{-s})^{-1}}$$
+    Converting to sum,
+    $$\ln\zeta(s)=-\sum_{p\in\mathbb{P}}\ln(1-p^{-s})=\sum_{p\in\mathbb{P}}\sum_{k=1}^{\infty}\frac{(p^{-s})^{k}}{k}=\sum_{k=1}^{\infty}\frac{1}{k}\sum_{p\in\mathbb{P}}\frac{1}{p^{sk}}$$
+    As $s\rightarrow 1$ ($\zeta(1)$ is divergent),
+    $$\Rightarrow=\sum_{p\in\mathbb{P}}\frac{1}{p^{s}}+\frac{1}{2}\sum_{p\in\mathbb{P}}\frac{1}{p^{2s}}+\cdots$$
+    The terms after $1s$ are bounded by $zeta$ and are convergent. But, the first term must be divergent. (These terms are called \textbf{prime zeta functions})
+    $$\boxed{\therefore\sum_{p\in\mathbb{P}}\frac{1}{p^{s}}\text{ diverges}}$$
+    This shows that not only does the harmonic series diverge, the sum of the reciprocals of primes diverges. Since $zeta(1)$ diverges like $\ln N$,
+    $$\sum_{p\in\mathbb{P}}\frac{1}{p^{s}}\text{ diverges like }\ln\ln N$$
+    This is smaller than the glacial series $\sum_{k=2}^{N}\frac{1}{k\ln k}$ which gives insight into the denisty of primes. This leads to \textbf{Reimann's prime number theorem}.
+
+\section{Asymptotic Expansion}
+If we are interested in $f(x)=e^{x}\int_{x}^{\infty}\frac{e^{-t}}{t}dt$ for large values of $x.$
+Repeated integration by parts in a general form gives 
+$$=\sum_{k=0}^{n}\frac{(-1)^{k}k!}{x^{k+1}}+(-1)^{n+1}(n+1)!e^{x}\int_{x}^{\infty}\frac{e^{-t}}{t^{n+2}}dt$$
+Even though this diverges, it is still useful and can be used as an approximation.
+$$f(x)\approx A(x)=\sum_{k=0}^{n}\frac{(-1)^{k}k!}{x^{k+1}} \text{ for large values of } n$$
+Asymptotic expansions have two properties. For fixed $x$, arbitrarily large $n$ causes divergence. For a fixed $n$,
+arbitrarily large $x$ can get an arbitrarily close approximation.
+
+\subsection{An Asymptotic Expression}
+Find an asymptotic expression for
+$$f(n)=\int_{0}^{\infty}n^{-x}x^{n}dx$$
+Using exponents,
+$$=\int_{0}^{\infty}e^{-x\ln n + n\ln x}dx$$
+Expanding,
+$$g(x)=-x\ln n + n\ln x$$
+$$g'(x)=-\ln n + \frac{n}{x}$$
+$$g''(x)=-\frac{n}{x^{2}}$$
+Setting $g'(x)=0$, we get $x=\frac{n}{\ln n}$.
+Now taylor expanding using this value of x as a center,
+$$g(x)=-n+n\ln\frac{n}{\ln n}-\frac{1}{2}\frac{n}{(\frac{n}{\ln n})^{2}}(x-\frac{n}{\ln n})^{2}+\cdots$$ 
+Since we are working with large values of $x$, we can truncate after the quadratic term.
+$$f(n)=\int_{0}^{\infty}e^{-n+n\ln\frac{n}{\ln n}-\frac{1}{2}\frac{n}{(\frac{n}{\ln n})^{2}}(x-\frac{n}{\ln n})^{2}}dx$$
+$$=e^{-n+n\ln\frac{n}{\ln n}}\int_{0}^{\infty}e^{-\frac{\ln^{2}n}{2n}(x-\frac{n}{\ln n})^{2}}dx$$
+Note that this is very close to a guassian integral with a bound at $0$ instead of $-\infty$. Since the integral
+from $-\infty$ to $0$ is very small, we can use a guassian integral.
+$$\approx e^{-n+n\ln\frac{n}{\ln n}}\sqrt{\frac{2\pi n}{\ln^{2}n}}$$
+
+\subsection{Another One}
+$$f(n)=\int_{0}^{\infty}e^{-x^{2}}x^{nx}dx$$
+$$g(x)=-x^{2}+nx\ln x$$
+$$g'(x)=-2x+n+n\ln x$$
+$$g''(x)=-2+\frac{n}{x}$$
+Let $g'(x_{n})=0$ as the equation is transcendental.
+$$g(x)=-x_{n}^{2}+nx_{n}\ln x_{n}-\frac{1}{2}(2-\frac{n}{x_{n}})(x-x_{n})^{2}$$
+Using a substitution with the first derivative equation,
+$$g(x)=x_{n}^{2} -nx_{n}-\frac{1}{2}(2-\frac{n}{x_{n}})(x-x_{n})^{2}$$
+Plugging into the integral,
+$$f(n)\approx e^{x_{n}^{2}-nx_{n}}\sqrt{\frac{2\pi}{2-\frac{n}{x_{n}}}}$$
+
+\section{Density of Primes}
+Previously, we stated that $$\sum_{\text{primes p}}^{N}\frac{1}{p}\text{ diverges like }\ln\ln N$$
+So, it behaves like the glacial series.
+$$\sum\frac{1}{k\ln k}$$
+This shows that the prime density is asymptotic to $\frac{1}{\ln k}$.
+The number of primes between $N$ and $N+\Delta N$ is asymptotically $\frac{\Delta N}{\ln N}$.
+This gives a good approximation of the \textbf{prime counting function} $\pi (n)=$ the number of primes $\leq n$.
+$$\pi(n)=\int_{2}^{n}\frac{dx}{\ln x}$$
+This integral is known as the logarithmic integral. Skews determined that the first such crossing must occurr before
+$10^{10^{10^{34}}}$.
+
+\section{Zeta Reflection Identity}
+We know that $$\int_{0}^{\infty}\frac{x^{s-1}dx}{e^{x}-1}=\Gamma(s)\zeta(s)$$
+Writing this as a contour integral in the complex plane, this can be manipulated to achieve the following,
+$$\zeta(s)=2^{s}\pi^{s-1}\sin(\frac{\pi s}{2})\Gamma(1-s)\zeta(1-s)$$
+
+\subsection{Positive $s$}
+The reflection identity is defined for all complex $s$, but is awkward to use if positive.
+Consider $s=2$. $\zeta(2)=\frac{\pi^{2}}{6}$. Due to the zero when pluggin directly, consider $s=2+\epsilon$.
+$$\zeta(2+\epsilon)=2^{2+\epsilon}\pi^{1+\epsilon}\sin(\frac{\pi(2+\epsilon)}{2})\Gamma(1-(2+\epsilon))\zeta(1-(2+\epsilon))$$
+$$=2^{2}\cdot\pi\cdot 2^{\epsilon}\pi^{\epsilon}\sin(\pi+\frac{\pi\epsilon}{2})\Gamma(-1-\epsilon)\zeta(-1-\epsilon)$$
+$$=-4\pi\cdot 2^{\epsilon}\pi^{\epsilon}\sin(\frac{\pi\epsilon}{2})\frac{\Gamma(1-\epsilon)}{(-1-\epsilon)(-\epsilon)}\zeta(-1-\epsilon)$$
+See that as $\epsilon\rightarrow 0$ and using the small angle apporximation,
+$$=-4\pi\cdot 2^{\epsilon}\pi^{\epsilon}(\frac{\pi\epsilon}{2})\frac{\Gamma(1-\epsilon)}{(-1-\epsilon)(-\epsilon)}\zeta(-1-\epsilon)$$
+Cancelling,
+$$\zeta(2)=4\pi\cdot\frac{-\pi}{2}\zeta(-1)=-2\pi^{2}\zeta(-1)=-2\pi^{2}\cdot\frac{\pi^{2}}{12}=\frac{\pi^{2}}{6}$$
+
+\subsection{$s=0$}
+$$\eta(s)=\sum_{k=1}^{\infty}\frac{(-1)^{k+1}}{k^{s}}=(1-2^{1-s})\zeta(s)$$
+Rewriting,
+$$\zeta(s)=\frac{\eta(s)}{1-e^{(1-s)\ln 2}}$$
+Expanding the exponential and cancelling,
+$$=\frac{\eta(s)}{(s-1)\ln 2 - \frac{1}{2}(s-1)^{2}\ln^{2} 2 + \cdots}$$
+Since $\eta(1)=1-\frac{1}{2}+\frac{1}{3}-\cdots=\ln 2$, as $s\rightarrow 1$,
+$$\zeta(s)\rightarrow\frac{1}{s-1}$$
+So, $\zeta$ is defined everywhere except $s=1$. Now, using this result to find $zeta(0)$, we
+use a limiting process with the reflection identity.
+$$\zeta(\epsilon)=2^{\epsilon}\pi^{\epsilon-1}\sin(\frac{\pi\epsilon}{2})\Gamma(1-\epsilon)\zeta(1-\epsilon)$$
+$$\rightarrow 2^{\epsilon}\pi^{\epsilon-1}\sin(\frac{\pi\epsilon}{2})\Gamma(1-\epsilon)\frac{1}{-\epsilon}$$
+$$\rightarrow \frac{1}{\pi}\cdots\frac{\pi}{2}(-1)=-\frac{1}{2}$$
+$$\therefore\zeta(0)=-\frac{1}{2}$$
+
+\section{Reimann's Hypothesis}
+Note that the definition below for zeta only holds for $\Re(s)>1$.
+$$\zeta(s)=\sum_{n=1}^{\infty}\frac{1}{n^{s}}$$
+This does not mean that $\zeta$ is not defined, it just means that it isn't equal to the RHS outside of the given condition.
+Plugging values, we get $\zeta(-1)=-\frac{1}{12}$ and $\zeta(0)=-\frac{1}{12}$. Notice that all negative evens are zeroes of
+the function due to the $\sin(\frac{\pi s}{2})$. These zeroes are known as \textbf{trivial zeroes} of the $\zeta$ function.
+Since the $\Gamma$ function doesn't have zeroes, the only non-trivial zeroes must come from the reflection $\zeta$ term.
+Since $\zeta(x)>0\forall x > 0$. This means that all non-trivial zeroes lie on a \textbf{critical strip} defined as $0<\Re(s)<1$.
+Reiman's hypothesis is that all trivial zeroes lie on $\Re(s)=\frac{1}{2}$ but has not been proven. 
+
+\subsection{Dirichlet Series Relationships}
+It is true that the relationships between the dirichlet series were first derived using the series. There is an argument that the relationship
+doesn't hold everywhere on the complex plane. But, by analytic continuation, the relationship holds everywhere.
+
+\section{Using Sterling Approximations}
+Using $n!\approx n^{n}e^{-n}\sqrt{2\pi n}$ for large $n$, we can simplify $\sum_{n=0}^{\infty}\frac{n!^{2}}{(2n)!}x^{n}$
+to $\frac{(\frac{x}{4})^{n}}{\sqrt{\pi n}}$ showing that the interval of convergence is $x\in [-4,4)$.
+
+\section{Pendulums}
+Find the period of a pendulum of length $L$ with maximum angle $\theta_{max}$ (not for small $\theta_{max}$). Consider the fixed point of the pendulum
+to have a height of $0$.
+Using conservation of energy,
+$$E=\frac{1}{2}mv^{2}+mg(-L\cos\theta)=mg(-Lcos\theta_{max})$$
+$$v^{2}=gL(cos\theta-cos\theta_{max})$$
+$$v^{2}=\left(\frac{Ld\theta}{dt}\right)^{2}=L^{2}\omega^{2}=gL(cos\theta-cos\theta_{max})$$
+$$dt=\frac{|d\theta|}{\sqrt{\frac{g}{L}(\cos\theta - \cos\theta_{max})}}$$
+Energy is known as the first integral of Newton's law of motion. Integrating the above equation is known as the second integral.
+$$T=4*\sqrt{\frac{L}{g}}\int_{0}^{\theta_{max}}\frac{d\theta}{\sqrt{\cos\theta-\cos\theta_{max}}}$$
+For $\theta_{max}=\frac{\pi}{2}$,
+$$T=4\sqrt{\frac{L}{g}}\int_{0}^{\frac{\pi}{2}}\cos^{-\frac{1}{2}}d\theta=4\sqrt{\frac{L}{g}}\frac{\Gamma(\frac{1}{4}\Gamma(\frac{1}{2}))}{2\Gamma(\frac{3}{4})}$$
+Simplifying,
+$$=2\sqrt{\frac{L}{\pi g}}\frac{\Gamma^{2}(\frac{1}{4})\sqrt{pi}}{\sqrt{2}\pi}=\sqrt{\frac{2L}{\pi g}}\Gamma^{2}\frac{1}{4}$$
+We know for small angles,
+$$T_{SHM}=2\pi\sqrt{\frac{L}{g}}$$
+Notice that the period is longer than the one given by simple harmonic motion. However, we still want a general function for the period.
+Using the half angle, $\cos\theta=1-2\sin^{2}\frac{\theta}{2}$,
+$$T=4*\sqrt{\frac{L}{g}}\int_{0}^{\theta_{max}}\frac{d\theta}{\sqrt{2(\sin^{2}\frac{\theta_{max}}{2}-\sin^{2}\frac{\theta_{max}}{2})}}$$
+Using $\sin\frac{\theta}{2}=\sin\frac{\theta_{max}}{2}\cdot\sin\phi$ for substitution to resolve the integral bound,
+$$T=2\sqrt{2}\sqrt{\frac{L}{g}}\int_{0}^{\frac{\pi}{2}}\frac{2\sin\frac{\theta_{max}}{2}\cos\phi d\phi}{\cos\frac{\theta}{2}\sqrt{\sin^{2}\frac{\theta_{max}}{2}-\sin^{2}\frac{\theta_{max}}{2}\sin^{2}\phi}}$$
+$$=4\sqrt{2}\sqrt{\frac{L}{g}}\int_{0}^{\frac{\pi}{2}}\frac{\sin\frac{\theta_{max}}{2}\cos\phi d\phi}{\cos\frac{\theta}{2}\sin\frac{\theta_{max}}{2}\cos\phi}$$
+$$=4\sqrt{2}\sqrt{\frac{L}{g}}\int_{0}^{\frac{\pi}{2}}(1-\sin^{2}\frac{\theta_{max}}{2}\sin^{2}\phi)^{-\frac{1}{2}}d\phi$$
+Using the binomial expansion,
+$$=4\sqrt{2}\sqrt{\frac{L}{g}}\sum_{k=0}^{\infty}{-\frac{1}{2}\choose k}\sin^{2k}\frac{\theta_{max}}{2}\int_{0}^{\frac{\pi}{2}}\sin^{2k}\phi d\phi$$
+$$=4\sqrt{2}\sqrt{\frac{L}{g}}\sum_{k=0}^{\infty}{-\frac{1}{2}\choose k}(-1)^{k}\left(\sin^{2}\frac{\theta_{max}}{2}\right)^{k}\cdot\frac{\Gamma(k+\frac{1}{2})\Gamma(\frac{1}{2})}{2\Gamma(k+1)}$$
+$$=2\sqrt{2}\sqrt{\frac{L}{g}}\sum_{k=0}^{\infty}\frac{(-1)^{k}\Gamma(k+\frac{1}{2})}{k!\Gamma(\frac{1}{2})}\cdot(-1)^{k}(\sin^{2}\frac{\theta_{max}}{2})^{k}\cdot\frac{\Gamma(k+\frac{1}{2})\Gamma(\frac{1}{2})}{k!}$$
+Cancelling and using Legendre's Duplication Identity,
+$$=2\sqrt{2}\sqrt{\frac{L}{g}}\sum_{k=0}^{\infty}\frac{(2^{-2k}\sqrt{\pi}\frac{\Gamma(1+2k)}{\Gamma(1+k)})^{2}}{k!^{2}}(\sin^{2}\frac{\theta_{max}}{2})^{k}$$
+$$=2\pi\sqrt{\frac{L}{g}}\sum_{k=0}^{\infty}\frac{(2k)!^{2}}{2^{4k}\cdot k!^{4}}(\sin^{2}\frac{\theta_{max}}{2})^{k}$$
+Notice how so many results were used to solve this one problem.
+
+\end{document}

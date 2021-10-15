@@ -1,0 +1,44 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\chapter{The Open Mapping Theorem}
+\section{The Open Mapping Theorem}
+    \subsection{Statement}
+        A \textbf{nonconstant} function analytic on domain D maps D to an open set.
+    
+    \subsection{Results}
+        If $f(z)$ is analytic on domain $D$ and $|f(z)|$ or $Arg(f(z))$ is constant,
+        $f(z)$ must be constant.
+
+\section{The Maximum Modulus Principle}
+    \subsection{Statement}
+    Every function $f(z)$ \textbf{analytic} on domain $D$ attains the maximum modulus
+    on every closed connection region $R \in D$ on the boundary of $R$.
+
+    \subsection{Results}
+        Suppose $f(z)=g(z)$ are both analytic on the boundary $|z|<2$, then $f(z)=g(z)\,\forall\, z\mid |z|<2$.
+
+\section{Fundamental Theorem of Algebra}
+    \subsection{Statement}
+    Every nonconstant polynomial $p(z)$ has at least one zero in the complex plane.
+    
+    \subsection{Proof}
+        Assume that polynomial $p(z)$ is never zero in the complex plane. 
+        Since all polynomials are entire an $p(z)\neq 0$, $\frac{1}{p(z)}$ is entire.
+        So, $\frac{1}{p(z)}$ achieves its maximus modulus on every disk $|z|\leq R$. On $|z|=R$,
+        as $R$ grows without bound, $|\frac{1}{p(Re^{it})}|\rightarrow 0$. 
+        This is a contradiction. So, $p(z)$ must have at least one zero.
+
+    \subsection{Generalization}
+        Given $f(z)$ is entire, if given any $N > 0$ a value of $R$ can be found for which $|f(Re^{it})|>N\,\forall\, t\in\mathbb{R}$.
+        We can conclude that $f(z)$ has at least one zero in the complex plane.
+
+\section{A Strong Result}
+    \subsection{Definition}
+    Suppose nonconstant $u(x,y)$ is harmonic on a simply connected domain $D$. Then, we can find a harmonic conjugate $v(x,y)$
+    for which $f(z)=u+iv$ is analytic on D. This can be used in conjuction with the Maximum Modulus Principle to prove
+    that $u(x,y)$ can achieve neither a local maximum nor local minimum on $D$.
+    \subsection{Proof}
+        Consider $|e^{f(z)}|=|e^{u+iv}|=e^{u}$. Then, consider $|e^{-f(z)}|=e^{-u}$. Using MMP, this can now be proved.
+
+\end{document}

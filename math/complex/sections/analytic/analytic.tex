@@ -1,0 +1,19 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\chapter{Laplace's Equation}
+\section{Analytic and Harmonic}
+    The function $f(z)$ is said to be \textbf{analytic} at $z_{0}$ if it is differentiable on an open set containing $z_{0}$.
+    So, $f(z)$ has to satisfy the Cauchy-Reimann equations in a neighborhood of $z_{0}$. Taking derivatives and using Clauriat's Theorem,
+    $$u_{xx}=v_{yx}=v_{xy}=-u_{yy}\Rightarrow u_{xx}+u_{yy}=0$$
+    This partial differential equation is \textbf{Laplace's Equation}. Any function that satisfies Laplace's equation is \textbf{harmonic}. 
+    With a similar trick, we can find that the above equation holds for the imaginary part as well.
+    \ul{The real and imaginary parts of a analytic function are harmonic.}
+    However, this is \textbf{not if and only if}. This only goes one way. If real and imaginary parts of a function are harmonic, it is not 
+    guaranteed that the function is analytic. But, this can be modified to be true.
+    \ul{If the function $u(x,y)$ is harmonic on a \textit{simply connected} domain $D$,
+    then it is the real part of a function that is analytic on D. The imagniary part of this function is called the \textbf{harmonic conjugate}
+    that is unique \textit{up to a constant}.}
+
+\end{document}

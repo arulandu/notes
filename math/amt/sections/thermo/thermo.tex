@@ -1,0 +1,354 @@
+\documentclass[../main.tex]{subfiles}
+
+\newcommand{\expect}[1]{{\langle #1 \rangle}}
+\newcommand{\expectl}[1]{{\left\langle #1 \right\rangle}}
+\newcommand{\pder}[3]{\left(\frac{\partial #1}{\partial #2}\right)_{#3}}
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{cancel}
+\usepackage{graphicx}
+
+\begin{document}
+\chapter{Thermodynamics}
+\section{Introduction}
+A \textbf{state variable} is a quantity that depends only on the state of a
+system. There are two kinds of state variables. \textbf{Intensive} variables
+do not scale with system size while \textbf{extensive} variables do scale.
+Combining systems in equilibrium preserves intensive state variables but 
+adds extensive variables.
+$$\Delta U=Q_{in}-W_{out}$$
+The \textbf{First Law of Thermodynamics} states that the change in internal energy
+is equal to the amount of heat that is delivered
+to the system minus the work done by the system on the environment. From physics,
+we know $W=F\Delta h=pA\Delta h=p\Delta V$ (think about a piston). Graphing pressure
+vs. volume, the area under the curve defines work, so work does not just depend on the
+initial and final states but the path taken. Thus, work is not a change in a state variable.
+Note that this is not a change in work so $dW$ is inappropriate. So, $\cancel{d}W$ or $\delta W$
+sometimes used to still indicate that the work is small but not a change. Note that if we
+rearrange to $\frac{W}{P}=dV$, this is a change in a state variable, so pressure is an 
+\textbf{integrating denominator} for work.
+
+\section{Ideal Gas Law}
+The gas molecules colliding is what imparts a force and gives the gas a pressure.
+These collisions can be considered as elastic. Consider a piston; the momentum imparted
+on the piston in time $\Delta t$ is $\sum_{v_{z}>0}2mv_{z}n_{hit}$ where $n_{hit}$ is the
+number of molecules with a positive $v_{z}$ that hit the piston in time $\Delta t$. 
+$$=\sum_{v_{z}>0}2mv_{z}\frac{Av_{z}\Delta t}{V}Np_{v_{z}}$$
+where $p_{v_{z}}$ is the probabilty that the z component of a molecule is $v_{z}$.
+So,
+$$p=\frac{F}{A}=\frac{\Delta\rho}{A\Delta t}=2\frac{N}{V}\sum_{v_{z}>0}mv_{z}^{2}p_{v_{z}}$$
+Using symmetry,
+$$=\frac{N}{V}\sum_{v_{z}}mv_{z}^{2}p_{v_{z}}$$
+Assuming that the gas is \textbf{isotropic}, same in all directions, we can simplify the following.
+Note that gravity does act only in the z directions, however this effect is negligible.
+$$=\frac{N}{3V}\sum_{v}mv^{2}p_{v}=\frac{2N}{3V}\sum_{v}\frac{1}{2}mv^{2}p_{v}=\frac{2N}{3V}\expectl{K}$$
+Rearranging,
+$$pV=N\cdot\frac{2}{3}\expect{K}$$
+Popularly,
+$$pV=nRT=N\frac{R}{\eta}T=Nk_{B}T$$
+Remember that $n$ is in moles while $N$ is a constant. $k_{B}$ is known as the Boltzmann Constant
+and is $1.3806488(13)\times 10^{-23}\frac{J}{K}$. Equating,
+$$\expect{K}=\frac{3}{2}k_{B}T$$
+Notice this 3 comes from the 3 directions that the particle can travel in. This is known as the
+\textbf{Equipartition of energy}. Overall, for $l$ degrees of freedom,
+$$U=\frac{l}{2}Nk_{B}T=\frac{l}{2}pV$$
+For monotomic gases, $l=3$ but diatomic gases can spin if the temperature is high enough.
+
+\section{Heat Capacity}
+The heat capacity $C$ is the heat required per Kelvin increase in temperature, $\frac{Q}{\Delta T}$. Note that $C$ 
+is extensive, so we can divide by mass. At \textbf{isobaric} (constant pressure) conditions,
+$$\Delta U=\frac{l}{2}p\Delta V=Q-p\Delta V\Rightarrow Q=\left(\frac{l}{2}+1\right)p\Delta V$$
+So,
+$$C_{p}=\left(\frac{3}{2}+1\right)Nk_{B}$$
+At \textbf{isochoric} (constant volume) conditions, $W=0$ and $\Delta U=Q$. Using ideal gas,
+$$C_{V}=\frac{l}{2}Nk_{B}$$
+At \textbf{isothermal} (constant temperature), heat capacity doesn't make sense neither do non-infinitesimal
+changes in volume. So, 
+$$W=\int pdV=\int_{V_{i}}^{V_{f}}Nk_{B}T\frac{dV}{V}=Nk_{B}T\ln\frac{V_{f}}{V_{i}}$$
+Additionally, $\Delta U=0\Rightarrow Q=W$, so isothermic processes are 100\% efficient.
+An \textbf{adiabatic} or \textbf{isentropic} (constant entropy) has not heat flow. Here $Q=0\Rightarrow \Delta U=-W$.
+Substituting,
+$$\frac{l}{2}d(pV)=-pdV\Rightarrow \left(\frac{l}{2}+1\right)pdV=-\frac{l}{2}Vdp$$
+Rearranging,
+$$\frac{\frac{l}{2}+1}{\frac{l}{2}}\frac{dV}{d}=-\frac{dp}{p}$$
+Note that this ratio is $\frac{C_{p}}{C_{v}}=\frac{c_{p}}{c_{v}}=\gamma$ and is the ratio of specific heats
+(gamma is not Euler-Mascheroni).
+Integrating,
+$$\gamma \ln V = -\ln P+const$$
+$$pV^{\gamma}=const$$
+The speed of sound through an ideal gas is 
+$$\text{speed of sound}=\sqrt{\frac{\gamma RT}{\text{molar mass}}}$$
+A \textbf{Carnot cycle} uses only isothermal and adiabatic processes. The efficiency of this cycle
+$$e_{c}=1-\frac{T_{cold}}{T_{hot}}$$
+It is the most efficient possible for an engine between these temperature extremes.
+
+\section{Laws of Thermodynamics}
+The \textbf{Zeroth Law} states that if $A$ is in thermal equilibrium with $B$ and $B$ is in TE with $C$,
+then $A$ is in TE with $C$. The \textbf{First Law} states that energy is conserved.
+
+\section{Lagrange Multipliers}
+Lagrange multipliers are a technique for optimize a multivariate scalar function under a constraint.
+Suppose we need to maximize $f(x,y)$ under the constraint $g(x,y)=0$. Note that if we draw level curves
+of $f(x,y)$, we see that to optimize this, $\nabla f = \lambda \nabla g$. We can build a function
+$$F(x,y;\lambda)=f(x,y)+\lambda g(x,y)$$
+Taking derivatives,
+$$F_{x}=f_{x}(x,y)+\lambda g_{x}(x,y)=0$$
+$$F_{y}=f_{y}(x,y)+\lambda g_{y}(x,y)=0$$
+$$F_{\lambda}=g(x,y)=0$$
+Note that the derivative with respect to $\lambda$ is the constraint. Solving these three equations with 
+three variables should optimize $f(x,y)$ under $F_{\lambda}=g(x,y)=0$. 
+
+\section{Pfaffian Expressions}
+We know $dU=Q-W$. But, work is {\it not} an exact differential and it cannot be understood as a change in a
+state variable. Instead, the work is a sum of state variables times changes in state variables. 
+A \textbf{Pfaffian Expression} is a sum of multiples of differentials. Consider the Pfaffian expression
+$(1-xy)dx-x^{2}dy$. By Clairaut's, $\frac{\partial Q}{\partial x}=-2x\neq\frac{\partial P}{\partial y}=-x$. So,
+The expression cannot by the differential of some function, $\neq df$.
+
+\subsection{Integrating Denominator}
+However, if we divide the expression by
+$e^{xy}$, $\frac{\partial Q}{\partial x}=\neq\frac{\partial P}{\partial y}=(x^{2}y-2x)e^{-xy}$. This is an
+\textbf{integrating denominator} as it makes the expression an exact differential.
+The integrating denominator allows us to write a Pfaffian expression in terms of an exact differential. For work,
+$P$ is an integrating denominator as $\frac{W}{P}=-dV$. 
+
+\subsection{Canatheodory}
+A mathematician named \textbf{Canatheodory} tells us
+that a Pfaffian expression admits an integrating denominator iff there are points in the state space in
+every neighborhood of our initial point {\it inaccessible} to the initial point while the Pfaffian expression $= 0$.
+Notice that every expression in 2 dimensions has an integrating denominator. An example that doesn't have an
+integrating denominator is $ydx+dy-dz$. Suppose we start at $(0,0,0)$. We can transition to the following point 
+while keeping the Pfaffian expression $=0$.
+$$(0,0,0)\rightarrow (a-\frac{c-b}{b},0,0)\rightarrow (a-\frac{c-b}{b},b,b)\rightarrow (a,b,c)$$
+With $b\neq 0$ (special case), any point $(a,b,c)$ is accessible. So, there is no integrating denominator.
+
+\section{Maximum Entropy}
+Suppose $N$ atoms with total energy $E$ have $m$ accessible states with energies $\{\epsilon_{k}\}_{k=1}^{m}$.
+Determine the occupation numbers $\{n_{k}\}_{k=1}^{m}$ that extremize the entropy $S=k_{B}\ln\Omega=k_{B}\ln\frac{N!}{\prod_{k=1}^{m}n_{k}!}$.
+So, we maximize $\ln N!-\sum_{k=1}^{m}\ln n_{k}!$ subject to $\sum_{k=1}^{m}n_{k}=M$.
+Using Lagrange Multipliers,
+$$
+F=\ln N!-\sum_{k=1}^{m}\ln n_{k}!
++\lambda\left(N-\sum_{k=1}^{m}n_{k}\right)
++\beta\left(E-\sum_{k=1}^{\infty}\epsilon_{k}n_{k}\right)
+$$
+We can consider all $n_{k}$ to be independent of each other. Taking a derivative,
+$$\frac{\partial F}{\partial n_{j}}=-\frac{\partial}{\partial n_{j}}\ln n_{j}!-\lambda-\beta\epsilon_{j}=0$$
+Using Sterling's Approximation, 
+$$\frac{\partial}{\partial n}\ln n!\approx
+\frac{\partial}{\partial n}\left(n\ln n-n+\frac{1}{2}\ln(2\pi n)\right)
+=\ln n+\frac{1}{2n}$$
+Plugging in,
+$$\frac{\partial F}{\partial n_{j}}\approx \ln n_{j}-\lambda-\beta\epsilon_{j}=0$$
+In thermal equilibrium, $\ln n_{j}+\beta \epsilon_{j}=-\lambda$ and $\ln(n_{j}e^{\beta \epsilon_{j}})$
+is independent of $j$. So, $n_{j}\propto e^{-\beta \epsilon_{j}}$. This is known as the \textbf{Boltzmann Factor}.
+
+\subsection{Thermal Contact}
+Suppose two systems are in thermal contact and System 1 gives $\epsilon_{j}-\epsilon_{k}$ energy to System 2 by moving
+a single atom from state $k$ to state $j$. Then, $\Delta E_{2}=\epsilon_{j}-\epsilon_{k}$. For entropy,
+$$\Delta S_{2}=k_{B}\ln\frac{N!}{n_{1}\cdots!(n_{k}-1)!(n_{j}+1)!\cdots n_{m}!}
+-k_{B}\ln\frac{N!}{n_{1}\cdots!n_{k}!\cdots n_{j}\cdots!n_{m}!}$$
+$$=k_{B}\ln\left(\frac{n_{k}!n_{j}!}{(n_{k}-1)!(n_{j}+1)!}\right)
+=k_{B}\ln \frac{n_{k}}{n_{j}+1}$$
+Since the occupation numbers are extremely large, we can approximate and use the Boltzmann factor,
+$$\approx k_{B}\ln\frac{n_{k}}{n_{j}}=k_{B}\beta(\epsilon_{j}-\epsilon_{k})=k_{B}B\Delta E_{2}$$
+If this is a reversible process, $\Delta E_{2}=Q$ so
+$$\boxed{k_{B}\beta Q=\Delta S}$$
+Note that $k_{B}B$ is an integrating denominator for heat and is the same for systems in thermal equilibrium.
+So,
+$$k_{B}\beta =\frac{1}{T}\Rightarrow \boxed{\beta=\frac{1}{k_{B}T}}$$
+
+\subsection{Finding Entropy}
+Let $N=3\times 10^{20}$ atoms be in three accessible states $\epsilon_{1}=0,\epsilon_{2}=\epsilon,\epsilon_{3}=4\epsilon$
+and let $E=\frac{1}{2}N\epsilon$. Entropy is
+$$S=k_{B}(\ln N!-\ln n_{1}!-\ln n_{2}!-\ln n_{3}!)$$
+Using Stirling's Approximation and simplifying,
+$$S\approx k_{B}\left(-\sum_{k=1}^{3}n_{k}\ln\frac{n_{k}}{N}
++\frac{1}{2}\ln\frac{N}{4\pi^{2}n_{1}n_{2}n_{3}}\right)$$
+
+\section{State Variable Derivatives}
+We know $dU=Q-W$. From previous analysis, we know $\frac{W}{p}=dV$ and $\frac{Q}{T}=S$.
+$$dU=TdS-pdV$$
+From multivariate calculus, we know $df=\nabla f\cdot d\vec{r}$. So, $U=U(S,V)$,
+$T=\left(\frac{\partial U}{\partial S}\right)_{V}$, and $p=-\left(\frac{\partial U}{\partial V}\right)_{S}$.
+Using Clairaut's,
+$$\left(\frac{\partial T}{\partial V}\right)_{S}=-\left(\frac{\partial P}{\partial S}\right)_{V}$$
+This is known as a \textbf{Maxwell relation}. The following values are easiest to measure.
+
+$$B=-\left(\frac{\partial p}{\partial V/V}\right)_{T}=-V\left(\frac{\partial p}{\partial V}\right)_{T}$$
+The \textbf{isothermal bulk modulus} is the pressure required for a fractional volume change.
+
+$$\alpha=\left(\frac{\partial V/V}{\partial T}\right)_{P}=\frac{1}{V}\left(\frac{\partial V}{\partial T}\right)_{P}$$
+The \textbf{isobaric thermal expansion coefficient} is the fractional volume change per temperature change.
+
+$$C_{p}=T\left(\frac{\partial S}{\partial T}\right)_{P}$$
+The \textbf{heat capacity} at constant pressure is the heat required per change in temperature.
+
+\subsection{Other Potentials}
+We know $U=U(S,V)$. What if we wanted something that is naturally in terms of $S$ and $p$? Consider
+$H=U+pV$. Then, $dH=dU+pdV+Vdp=TdS+Vdp$ (this $H$ is known as the \textbf{enthalpy}). From the regular representation of $dU$, 
+$$\left(\frac{\partial T}{\partial V}\right)_{S}=-\left(\frac{\partial P}{\partial S}\right)_{V}$$
+From the differential of enthalpy,
+$$\left(\frac{\partial T}{\partial P}\right)_{S}=\left(\frac{\partial V}{\partial S}\right)_{p}$$
+The \textbf{Helmholtz free energy} is defined as $A=U-TS$. This gives $dA=-SdT-pdV$ and
+$$\left(\frac{\partial S}{\partial V}\right)_{T}=\left(\frac{\partial P}{\partial T}\right)_{V}$$
+The \textbf{Gibb's free energy} is defined as $G=U-TS+pV$ giving $dG=-SdT+Vdp$ and
+$$\left(\frac{\partial S}{\partial P}\right)_{T}=-\left(\frac{\partial V}{\partial T}\right)_{P}=-\alpha V$$
+
+\subsection{Example}
+Suppose we wanted to find $\left(\frac{\partial P}{\partial T}\right)_{V}$. We consider $V$ as a function of $p$ and $T$.
+$$dV=\left(\frac{\partial V}{\partial p}\right)_{T}dp+\left(\frac{\partial V}{\partial T}\right)_{P}dT$$
+Manipulating the three values,
+$$=-\frac{V}{B}dp+\alpha VdT$$
+Since the value we want to find occurs at constant volume we set LHS to $0$ and solve giving $\alpha B$.
+
+\section{Systems}
+\subsection{Absolute Maximum Entropy}
+Using Lagrange multipliers, we can see that without regard for the total energy $\beta=0$. Then, $n_{j}\propto e^{-\beta \epsilon_{j}}=1$.
+So, the occupation numbers are evenly distributed. 
+
+\subsection{Three Accessible States}
+Consider $N$ atoms in thermal equilibrium with 3 accessible states of energies $0,\epsilon,3\epsilon$.
+Then, by the Boltzmann factor, 
+$$N=A+Ae^{-\beta \epsilon}+Ae^{-3\beta \epsilon}=A(1+x+x^{3})$$
+If the total energy is $N\epsilon$,
+$$N\epsilon=A(0+x\epsilon+x^{3}\cdot 3\epsilon)\Rightarrow 1+x+x^{3}=x+3x^{3}$$
+We can find the roots of this equation to solve for the occupation numbers.
+Manipulating the Boltzmann factor, we get 
+$$T=-\frac{1}{\ln x}\cdot \frac{\epsilon}{k_{B}}$$
+
+\subsection{Temperature}
+In Thermodynamics, temperature is defined as follows. 
+$$T=\pder{U}{S}{V}$$
+It is the integrating denominator for heat.
+$$dS=\frac{Q}{T}$$
+Consider two substances exchanging heat ($T_{1}$ passes heat $Q$ to $T_{2}$).
+$$\Delta S_{1}=-\frac{Q}{T_{1}},\, \Delta S_{2}=\frac{Q}{T_{2}}$$
+$$\Delta S=Q\left(\frac{1}{T_{2}}-\frac{1}{T_{1}}\right)$$
+If $T_{2}<T_{1}$, the change in entropy is positive and the process is \textbf{spontaneous}.
+Considering energy and entropy, we see that maximal entropy occurs at some point. In lasers,
+energy is added so that the occupation numbers in the excited states are larger than those in
+the regular states. For positive $T$, $k_{B}T$ is a measure of how much ambient energy is available at some temperature
+$T$. Note from the definition of temperature given above, temperature can be negative theoretically
+though this is hard in practice. Processes that require less than $k_{B}T$ can take place freely, but 
+processes that require more than this do not happen.
+
+\section{Velocity/Speed Distribution}
+In classical mechanics, there are a continuum of energy states. Let's consider non-relativistic velocities only.
+Atoms of mass $m$ with speed $\vec{v}$ require energy $\frac{1}{2}mv^{2}$. Additionally, the probability of velocity
+$\vec{v}\propto e^{-\frac{1}{2}\beta mv^{2} }$. However, since the velocity is a continuum, the probability of an atom
+having exactly some velocity is $0$. Instead consider the probability of some velocity between $\vec{v}$ and $\vec{v}+d\vec{v}$.
+So, instead we can write the probability as $\propto e^{-\frac{1}{2}\beta mv^{2}}dv_{x}dv_{y}dv_{z}$. A \textbf{phase space} represent
+a set of quantities that determine the state of the object. Note this is a volume in phase space. Solving for the constant 
+of proportionality $A$,
+$$1=A\int_{-\infty}^{\infty}dv_{x}\int_{-\infty}^{\infty}dv_{y}
+\int_{-\infty}^{\infty}dv_{z}e^{-\frac{1}{2}\beta mv^{2}}$$
+$$=A\left(\int_{-\infty}^{\infty}dv_{x}e^{-\frac{1}{2}\beta mv_{x}^{2}}\right)
+\left(\int_{-\infty}^{\infty}dv_{y}e^{-\frac{1}{2}\beta mv_{y}^{2}}\right)
+\left(\int_{-\infty}^{\infty}dv_{z}e^{-\frac{1}{2}\beta mv_{z}^{2}}\right)$$
+Recognizing these integrals as Gaussian integrals,
+$$=A\left(\sqrt{\frac{2\pi}{\beta m}}\right)^{3}$$
+Solving for $A$,
+$$\boxed{P(\vec{v},d\vec{v})=\left(\frac{m}{2\pi k_{B}T}\right)^{\frac{3}{2}}e^{-\frac{1}{2}\beta mv^{2}}d^{3}v}$$
+This is known as the \textbf{Maxwell-Boltzmann velocity distribution}.
+This gives us a Gaussian distribution with highest value at $0$.
+To get a speed distribution, we multiply by the volume of phase space
+associated with speed between $v$ and $v+dv$.
+$$\boxed{P(v,dv)=\left(\frac{m}{2\pi k_{B}T}\right)^{\frac{3}{2}}e^{-\frac{1}{2}\beta mv^{2}}\cdot 4\pi v^{2}dv}$$
+This is known as the \textbf{Maxwell-Boltzmann speed distribution}.
+Consider the expectation value of the speed. We can do this by integrating. In the integral, we first substitute $u=\sqrt{\beta mv^{2}}$
+to scale it:
+$$\left(\frac{\beta m}{2\pi}\right)^{\frac{3}{2}}e^{-\frac{u^{2}}{2}}\cdot 4\pi\cdot\frac{u^{2}}{\beta m}\cdot\frac{du}{\sqrt{\beta m}}
+=\sqrt{\frac{2}{\pi}}e^{-\frac{u^{2}}{2}}u^{2}du
+$$
+$$\expect{v}=\int_{0}^{\infty}\sqrt{\frac{2}{\pi}}e^{-\frac{u^{2}}{2}}u^{2}du
+=\sqrt{\frac{2k_{B}T}{\pi m}\int_{0}^{\infty}u^{3}e^{-\frac{u^{2}}{2}}}du$$
+Using $s=\frac{u^{2}}{2}$, we can get,
+$$\expect{v}=\sqrt{\frac{2k_{B}T}{\pi m}}\int_{0}^{\infty}2se^{-s}du
+=\boxed{\sqrt{\frac{8k_{B}T}{\pi m}}}$$
+We can also find the expected value of the square of the speed.
+$$\expect{v^{2}}=\int_{0}^{\infty}\sqrt{\frac{2}{\pi}}e^{-\frac{u^{2}}{2}}\cdot u^{2}\cdot \frac{u^{2}}{\beta m}du
+=\sqrt{\frac{2}{\pi}}\cdot\frac{k_{B}T}{m}\cdot\int_{0}^{\infty}u^{4}e^{-\frac{u^{2}}{2}}du
+$$
+We know $\int_{0}^{\infty}e^{-\alpha u^{2}}=\frac{1}{2}\sqrt{\frac{\pi}{\alpha}}$. Taking two derivatives with respect to $\alpha$,
+$$\boxed{\expect{v^{2}}=\sqrt{\frac{3k_{B}T}{m}}}$$
+This is commonly known as the \textbf{rms speed} (root-mean-square). The most probable speed is 
+where $u^{2}e^{-\frac{u^{2}}{2}}$ is maximum. Taking derivatives, we can find $u=\sqrt{s}$. So, the 
+\textbf{most probable speed} is
+$$v_{mp}=\sqrt{\frac{2k_{B}T}{m}}$$
+Notice that the substitution being used is
+$$u=\sqrt{Bm}v=\sqrt{\frac{\text{molar mass}}{RT}}v$$
+
+\section{Rayleigh Jeans Law}
+Let's analyze the number of different states an electromagnetic wave has.
+Waves can be described in terms of their wave number $k$ as $\sin(kx-\omega t)$.
+Consider some distance $L$ that is an integer number of wavelengths. In other words,
+$$\sin(kx-\omega t)=\sin(k(x+L)-\omega t)\Rightarrow
+kL=2\pi n\Rightarrow
+k_{n}=\frac{2\pi n}{L}$$
+To count this, we just sum
+$$\sum \Delta n\rightarrow \sum\frac{L\Delta k}{2\pi}$$
+This is the number of states between $k$ and $k+\Delta k$. Similarly, in three dimensions,
+$$\frac{L^{3}d^{3}k}{(2\pi)^{3}}$$
+Notice that this is a volume in phase space. We can see that the \textbf{state density} is $\frac{d^{3}k}{(2\pi)^{3}}$.
+So the energy of waves with wave number between $k$ and $k+dk$ is
+$$E=2\cdot 4\pi k^{2}\cdot \frac{d^{3}k}{(2\pi)^{3}}\cdot k_{B}T$$
+This $2$ comes from polarization, the $4\pi k^{2}$ comes from the volume of phase space between
+$k$ and $k+dk$, and the $k_{B}T$ gives us the energy for each state. It turns out this is easier
+to write in terms of the wavelength, $k=\frac{2\pi}{\lambda}$. So, the energy 
+density required by EM waves with wavelength between $\lambda$ and $\lambda+d\lambda$ is
+$$\frac{8\pi k_{B}T}{\lambda^{4}}d\lambda$$
+This is the \textbf{Rayleigh-Jeans Law}. 
+
+\section{Ultraviolet Catastrophe}
+To get the total amount of energy that an EM waves need,
+we would integrate the Rayleigh-Jeans Law quantity over $\lambda$. However, this is not integrable around $0$, so 
+it seems that EM waves require "all" energy at any temperature other than $T=0$. 
+The theory supports this, but experimental data does not. This is what is known as the \textbf{Ultraviolet Catastrophe}.
+Plank resolved this by changing the energy per state from $k_{B}T$ to 
+$$\frac{h\cdot \frac{c}{\lambda}}{e^{\beta\cdot \frac{hc}{\lambda}}-1}$$
+Notice that for large $\lambda$, the expansion of the exponent gives us $\approx k_{B}T$.
+Here, $c$ is the speed of light in a vaccum. $h$ is planck's constant which, at the time, was fit to experimental data.
+Many theorists prefer working with this in terms of frequency, $\nu$: $\lambda \nu =c\Rightarrow \lambda=\frac{c}{\nu}$.
+Plugging this in, the energy per state is
+$$\Rightarrow\frac{h\nu}{e^{\beta h\nu}-1}
+=h\nu e^{-\beta h\nu}\cdot\frac{1}{1-e^{-\beta h\nu}}
+=h\nu\left(e^{-\beta h\nu}+e^{-2\beta h\nu}+\cdots\right)
+$$
+This is an infinite sum of Boltzmann factors associated with energies of $nh\nu$.
+The reason this solves the catastrophe is that there is a minimum amount of energy $h\nu$
+to excite an EM wave. If $h\nu \ll k_{B}T$, the EM waves are easily excited, but if opposite, 
+they are hard to excite. For EM waves, the \textbf{photons} are occupying these states.
+With this resolution, let's get the total energy density in EM waves in thermal equilibrium.
+$$=\int_{0}^{\infty}2\cdot\frac{h\nu}{e^{\beta h\nu}-1}\cdot \frac{4\pi \nu^{2}}{c^{3}}dv$$
+Using $u=\beta h\nu$,
+$$=\frac{8\pi}{(\beta hc)^{3}}\cdot\frac{1}{\beta}\int_{0}^{\infty}\frac{u^{3}}{e^{u}-1}du$$
+Notice this is the zeta-gamma integral.
+$$=\frac{8\pi}{(\beta hc)^{3}}\cdot\frac{1}{\beta}\cdot\Gamma(4)\cdot\zeta(4)
+=\boxed{\frac{8\pi^{5}k_{B}^{4}}{15h^{3}c^{3}}T^{4}}
+$$
+For low temperatures, the energy is contained in the matter. But as temperature increases, the energy
+in EM waves will overtake the matter until it is radiation dominated.
+Each photon carries energy $h\nu$, so the photon density is
+$$=\int_{0}^{\infty}2\cdot\frac{1}{e^{\beta h\nu}-1}\cdot\frac{4\pi\nu^{2}d\nu}{c^{3}}
+=\frac{8\pi}{(\beta h\nu)^{3}}\int_{0}^{\infty}\frac{u^{2}du}{e^{u}-1}
+=\boxed{\frac{16\pi}{(hc)^{3}}\zeta(3)k_{B}^{3}T^{3}}
+$$
+
+\section{Stefan-Boltzmann Law}
+Consider a surface and the amount of radiation escaping the surface. So,
+the energy that escapes in time $\Delta t$ is,
+$$2\cdot\frac{h\nu}{e^{\beta h\nu}-1}\cdot\frac{d^{3}k}{(2\pi)^{3}}\cdot dS\cdot c\cos \phi\Delta t$$
+Here, $\phi$ is the angle between $\vec{k}$ and $\vec{n}$. The angular integration gives
+$$\int_{0}^{\frac{\pi}{2}}\sin\phi d\phi\int_{0}^{2\pi}\cos\theta d\theta
+=\pi$$
+So, the original integral is
+$$=2\int_{0}^{\infty}\frac{h\nu}{e^{\beta h\nu}-1}\cdot\frac{\pi k^{2}dk}{(2\pi)^{3}}dS\cdot c\Delta t
+=2\pi\int_{0}^{\infty}\frac{hv}{e^{\beta h\nu}-1}\cdot\frac{\nu^{2}d\nu}{c^{3}}dS\cdot c\Delta t
+$$$$
+=(\text{total energy density})\frac{c}{4}\cdot dS\Delta t
+$$
+The total power emitted will then be
+$$\frac{2\pi^{5}k_{B}^{4}}{15h^{3}c}\cdot AT^{4}$$
+This is the \textbf{Stefan-Boltzmann constant}.
+
+\end{document}

@@ -1,0 +1,101 @@
+\documentclass[../main.tex]{subfiles}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+
+\begin{document}
+\chapter{Linear Algebra}
+\section{Basics}
+\subsection{Scalars \& Fields}
+A \textbf{scalar} is a number like $3$ or $-2i$. Scalars have to elements of
+a \textbf{field}. Fields need an addition and multipliation operations that are
+both commutative and associative property. Fields also need an additive identity, 
+an additive inverse, a multiplication operation, a multiplicative identity (1),
+and a multiplicative inverse. $0$ is exempted from the multiplicative inverse conditon.
+
+\subsection{Vectors \& Vector Spaces}
+A \textbf{vector} is a mathematical object that can be added to other vectors or multiplied
+by a scalar. A \textbf{vector space} is a collection of vectors having two
+operations, addition and scalar multiplication, under which it is \textbf{closed}.
+Addition is \textbf{commutative} and associative. Every vector space has an 
+\textbf{additive identity 0}:$\ket{a}+0=\ket{a}$ ("ket" notation). Every vector
+$\ket{a}$ has an \textbf{additive inverse} with another vector $\ket{-a}$ such that $\ket{-a}+\ket{a}=0$. 
+
+\subsection{Linear Combinations}
+A \textbf{linear combination} of a set of vectors is a sum of scalar multiples of that set.
+The set of all linear combinations of a set of vectors is called the \textbf{span} of that set.
+The $\text{span}\{\ket{v_{k}}\}_{k=1}^{r}$ is always a vector space. The set $\{\ket{v_{k}}\}_{k=1}^{r}$
+is a \textbf{spanning set} for the space. A \textbf{trivial} linear combination is where $0\ket{v_{1}}+0\ket{v_{2}}=0$.
+A \textbf{non-trivial} linear combination is $k_{1}\ket{v_{1}}+k_{2}\ket{v_{2}}=0:k_{1},k_{2}\neq = 0$.
+A set is \textbf{linearly independent} if the only linear combination giving $0$ is the trivial combination.
+If a set has a non-trivial linear combination giving $0$, the set is \textbf{linearly dependent}. So, a \textbf{minimal}
+spanning set must be the same size as a linearly independent spanning set. A linearly indepndent spanning set is a
+\textbf{basis}. The \textbf{dimension} of a vector space is the number of elements in a basis for that space.
+
+\section{Matrices}
+Consider matrix $A$. $\text{col}(A)$ is the span of the columns of $A$. $\text{row}(A)$ is the span of
+the rows of $A$. $\text{Nul}(A)$ is the set of all vectors $\ket{n}$ such that $A\ket{n}=0$
+The basis for the column space is given by the columns of the original matrix that have pivots.
+The row space stays the same after RREF, so the rows of the reduced matrix with pivots give a basis for the row space.
+If we give the free variables names and solve the RREF equations, we get the null space.
+
+\subsection{Rank Theorem}
+$$\text{rank}(A)+\text{nullity}(A)=\text{\# of columns in A}$$
+Thus, the dimension of the column, and row space is the same and known as the rank. The dimension of the null
+space is the number of free variables which is different from the rank or number of pivot variables.
+
+\subsection{Transpose}
+The \textbf{transpose} of $A$,$A^{T}$ is the matrix obtained by exchanging the rows and columns of $A$.
+Note that under transpose, the rank does not change but the nullity does.
+
+\subsection{Inversion}
+$A$ is \textbf{invertible} if its action can be undone. There cannot be more than one
+solution to $A\vec{x}=\vec{b}$ and there cannot be no solutions. This means that A has a
+pivot in every column and in every row which means it is a square matrix or $m=n$.
+
+\subsection{Determinant}
+The \textbf{determinant} of a square matrix is a number that can be used to characterize
+whether or not the matrix is invertible. $A$ is invertible iff $\det(A)\neq 0$.
+\subsubsection{Requirements}
+The determinant is unchanged when a row is replaced with itself plus a multiple of another row.
+$\det(A)=0$ if two rows are the same.
+\subsubsection{Properties}
+$\det(A)$ is separately linear in each of its rows. $\det(A)$ changes sign when two rows
+are exchanged. Notice that this imposes the requirements described above.
+\subsection{Definition}
+The determinant of an $n\times n$ matrix is the sum of all products containing exactly one
+element from each row and one element from each column, taken with a sign given by the permutation of the 
+rows when the columns are taken in order from $1$ to $n$.
+$$\det(A)=(-1)^{\text{swaps}}\prod (\text{pivots})$$
+Using this,
+$$\det(AB)=\det(A)\det(B)$$
+for any two square matrices $A$ and $B$.
+
+\section{Basis}
+Consider two basis where $e$ is the standard cartesian basis and $B$ is some arbitrary basis.
+We can think of a vector with some basis as the matrix of the basis vectors times the target vector.
+The basis matrix takes in some base and outputs the vector in some other base. The change of 
+basis matrix $P$ has columns given by the new basis representation of the old basis vectors.
+To change from the new to the old basis, we simply multiply by $P^{-1}$.
+
+\section{Similarity Transformations}
+Just like how vectors depend on a basis, matrices do as well. Suppose
+matrix $M$ is matrix $A$ in the $b$ basis instead of the $e$ basis. Then,
+$$M[\overline{x}]_{B}=[\overline{y}]_{B}\Rightarrow MP^{-1}[\overline{x}]_{e}=P^{-1}[\overline{y}]_{e}$$
+Multiplying by $P$,
+$$PMP^{-1}[\overline{x}]_{e}=[\overline{y}]_{e}=A[\overline{x}]_{e}$$
+So,
+$$A=PMP^{-1} \text{ and } M=P^{-1}AP$$
+This relationship between $A$ and $M$ is called a \textbf{Similarity Transformation}.
+Note that there are an infinite number of possible $M$ dependent on the basis chosen.
+\subsection{Invariants}
+The determinant is invariant under a Similarity Transformation. The trace is also invariant.
+
+\section{Eigenvalues and Eigenvectors}
+The number $\lambda$ is said to be an \textbf{eigenvalue} of square matrix $A$ if 
+there exists a nonzero vector $\ket{v}$ such that $A\ket{v}=\lambda\ket{v}$. 
+In this case, $\ket{v}$ is said to be an eigenvector of $A$ associated with eigenvalue
+$\lambda$.
+
+\end{document}

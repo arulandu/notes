@@ -1,0 +1,21 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\chapter{Products}
+\section{Definition}
+    Let $P_{0}=1$, $P_{k+1}=(1+a_{k+1})P_{k}$. Given $\{a_{k}\}_{k=1}^{\infty}$, this defines a sequence of products $\{P_{k}\}_{k=1}^{\infty}$.
+    Adding $1$ in the definition, makes it easy to show convergence as the multiplicitive term needs to tend to 1 or $a_{k}$ needs to tend to $0$.
+    This sequence of infinite products is said to converge if $\lim_{k\rightarrow\infty}P_{k}$ exists and is \textbf{nonzero}.
+    $\prod_{k=1}^{\infty}(1+a_{k})$ denotes this infinited product.
+
+\section{Convergence}
+    The product can be turned into a sum using $\ln$.
+    $\prod_{k=1}^{\infty}(1+a_{k})$ converges whenever $\sum_{k=1}^{\infty}a_{k}$ converges \textbf{absolutely}.
+
+
+\section{Representing a Polynomial}   
+    Suppose a polynomial $p(x)$ has roots $-1, 3, 5, \text{and } 12$ each of multiplicity 1 with no other roots. And suppose $p(0)=17$.
+    Then,
+    $$p(x)=(x+1)(x-3)(x-5)(x-12)\cdot\frac{17}{(1)(-3)(-5)(-12)}=17(1+x)(1-\frac{x}{3})(1-\frac{x}{5})(1-\frac{x}{12})$$
+    This form is very important.
+
+\end{document}

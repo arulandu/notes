@@ -1,0 +1,275 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\chapter{Sequences, Series, and Convergence}
+\section{Sequences}
+    \subsection{Convergence}
+        $\{a_{k}\}^{\infty}_{k=1}$ is said to converge to $L$ if given any
+        $\epsilon>0\exists K| |a_{k}-L|<\epsilon \forall k > K$ 
+
+    \subsection{Limit Point}
+        \subsubsection{Definition}
+            $L$ is a limit point if given any $\epsilon<0$ there are infinitely many k such that:
+            $$|a_{k}-L|<\epsilon$$
+            \textbf{Example 1}
+                $$a_{n}=\frac{(-1)^{n}n}{n+1}$$
+            does not converge but has limit points $\pm1$.
+
+        \subsubsection{Alternative definition}
+            $L$ is a limit point if there exists a subsequence that converges to $L$
+
+        \subsubsection{Completeness}
+        The real numbers are the rational numbers + all limit points that the rational numbers can reach.
+    
+    \subsection{Bounded}
+        \textbf{Definition:}
+            $\{a_{k}\}^{\infty}_{k=1}$ is said to be bounded if
+            $\exists m | |a_{k}|<M \forall k$\\
+        
+        \noindent\textbf{Lemma:}
+        A sequence that is bounded implies that there exists at least one 
+        limit point. But, it does not imply convergence.\\
+
+        \noindent\textbf{Example:}
+        $$a_{n}=cos(n^{2})$$
+        is bounded and thus guaranteed to have a limit point. But, we do not know certainly where the
+        limit point is. Note that just because $cos$ is periodic, that does not mean
+        that all $L\in [-1, 1]$ is a limit point without invoking the transcendental nature of pi.
+        (imagine the period was 5)
+
+    \subsection{Monotonicity}
+        A sequence is monotonic if it changes in only one direction (includes staying the same - 3, 4, 4, 5 is valid).
+        If a sequence is bounded + monotonic, it is said to converge.
+
+    \subsection{Example}
+        \textbf{Sequence: } $\{a_{n}\}_{n=1}^{\infty}, a_{1}=1, a_{n+1}=7-\frac{5}{a_{n}}$\\
+        Suppose $1<a_{k}<7$,
+        $$a_{k}<7$$
+        $$7-\frac{5}{a_{k+1}}<7-\frac{5}{7}$$
+        $$a_{k+1}<7-\frac{5}{7}<7$$
+        The sequence is bounded by $7$.
+        Suppose $a_{k}<a_{k+1}$,
+        $$7-\frac{5}{a_{k}}<7-\frac{5}{a_{k+1}}$$
+        $$a_{k+1}<a_{k+2}$$
+        The limit $L$ satisfies the recurrence.
+        $$L=7-\frac{5}{L} \Rightarrow L^{2}-7L+5=0$$
+        $$L=\frac{7+\sqrt{29}}{2}$$ (eliminate negative case)\\
+    
+    \noindent\textbf{Note: }This sequence of rational numbers converges to an irrational number.
+        This technique is used for approximations of irrational numbers.
+
+    \subsection{Basel's Problem}
+        \textbf{Sequence: } $a_{1}$, $a_{n+1}=a_{n}+\frac{1}{(n+1)^{2}}$
+        This is clearly monotonic.
+        $$a_{n}=1+\frac{1}{2^{2}}+\frac{1}{3^{2}}\cdots$$
+        $\frac{1}{2^{2}}+\frac{1}{3^2}<2\cdot \frac{1}{2^2}$
+        $\frac{1}{4^{2}}+\frac{1}{5^{2}}+\frac{1}{6^{2}}+\frac{1}{7^{2}}<2\cdot\frac{1}{4^{2}}$
+        Continue this process to get,
+        $$a_{n}<1+\frac{1}{2}+\frac{1}{4}\cdots=2$$
+        Euler proved this to converge to $\frac{\pi^{2}}{6}$.
+
+    \subsection{Harmonic Series}
+        \textbf{Sequence: } $a_{1}$, $a_{n+1}=a_{n}+\frac{1}{n+1}$
+        This is clearly monotonic.
+        $$a_{n}=1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}\cdots$$
+        $\frac{1}{3}+\frac{1}{4} > 2\cdot \frac{1}{4}$...
+        $$a_{n}>1+\frac{1}{2}+\frac{1}{2}\cdots$$.
+        Thus, the series is unbounded.
+
+\section{Series}
+    \subsection{Cauchy's Convergence Criterion}
+        \textbf{For Series: } The series $\{S_{k}\}_{k=1}^{\infty}$ converges iff given any $\epsilon>0$,
+        $$\exists N \mid |S_{m}-S_{n}|<\epsilon \text{ for } m, n > N\text{.}$$
+        \noindent\textbf{For Partial Series: } $S_{n}=\sum_{k=1}^{n}a_{k}\Rightarrow|\sum_{N+1}^{N+P}a_{k}|<\epsilon \,\forall\, P \in \mathbb{N}$
+
+        \noindent\textbf{Note: } Not only do the individual terms have to approach zero, but also, the sum of some number of terms approaches zero.
+        
+        \textbf{Example: }
+            $$\frac{1}{2^{n}+1}+\frac{1}{2^{n}+2}\cdots+\frac{1}{2^{n}+2^{n}} > 2^{n}\frac{1}{2^{n}+2^{n}}=\frac{1}{2}$$
+            Thus, for $\epsilon = \frac{1}{2}$ this series breaks Cauchy's Convergence Criterion and does not converge.
+
+    \subsection{An Interesting Result}
+        Suppose $\{S_{n}\}_{n=1}^{\infty}$ diverges, where $S_{n}=\sum_{k=1}^{n}a_{k}$ with $ a\geq 0 \forall k$. Note that this is monotonic.
+        Consider $\sum^{n}_{k=1}\frac{a_{k}}{S_{k}}$,
+            $$\sum_{k=N+1}^{N+P}\frac{a_{k}}{S_{k}}=\frac{a_{N+1}}{S_{N+1}}+\frac{a_{N+2}}{S_{N+2}}+\cdots+\frac{a_{N+P}}{S_{N+P}} \geq \frac{a_{N+1}}{S_{N+P}}+\frac{a_{N+2}}{S_{N+P}}+\cdots+\frac{a_{N+P}}{S_{N+P}}$$
+            $$\sum_{k=N+1}^{N+P}\frac{a_{k}}{S_{k}}\geq\frac{S_{N+P}-S_{N}}{S_{N+P}}=1-\frac{S_{N}}{S_{N+P}}\rightarrow1$$
+        So, $\sum^{n}_{k=1}\frac{a_{k}}{S_{k}}$ also diverges. Since each of its elements is smaller, it diverges slower than the inital one. Thus, there is \textbf{no slowest diverging series}.
+    
+    \subsection{Harmonic Series: }
+        Suppose $a_{k}=1\forall k$. $\sum_{k=1}^{\infty}1$ clearly diverges.
+        $$S_{n}=\sum_{k=1}^{n}=n$$
+        $$\sum_{k=1}^{\infty}\frac{a_{k}}{S_{k}}=\sum_{k=1}^{\infty}$$
+        or the harmonic series, diverges as well.
+        $$H_{n}=\sum_{k=1}^{n}\frac{1}{k}\approx\ln{n}$$
+        $$\sum_{k=1}^{\infty}\frac{\frac{1}{k}}{H_{k}}\approx\sum_{k=2}^{\infty}\frac{1}{k\ln k}$$
+        diverges as well.
+    
+    \subsection{Divergence Test}
+        If $\lim_{k\rightarrow\infty}a_{k}\neq0$, then $\sum_{k=1}^{\infty}a_{k}$ diverges. This is deriven directly from Cauchy's Convergence Criterion.
+
+    \subsection{Absolute Convergence}
+        $\sum_{k=1}^{\infty}a_{k}$ is said to converge \textbf{absolutely} if $\sum_{k=1}^{\infty}|a_{k}|$ converges.\\
+        \textbf{Statement: } An absolutely convergent series is convergent.\\
+        \textbf{Proof: } $$|\sum_{k=N+1}^{N+P}a_{k}|\leq\sum_{k=N+1}^{N+P}|a_{k}|$$\\
+        \textbf{Lemma: } If $\sum_{k=1}^{\infty}a_{k}$ converges absolutely, then given any $\epsilon > 0$ $\exists N : \sum_{k=N+1}^{N+P}|a_{k}|<\epsilon \forall P \in \mathbb{N}$
+    
+    \subsection{Direct Comparison Test}
+        Given $\{a_{k}\}_{k=1}^{\infty}$ and $\{b_{k}\}_{k=1}^{\infty}$ are both sequences of positive numbers, if $a_{k}\geq b_{k} \forall k > K$, then
+        $$\sum_{k=1}^{\infty}b_{k} \text{ diverges then } \sum_{k=1}^{\infty}a_{k}\text{ diverges as well. }$$
+        $$\sum_{k=1}^{\infty}a_{k} \text{ converges then } \sum_{k=1}^{\infty}b_{k}\text{ converges as well. }$$
+
+    \subsection{Limit Comparison Test}
+        Given $\{a_{k}\}_{k=1}^{\infty}$ and $\{b_{k}\}_{k=1}^{\infty}$ are two sequences of positive terms, if
+        $$\lim_{k\rightarrow\infty}\frac{a_{k}}{b_{k}}=L\neq 0$$
+        then the sequences both converge or both diverge.
+        \subsubsection{Proof}
+            $$\lim_{k\rightarrow\infty}\frac{a_{k}}{b_{k}}=L\Rightarrow\text{ given any }\epsilon>0\exists K |$$
+            $$|\frac{a_{k}}{b_{k}}-L|<\epsilon \forall k > K$$
+            $$L-\epsilon<\frac{a_{k}}{b_{k}}<L+\epsilon$$
+            $$b_{k}(L-\epsilon)<a_{k}<b_{k}(L+\epsilon)$$
+            Let $N > K$,
+            $$(L-\epsilon)\sum_{N+1}^{N+P}b_{k}<\sum_{N+1}^{N+P}a_{k}<(L+\epsilon)\sum_{N+1}^{N+P}b_{k}$$
+            As long as $L>0$, then the LHS can be positive. Taking cases of convergence and divergence for $\sum_{N+1}^{N+P}b_{k}$,
+            the Limit Comparison Test is proven.
+
+    \subsection{Integral Comparison Test}
+        Suppose $\{a_{k}\}_{k=1}^{\infty}$ is a sequence of positive, monotonic, decreasing terms
+        and $f(x)$ is a continuous, monotonic, decreasing function satisfying $f(k)=a_{k} \forall K$.
+        $$\int_{n+1}^{m+1}f(k)dx<\sum_{n+1}^{m}a_{k}<\int_{n}^{m}f(k)dx$$
+        This not only shows both the integral and the sequence converging or diverging together, but it helps
+        approximate the value.
+        
+        \subsubsection{Approximation of the Harmonic Series}
+            Using Mathematica, $H_{100}=5.1873775$. Estimate $H_{10^{6}}$.
+            $$\int_{101}^{10^{6}+1}\frac{1}{x}dx<\sum_{k=101}^{10^{6}}\frac{1}{k}<\int_{100}^{10^{6}}\frac{1}{x}dx$$
+            $$\ln\frac{10^{6}+1}{101}<\sum_{k=101}^{10^{6}}\frac{1}{k}<\ln(10^{4})$$
+            $$H_{100}+\ln\frac{10^{6}+1}{101}<H_{10^{6}}<H_{100}+4\ln10$$
+            For some $n$,
+            $$H_{100}+\ln\frac{n+1}{101}<H_{n}<H_{100}+\ln\frac{n}{100}$$
+            The error of the bounds is,
+            $$\ln\frac{n}{100}-\ln\frac{n+1}{101}=\ln\left(\frac{101}{100}\cdot\frac{n}{n+1}\right)$$
+            This approaches $\ln101 - \ln100$ for large n. Note that the error doesn't change (that much) for significant changes in n.
+
+        \subsubsection{Error of Harmonic Series}
+            $$H_{n}-\ln(n+1)$$
+            is bounded and converges to the \textbf{Euler-Mascheroni constant}.
+
+    \subsection{Geometric Series}
+            $$S_{n}=1+r+r^{2}+\cdots+r^{n}$$
+            $$rS_{n}=r+r^{2}+\cdots+r^{n}+r^{n+1}$$
+            $$rS_{n}-S_{N}=r^{n+1}-1$$
+            $$\therefore S_{n}=\frac{r^{n+1}-1}{r-1} \,\forall\, r\in\mathbb{C} \mid r\neq1\text{, }S_{n}=n+1\text{ for } r=1$$
+            Note that this works for complex numbers as well.
+            $$1+r+r^{2}+\cdots=\frac{1}{1-r}; |r|<1$$
+    
+    \subsection{Using the Taylor Series}
+        Find a series for $\frac{1}{5-2x}$ centered at $x=0$.
+        $$\frac{1}{5-2x}=\frac{1}{5}\cdot\frac{1}{1-\frac{2x}{5}}=\frac{1}{5}\cdot\sum_{k=0}^{\infty}\left(\frac{2x}{5}\right)^{k};|x|<\frac{5}{2}$$
+        Note that this is a disk in the complex plane.
+        Find a series for $\frac{1}{5-2x}$ centered at $x=-4$. (powers of $x+4$)
+        $$\frac{1}{5-2x}=\frac{1}{13-2(x+4)}=\frac{1}{13}\cdot\sum_{k=0}^{\infty}\left(\frac{2(x+4)}{13}\right)^{k};|x+4|<\frac{13}{2}$$
+
+        \subsubsection{Singularities}
+            Singularities at which a series is undefined can pose a problem in convergence.
+    
+    \subsection{Root Test}        
+`       Consider $\sum_{k=0}^{\infty}a_{k}$.
+        $$\text{If } \lim_{k\rightarrow\infty}\sqrt[k]{|a_{k}|}=r\text{, then given any }\epsilon > 0\text{, }\exists K:$$
+        $$r-\epsilon < \sqrt[k]{|a_{k}|}<r+\epsilon\Rightarrow(r-\epsilon)^{k} < |a_{k}|<(r+\epsilon)^{k}$$
+        $$\sum_{k=N+1}^{N+P}(r-\epsilon)^{k} < \sum_{k=N+1}^{N+P}|a_{k}|<\sum_{k=N+1}^{N+P}(r+\epsilon)^{k} \text{ for } N>K \text{.}$$
+        $$\text{ If } r < 1, \sum a_{k} \text{ converges absolutely. }$$
+        $$\text{ If } r > 1, \sum a_{k} \text{ diverges absolutely. }$$
+        $$\text{ If } r = 1, \text{ the test is inconclusive. }$$
+
+    \subsection{Power Series}
+        $$\sum_{k=0}^{\infty}c_{k}(z-z_{0})^{k}\text{ converges on a disk, } |z-z_{0}|<\frac{1}{\lim_k\rightarrow\sqrt[k]{|c_{k}|}}=R$$
+        $z_{0}$ is the center of the series. $R$ is the radius of convergence or the distance from the center to the nearest singular point.
+        
+        \subsubsection{Example}
+            Find the Maclauring series for $\frac{2}{3-2x+x^{2}}$.
+            $$\frac{2}{3-2x+x^{2}}=\frac{2}{3}\cdot\frac{1}{1-\frac{2x-x^{2}}{3}}=\frac{2}{3}\cdot\sum_{k=0}^{\infty}\left(\frac{2x-x^{2}}{3}\right)^{k}$$
+            Rearranging,
+            $$=\frac{2}{3}\left[1+\left(\frac{2x-x^{2}}{3}\right)+\left(\frac{2x-x^{2}}{3}\right)^{2}+\left(\frac{2x-x^{2}}{3}\right)^{3}+\cdots\right]$$
+            Expanding (can change region of convergence),
+            $$=\frac{2}{3}\left[1+\frac{2}{3}x+x^{2}\left(-\frac{1}{3}+\frac{4}{9}\right)+x^{3}\left(-\frac{2\cdot2}{9}+\frac{8}{27})\right)+\cdots\right]$$
+            $$=\frac{2}{3}\left[1+\frac{2}{3}x+\frac{1}{9}x^{2}-\frac{4}{27}x^{3}+\cdots\right]$$
+            Note the power series in terms of $x$ only converges in a disk while the original sum converges in a different region specifically $|2x-x^{2}|<3$.
+            Finding singularity points,
+            $$x^{2}-2x+3=0\Rightarrow\cdots\Rightarrow x=1\pm i\sqrt{2}$$
+            Thus,
+            $$R=|1\pm i\sqrt{2}|=\sqrt{3}$$
+
+    \subsection{Ratio Test}
+
+    \subsection{Alternating Series Test}
+        The terms are monotonic decreasing in absolute value and the terms alternate signs. Then,
+        the original sequence can be separated into 2 convergent subsequences. If the limit point of 
+        these 2 convergent subsequences is the same, $lim_{n\rightarrow\infty}a_{n}=0$, then the 
+        original sequence also converges.
+
+    \subsection{Complication of Conditional Convergence}
+        $$1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}\cdots$$
+        \subsubsection{Argument 1: }
+            The first term is 1, the next term has magnitude less than 1, so the sum is between
+            $\frac{1}{2}$ and $1$.
+
+        \subsubsection{Argument 2:}
+            Add the positive terms until it exceeds $3$, then subtract $\frac{1}{2}$. Next add positive terms
+            to $3$, then subtract $\frac{1}{4}$, etc. So, the sequence converges to $3$.
+
+        \subsubsection{A Word of Caution}
+            Rearranging terms in a conditionally convergent series can change the sum. The Alternating Series Test depends
+            on the fact that the terms are added in order. Argument 2 destroys the meaning of the word converge.
+
+    \subsection{Cauchy's Condensation Test}
+        Suppose $\{a_{n}\}_{n=1}^{\infty}$ is decreasing and $a_{n}\geq 0$ for all $n\in \mathbb{N}$.
+        Then, $\sum_{n=1}^{\infty}a_{n}$ and $\sum_{n=0}^{\infty}2^{n}a_{n}$ converge or diverge together.
+    
+
+\section{Taylor Series}
+    \subsection{Lagrange Error}
+        Let,
+        $$f(x)-f(x_{0})=\int_{x_{0}}^{x}f'(t)dt$$
+        Doing repeated integration by parts tabularly,
+        $$=\left[f'(t)(t-x)-\frac{1}{2}f''(t)(t-x)^{2}+\frac{1}{3!}f^{(3)}(t)(t-x)^{3}\right]_{x_{0}}^{x}-\int_{x_{0}}^{x}\frac{1}{3!}f^{(4)}(t-x)^{3}dt$$
+        $$=f'(t)(x-x_{0})+\frac{1}{2}f''(t)(x-x_{0})^{2}+\frac{1}{3!}f^{(3)}(x-x_{0})^{3}-\int_{x_{0}}^{x}\frac{1}{3!}f^{(4)}(t-x)^{3}dt$$
+        So,
+        $$f(x)=\sum_{k=0}^{n}\frac{f^{(k)}(x_{0})}{k!}(x-x_{0})^{k}+\frac{1}{n!}\int_{x_{0}}^{x}f^{(n+1)}(x-t)^{n}dt$$
+        The integral part of this expression is the lagrange error when approximating a function with a set number of taylor series terms.
+
+    \subsection{Building Block Series}
+        $$\frac{1}{1-x}=1+x+x^{2}+\cdots=\sum_{k=0}^{\infty}x^{k}\text{, }|x|<1\text{.}$$
+        $$-\ln(1-x)=x+\frac{x^{2}}{2}+\frac{x^{3}}{3}+\cdots=\sum_{k=1}^{\infty}\frac{x^{k}}{k}\text{, }|x|<1\text{.}$$
+        $$\arctan(x)=x-\frac{x^{3}}{3}+\frac{x^{5}}{5}\cdots=\sum_{k=0}^{\infty}\frac{(-1)^{k}x^{2k+1}}{2k+1}\text{, }|x|<1\text{.}$$
+        Note the radius of convergence for this series is $1$ as it is not defined for $x=\pm i$ even though it is defined for all reals.
+        $$(1+x)^{n}=1+nx+\frac{n(n+1)}{2}x^{2}+\frac{n(n-1)(n-2)}{3}x^{3}\cdots=\sum_{k=0}^{\infty}\binom{n}{k}x^{k}\text{, }|x|<1\text{.}$$
+        $$e^{x}=1+x+\frac{x^{2}}{2!}+\frac{x^{3}}{3!}\cdots=\sum_{k=0}^{\infty}\frac{x^{k}}{k!}\text{, }|x|<\infty\text{.}$$
+        $$\sin(x)=x-\frac{x^{3}}{3!}+\frac{x^{5}}{5!}\cdots=\sum_{k=0}^{\infty}\frac{(-1)^{k}x^{2k+1}}{(2k+1)!}\text{, }|x|<\infty\text{.}$$
+        $$\cos(x)=1-\frac{x^{2}}{2}+\frac{x^{4}}{4!}\cdots=\sum_{k=0}^{\infty}\frac{(-1)^{k}x^{2k}}{(2k)!}\text{, }|x|<\infty\text{.}$$
+
+    \subsection{Derived Series}
+        \subsubsection{Example 1}
+            Consider $f(x)=\frac{\sin(\sqrt{x})}{\sqrt{x}};\, f(0)=1$.
+            $$=\frac{1}{\sqrt{x}}\sum_{k=0}^{\infty}\frac{(-1)^{k}(\sqrt{x})^{2k+1}}{(2k+1)!}=\sum_{k=0}^{\infty}\frac{(-1)^{k}x^{k}}{(2k+1)!}$$
+            This can be used to find arbitrary derivatives.
+            $$\sum_{k=0}^{\infty}\frac{(-1)^{k}x^{k}}{(2k+1)!}=\sum_{y=0}^{\infty}\frac{f^{(y)}(0)}{y!}x^{y}$$
+            To compute, $f^{(10)}(0)$ look at the $x^{10}$ term.
+            $$\frac{(-1)^{10}x^{10}}{21!}=\frac{f^{(10)(0)}x^{10}}{10!}\Rightarrow f^{(10)}(0)=\frac{10!}{21!}$$
+        
+        \subsubsection{Another Example}
+            Consider $g(x)=\frac{\ln(3+2x^{2})-\ln(3)}{x};g(0)=0$. Find $g^{(6)}(0)$.
+            $$\ln(3+2x^{2})=\ln\left[3(1+\frac{2}{3}x^{2})\right]=\ln{3}+\ln(1+\frac{2}{3}x^{2})$$
+            $$\therefore g(x)=\frac{\ln(1+\frac{2}{3}x^{2})}{x}=\frac{-\sum_{k=0}^{\infty}\frac{(-\frac{2}{3}x^{2})^{k}}{k}}{x}=\sum_{k=1}^{\infty}\frac{(-1)^{k+1}(\frac{2}{3})^{k}x^{2k-1}}{k}\text{, }|x|<\sqrt{\frac{3}{2}}$$
+            $$=\sum_{y=0}^{\infty}\frac{g^{(y)}(0)}{y!}x^{y}$$
+            Since we are looking for $x^{6}$ but that makes $k=\frac{7}{2}\notin\mathbb{N}$. This means that a $x^{6}$ term is absent.
+            $$\therefore g^{(6)}(0)=0$$
+            An easier method is noticing $g(x)$ is odd which means all the even derivatives are $0$. To find $g^{(7)}(0)$, observe $k=4$...
+            $$\frac{g^{(7)}(0)}{7!}x^{7}=\frac{(-1)^{5}\left(\frac{2}{3}\right)^{4}x^{7}}{4}\Rightarrow g^{(7)}(0)=-\frac{2^{2}}{3^{4}}7!$$
+
+        \subsubsection{A Cooler One}
+            Consider $h(x)=\int_{0}^{x}\frac{1-\cos(2t^{3})}{t^{3}}dt$. Find $h^{(13)}(0)$.
+            $$\frac{1-\cos(2t^{3})}{t^{3}}=\frac{1-\sum_{k=0}^{\infty}\frac{(-1)^{k}(2t^{3})^{2k}}{(2k)!}}{t^{3}}=\frac{\sum_{k=1}^{\infty}\frac{(-1)^{k+1}(2t^{3})^{2k}}{(2k)!}}{t^{3}}$$
+            $$=\sum_{k=1}^{\infty}\frac{(-1)^{k+1}2^{2k}t^{6k-3}}{(2k)!}\Rightarrow h(x)=\sum_{\infty}{k=1}\frac{(-1)^{k+1}2^{2k}x^{6k-2}}{(2k)!(6k-3)}=\sum_{y=0}^{\infty}\frac{h^{(y)}(0)}{y!}x^{y}$$
+            Since there is no natural $k$ that makes this work, $h^{(13)}(0)=0$.
+
+
+\end{document}

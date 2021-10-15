@@ -1,0 +1,113 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\chapter{Complex Limits and Derivatives}
+\section{Limits}
+    \subsection{Definition}
+        The function $f(z)$ is said to have the limit $F$ as $z$ approaches $z_{0}$ if given any $\epsilon>0$
+        $\exists$ $\delta\mid |f(z)-F|<\epsilon$ whenever $0<|z-z_{0}|<\delta$.
+    
+    \subsection{Punctured Disk}
+        A punctured disk is a disk with an open boundary except the center.
+        The $0<|z-z_{0}|<\delta$ gives a punctured disk. $|f(z)-F|<\epsilon$ gives another disk.
+        The limit definition essentially states that the punctured disk can be mapped inside the other disk.
+    
+    \subsection{Triangle Inequality}
+        For any complex numbers $z, w$.
+            $$||z|-|w||\leq |z+w| \leq |z| + |w|$$
+        Drawing the complex numbers, we see that this enforces that the numbers form a triangle. This is basically
+        the complex analog of the simple triangle inequality from geometry.
+
+\section{Limit Laws}
+    \subsection{The Sum Law}
+        \subsubsection{Definition}
+            If $\lim_{z\rightarrow z_{0}}f(z)=F$ and $\lim_{z\rightarrow z_{0}}g(z)=G$, then $\lim_{z\rightarrow z_{0}}\left[f(z)+g(z)\right]=F+G$.
+            Given $\epsilon >0$, we need to find a $\delta$ such that $|f(z)+g(z)-F-G|<\epsilon$ whenever $0<|z-z_{0}|<\delta$. Note that we can assume the 
+            standalone limits exist.
+
+        \subsubsection{Proof}
+            Given any $\epsilon>0$, we can certainly find $\delta_{f}$: $|f(z)-F|<\frac{\epsilon}{2}$ whenever $0<|z-z_{0}|<\delta_{f}$,
+            and $\delta_{g}$: $|g(z)-G|<\frac{\epsilon}{2}$ whenever $0<|z-z_{0}|<\delta_{g}$. Now, for $0<|z-z_{0}|<\min(\delta_{f}, \delta_{g})$, we have 
+            $|f(z)+g(z)-F-G|\leq|f(z)-F|+\leq|g(z)-G|<\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon$.
+            Therefore the choice $\min(\delta_{f}, \delta_{g})$ for $\delta$ satisfies our requirements and proves the theorem.
+
+    \subsection{The Product Law}
+        \subsubsection{Definition}
+            If $\lim_{z\rightarrow z_{0}}f(z)=F$ and $\lim_{z\rightarrow z_{0}}g(z)=G$, then $\lim_{z\rightarrow z_{0}}\left[f(z)g(z)\right]=FG$.
+            Given $\epsilon >0$, we need to find a $\delta$ such that $|f(z)g(z)-FG|<\epsilon$ whenever $0<|z-z_{0}|<\delta$. Note that we can assume the 
+            standalone limits exist.
+
+        \subsubsection{Proof}
+            $$|f(z)g(z)-FG|=|(f(z)-F+F)g(z)-FG|=|(f(z)-F)g(z)+F(g(z)-G)|$$
+            $$=|(f(z)-F)(g(z)-G)+(f(z)-F)G+F(g(z)-G)|$$
+            Given $\epsilon > 0$, we can find $\delta_{f}$ for which $|f(z)-F|<min(\frac{\epsilon}{3}, 1)$ for $0<|z-z_{0}|<\delta_{f}$,
+            and $\delta_{g}$ for which $|g(z)-G|<min(\frac{\epsilon}{3}, 1)$ for $0<|z-z_{0}|<\delta_{f}$.
+            Note that there are a number of cases we need to consider.
+            \\
+            \textbf{Case 1:}
+            Suppose $F=G=0$. Given $\epsilon>0$, we can find $\delta_{f}$ such that $|f(z)|<\epsilon$ whenever $0<|z-z_{0}|<\delta_{f}$
+            and $\delta_{g}$ such that $|g(z)|<1$ whenever $0<|z-z_{0}|<\delta_{g}$
+            \\\\
+            \textbf{Case 2:}
+            Suppose $F=0,G\neq 0$. Given $\epsilon>0$, we can find $\delta_{f}$ such that $|f(z)|<\min(\frac{\epsilon}{2|G|}, 1)$ whenever $0<|z-z_{0}|<\delta_{f}$
+            and $\delta_{g}$ such that $|g(z)-G|<\min(\frac{\epsilon}{2},1)$ whenever $0<|z-z_{0}|<\delta_{g}$.
+            \\\\
+            \textbf{Case 3:}
+            Suppose $FG\neq 0$. Given $\epsilon>0$, we can find $\delta_{f}$ such that $|f(z)-F|<\min(\frac{\epsilon}{3|G|}, 1, \frac{\epsilon}{3})$ whenever $0<|z-z_{0}|<\delta_{f}$
+            and $\delta_{g}$ such that $|g(z)-G|<\min(\frac{\epsilon}{3|F|},1,\frac{\epsilon}{3})$ whenever $0<|z-z_{0}|<\delta_{g}$.
+            \\\\
+            \textbf{Finishing:}
+            Now for each of these cases, the triangle inequality guarantees that $|f(z)g(z)-FG|=|(f(z)-F)(g(z)-G)+(f(z)-F)G+F(g(z)-G)|<\epsilon$ which proves the theorem.
+
+\section{Derivatives}
+    \subsection{Definition}
+        The function $f(z)$ is said to be differentiable at $z_{0}$ if the following exists:
+        $$\lim_{z\rightarrow z_{0}}\frac{f(z)-f(z_{0})}{z-z_{0}}$$
+        In this case, the limit is $f'(z_{0})$. Note that the derivative of a sum = sum of the derivatives
+        provided that the two functions are differentiable.
+
+    \subsection{Products}
+        $$\lim_{z\rightarrow z_{0}}\frac{f(z)g(z)-f(z_{0})g(z_{0})}{z-z_{0}}=\lim_{z\rightarrow z_{0}}\frac{\left[f(z)-f(z_{0})+f(z_{0})\right]g(z)-f(z_{0})g(z_{0})}{z-z_{0}}$$
+        $$=\lim_{z\rightarrow z_{0}}\left[\frac{f(z)-f(z_{0})}{z-z_{0}}g(z)+f(z_{0})\frac{g(z)-g(z_{0})}{z-z_{0}}\right]$$
+        We know that this is equal to the sum of the limits so,
+        $$\boxed{\therefore \frac{d}{dz}(f(z)g(z))=f'(z_{0})g(z_{0})+f(z_{0})g'(z_{0})}$$
+
+    \subsection{Entire}
+        z is \textbf{entire}, with derivative 1. All polynomials then are entire.
+        Entire means that a function is differentiable on the whole complex plane.
+
+    \subsection{Product Rule}
+        As long as $z_{0}\neq 0$,
+        $$\lim_{z\rightarrow z_{0}}\frac{z^{n}-z_{0}^{n}}{z-z_{0}}=\lim_{z\rightarrow z_{0}}\frac{z_{0}^{n}}{z_{0}}\cdot\frac{(\frac{z}{z_{0}})^{n}-1}{\frac{z}{z_{0}}-1}$$
+        Letting $w=\frac{z}{z_{0}}$,
+        $$z^{n-1}\lim_{w\rightarrow 1}\frac{w^{n}-1}{w-1}=nz^{n-1}$$
+        We can substitue $n=-m$ and continue to derive this for rational numbers as well.
+
+    \subsection{Exponentials}
+        $$\lim_{h\rightarrow 0}\frac{e^{z+h}-e^{z}}{h}=\lim_{h\rightarrow 0}\frac{e^{z}(e^{h}-1)}{h}=e^{z}\lim_{h\rightarrow 0}\frac{e^{h}-1}{h}=e^{z}$$
+        So, $e^{z}$ is entire as it is defined on the whole complex plane and thus is differentiable on it as well.
+
+    \subsection{More on Differentiability}
+        If $f(z)=u(x,y)+iv(x,y)$, with $u,v$ differentiable functions of $x,y$, then
+        $$f'(z)=\lim_{z\rightarrow z_{0}}\frac{f(z)-f(z_{0})}{z-z_{0}}$$
+        For $f(z)$ to be differentiable, it has to hold the same value for an arbitrary direction of approach. Considering an approach of constant y,
+        $$=\lim_{z\rightarrow z_{0}}\frac{u(x,y_{0})+iu(x,y_{0})-[u(x_{0},y_{0})+iv(x_{0},y_{0})]}{x-x_{0}}=u_{x}(x_{0},y_{0})+iv_{x}(x_{0},y)$$
+        Approaching at constant x,
+        $$=\lim_{z\rightarrow z_{0}}\frac{u(x_{0},y)+iu(x_{0},y)-[u(x_{0},y_{0})+iv(x_{0},y_{0})]}{i(y-y_{0})}=-i(u_{y}+iv_{y})=v_{y}-iu_{y}$$
+        Setting these equal to each other, we can see that if $f$ is differentiable, then it satisfied the Cauchy-Reimann Equations and is conformal.
+        $$\boxed{\therefore \text{conformal}\Leftrightarrow \text{differentiable}}$$
+
+    \subsection{An Important Statement}
+        $f(z)$ is differentiable at $z_{0}$ iff $f(z)=f(z_{0})+f'(z_{0})(z-z_{0})+\xi(z,z_{0})$, where given any $\epsilon>0$ $\exists$ $\delta\mid |\xi(z,z_{0})|<\epsilon|z-z_{0}|$
+        whenever $0<|z-z_{0}|<\delta$. Note that this means the error term is "faster" than linear. If $f'(z_{0})=0$, then 
+        $$f(z)=f(z_{0})+f'(z_{0})(z-z_{0})\left[1+\frac{\xi(z,z_{0})}{f'(z,z_{0})(z-z_{0})}\right]$$
+        This shows that when $z$ is close enough to $z_{0}$ this function is nothing but a translation $f(z_{0})$ and a rotation. The term with the $\xi$ goes to zero. So, locally,
+        this function is conformal. Note that Cauchy Reimann equations are sufficient for differentiability. But for conformality, both a non-zero derivative and cauchy-reimann are needed.
+    
+    \subsection{Determining Differentiability}
+        Determine where $f(z)=f(x+yi)=x^{3}+y^{2}+3ix^{2}y$ is differentiable. For this to satisfy the cauchy reiman equations,
+        $u_{y}=-v_{x}$. Solving the system gives $y=0$ or $x=-\frac{1}{3}$.
+
+    
+
+\end{document}

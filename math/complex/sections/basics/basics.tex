@@ -1,0 +1,96 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\chapter{The Basics of Complex Numbers}
+\section{Complex Numbers Review}
+\subsection{Definition}
+    Complex numbers are of the form $a+bi$, $a,b\in\mathbb{R}$ and $i^{2}=-1$.
+
+\subsection{Complex Conjugate}
+    \textbf{Definition}: $\overline{a+bi}=a-bi$
+    If $z=a+bi$, then $z\cdot\overline{z}=a^{2}+b^{2} > 0$ unless $z=0$.
+
+\subsection{Multiplication}
+    The multiplication of 2 complex numbers is a complex number. Multiplication proceeds via
+    basic algebraic distribution.
+
+\subsection{Division}
+    Division of complex numbers is defined as long as the denominator is not 0.
+    To do division operations, multiple the top and bottom by the complex conjugate of the 
+    denominator and simplify.
+
+\subsection{Modulus}
+    \textbf{Modulus} of $z=a+ib$ is given by
+    $$|z|=\sqrt{a^{2}+b^{2}}$$
+    $$|z_{1}z_{2}|^{2}=z_{1}z_{2}\overline{z_{1}}\overline{z_{2}}=|z_{1}|^{2}|z_{2}|^{2}$$
+    $$|z_{1}z_{2}|=|z_{1}||z_{2}|$$
+
+\section{Geometry of the Complex Plane}
+\subsection{The Plane}
+    The complex plane is just like the xy-plane except it has a real axis "x" and a complex axis "y".
+
+\subsection{Distances}
+    $|z|$ gives the distance from $z$ to the origin.
+    $|z_{2}-z_{1}|$ gives the distance from $z_{2}$ to $z_{1}$ in the complex plane.
+
+\subsection{Polar Representation}
+    $r=|z|$ and $\theta=\arg(z)$ "the argument of z". We use the "normal" version.
+    $(1, \pi) \text{ or } (1, 3\pi) \text{ instead of } (-1, -\pi)$
+    
+    \subsubsection{Principle Argument:}
+        $$-\pi\leq Arg(z)\leq\pi$$
+    
+    \subsubsection{rcis form: }
+        $a=rcos\theta, b=rsin\theta, z=r(cos\theta+isin\theta)$
+    
+    \subsubsection{Conjugates}
+        If $\theta=Arg(z)$, $\overline{rcis\theta}=rcis(-\theta)$
+
+    \subsubsection{Multiplication}
+        Suppose $z_{1}=r_{1}cis\theta_{1}$ and $z_{2}=r_{2}cis\theta_{2}$,
+        $$z_{1}z_{2}=r_{1}r_{2}cis(\theta_{1}+\theta_{2})$$
+
+        $$arg(z_{1}z_{2})=arg(z_{1})+arg(z_{2})$$
+        \textbf{Conclusion: } Multiplication in the complex plane consists of a rotation and a dilation.
+
+\subsection{Exponential Representation + Taylor Series}
+    $$cis\theta=e^{i\theta}$$
+    $$e^{i\theta}=1+i\theta+\frac{(i\theta)^{2}}{2!}+\frac{(i\theta)^{3}}{3!}+\cdots=(1-\frac{\theta^{2}}{2!}+\frac{\theta^{4}}{4!}+\cdots)+i(\theta-\frac{\theta^{3}}{3!}+\frac{\theta^{5}}{5!}\cdots)$$
+    $$e^{i\theta}=cos\theta+isin\theta$$
+    $$cos\theta=\frac{e^{i\theta}+e^{-i\theta}}{2}$$
+    $$sin\theta=\frac{e^{i\theta}-e^{-i\theta}}{2i}$$
+    $$cosz=\frac{e^{iz}+e^{-iz}}{2}$$
+    Cosine can be used on the entire complex plane.
+\subsection{Hyperbolic Functions}
+    $$\cos(a+ib)=\frac{e^{i(a+ib)-e^{-i(a+ib)}}}{2}=\frac{e^{ia}e^{-b}+e^{-ia}e^{b}}{2}$$
+    $$=\cos a\cdot\frac{e^{b}+e^{-b}}{2}-i\sin a\cdot\frac{e^{b}-e^{-b}}{2}$$
+    $$\cosh z=\frac{e^{z}+e^{-z}}{2}$$
+    $$\sinh z=\frac{e^{z}-e^{-z}}{2}$$
+    $$\tanh z = \frac{e^{z}-e^{-z}}{e^{z}+e^{-z}}$$
+
+\section{Exponentiation}
+Converting to exponential form is a lot easier than using binomial theorem.
+Multiplication, division, and exponentiation is a lot easier in exponential notation.
+$$(1+i\sqrt{3})^{7}=(2e^{i\frac{\pi}{3}})^7=2^{7}\cdot e^{i\frac{7\pi}{3}}$$
+\subsection{Not Bijective}
+    $$\forall a\in\mathbb{R} : a\neq 0\text{, }e^{z}=a\text{ for inifinitely many z.} $$
+\subsection{Fractional Exponentiation}
+    Using a exponential notation, $\pm$ results arise for different arguments.
+    \subsubsection{Principal Value}
+        Convention is to use the principal argument during calculations. Remeber that
+        the principal argument is \textbf{not always positive} but the one between $-\pi$ and $\pi$.
+        \\\\
+        \textbf{Example: }   
+            $$\text{For } n \in \mathbb{Z}\text{, }i=e^{i\frac{\pi}{2}}\cdot e^{i\cdot 2\pi n}\Rightarrow i^{\frac{1}{3}}=\text{cis}\left(\frac{\pi}{6}+\frac{2\pi n}{3}\right)$$
+            Note that these values form an equilateral triangle when polygon. Note that $i^{\frac{1}{q}}$ for $q\in\mathbb{N}$, results in
+            an regular $n-gon$.
+        \\\\
+        \noindent\textbf{Calculators:} TI calculators do not always return the principal value.\\
+        \noindent\textbf{Phase:} $e^{i\theta}$ is called a \textbf{phase factor}.
+
+\subsection{Raising to the $i$ Power}
+    Raising something to the $i$ power "switches" the argument and modulus.
+    $$i^i=(e^{i\frac{\pi}{2}+2in\pi})^{i}=e^{-\frac{\pi}{2}-2n\pi}$$
+    $$2^{i}=(e^{\ln2}\cdot e^{2\pi in})^{i}=e^{-2\pi n}\cdot \text{cis}(\ln2)$$
+
+\end{document}

@@ -1,0 +1,152 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Lecture Notes for Advanced Math Techniques}
+\author{Alvan Caleb Arulandu}
+\date{January 2021}
+
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\section{Kinematics}
+    Kinematics lies a multiple fundemantal definitions regarding velocity, acceleration, and position. 
+    Additionally, there are a number of helpful quick formulas that are nice to memorize but easy to derive. Note
+    that motion in different coordinate directions are independent.
+    $$h_{max}=\frac{v_{0}^{2}\sin^{2}\theta}{2g};\, t_{top}=\frac{v_{0}\cos\theta}{g};\, d_{range}=\frac{v_{0}\sin 2\theta}{g}$$
+\section{Reference Frames}
+    \subsection{Inertial Frames}
+        An \textbf{intertial frame} is a frame of reference that is not accelerating or rotating.
+        If A is an intertial frame, and B is moving at a constant velocity with respect to A, then B's frame is also inertial.
+        Note that if 2 objects are rotating relative to each other in space, only one can be inertial.
+
+    \subsection{Rotated Frames}
+        Rotating the frame of reference is very useful and can simplify many calculations.
+
+\section{Collisions}
+    Remember to account for frictional impulse during collisions. This stems from the normal impulse that slows an object to rest. See Problem 3.2 in {\it Relatvitiy and Collsion Handout PhysicsWOOT 20-21}.
+    $$j_{f}\leq \mu j_{N}$$
+    In 1D elastic collisions, the relative velocity between the objects changes sign, so
+    $$m_{1}v_{1i}+m_{2}v_{2i}=m_{1}v_{1f}+m_{2}v_{2f}$$
+    $$v_{1i}-v_{2i}=v_{2f}-v_{1f}$$
+    If the masses are equal, the objects simply switch velocities.
+
+    \subsection{Elastic Collisions}
+        Elastic collisions conserve energy and happen in a "perfect world".
+
+    \subsection{Inelastic Collisions}
+        This is when energy is not conserved but is dissapatted as heat and other forms of energy.
+
+    \subsection{Perfectly Inelastic Collisions}
+        These collisions disapate the most kinetic energy and causes the colliding objects to
+
+\section{Differential Equations}
+    \section{Sinusoidal Motion}
+        The following differential equation results in sinusoidal motion with angular velocity $\omega$.
+        $$\frac{d^{2}x}{dt^{2}}=-\omega^{2}x$$
+
+        The potential energy function is parabolic.
+        $$U(x)=ax^{2}$$
+
+        The solution to this is a function of the following form,
+        $$x(t)=\frac{v_{0}}{\omega}\sin(\omega (x-x_{0})+\phi)+x_{0}$$
+        Note that $A=\frac{v_{0}}{\omega}$, $\phi$ is the angular offset and $x_{0}$ is the "middle" value.
+
+\section{Forces}
+    The normal force resists compression. The tension force resists stretching. The frictional force can apply in
+    different directions (static friction).
+
+\section{Random}
+    \subsection{Morse Potential}
+        In chemistry, double bonds can be thought of as a spring with variable bond length that vibrates back
+        and forth. The potential energy in the spring is known as the morse potential.
+
+\section{Statics}
+    Statics are when both torque and forces sum to 0. Draw the forces in properly and quickly balance using F=ma. Cancel out the horizontal and vertical forces to see
+    if that gives any easy substitutions. Then, try picking a pivot point and analyzing the torques. Pick a pivot with
+    a lot of forces on it so that all their torques are zero. For some connected problems, try analyzing the torque of 
+    the entire system. Remember that pivots can exert forces in the "frictional" direction and into the wall as well. 
+    Remember that at pivots, Newton's 3rd law applies so if object 1 exerts a force on object 2, an opposite force is 
+    exerted on object 1.
+
+\section{Gravity}
+    Newtons law states that the force due to gravity is 
+    $$\vec{F}=\frac{Gm_{1}m_{2}}{R^{2}}\hat{r}$$
+    Then, 
+    $$U=-\int_{0}^{\infty}Fdr=-\frac{Gm_{1}m_{2}}{R}$$
+    Note that this is with respect to $\infty$ at which the potential energy is 0.
+    The main idea is that potential energy should decrease as objects get closer together.
+
+\section{Orbits}
+    Orbits conserve angular momentum. From centripetal acceleration it is evident that,
+    $$v_{circ}=\sqrt{\frac{GM}{R}};\, E=-K=\frac{U}{2};$$
+    We can also use conservation of energy to find the escape speed.
+    $$v_{esc}=\sqrt{\frac{2GM}{R}}$$
+    Using this we can classify orbits by tangential velocity. At \textbf{apogee}, the object is at a maximum distance away.
+    Note that if $0<v_{tan}<v_{circ}$ then the orbit must be elliptical and $R$ is the max distance from earth (apogee).
+    If $v_{tan}=v_{circ}$, the orbit is circular with radius $R$. If $v_{circ}<v_{tan}<v_{esc}$, the orbit is elliptical and 
+    $R$ is the minimum distance from Earth (perigee). If $v_{tan}=v_{esc}$, the object escapes the orbit parabolically.
+    But if $v_{tan}>v_{esc}$, then the object exits the orbit but hyperbolically.
+
+\section{Fluids}
+    \textbf{Archimedes Principle} states that the force that a fluid exerts on an object equals the weight
+    of the water it displaces or
+    $$F_{bouyant}=m_{disp}g=\rho V_{disp}g$$
+    \textbf{Pascal's Principle} states that when a pressure is applied to a confined fluid, the fluid exerts
+    that pressure everywhere. This can be applied to pistons showing that
+    $$\frac{F_{1}}{A_{1}}=\frac{F_{2}}{A_{2}}$$
+    \textbf{Burnoulli's Principle} is simply conservation of energy applied to fluids. 
+    $$P+\frac{1}{2}\rho v^{2} + \rho gh = C\in \mathbb{R}$$
+    When you multiply both sides by V, we see that this is simply energy required to apply a pressure on the 
+    fluid volume in "front" plus the kinetic energy due to velocity plus the gravitational potential energy.
+    Dividing by volume allows us to to not worry about volume but instead density which is easier to deal with.
+    Remember that the pressure energy is the atmospheric pressure when exposed to air.
+
+\section{Rotation}
+    When you have a ball that is rolling and moving, the center of mass moves with velocity v, but the point 
+    on the ball has to rotate AND move meaning it has velocity v + v = 2v (second v from centripetal motion).
+    \textbf{Roling without slipping} implies that $v=rw$. If an object takes time to roll, find the time it takes
+    for that equation to be true. Note that all points on the boundary do \textbf{not} rotate with the same speed (break-up components).
+    The Earth rotates counter clockwise when looking down at the north pole.
+
+\section{Ficticious Forces}
+    \textbf{Translational} forces are if you reference frame is linearly accelerating. Add a translational force
+    in the opposite direction.
+    $$F_{trans}=-\frac{d^{2}\vec{R}}{dt^{2}}$$
+
+    \textbf{Centrifugal} forces should be added if you have a rotating reference frame with a static object. Then 
+    add the centrifugal force in the opposite direction of the "typical" centripital force in the outside reference
+    frame. 
+    $$F_{cf}=-m\omega\times(\omega\times r)$$
+
+    \textbf{Coriollis} forces are added if you have a rotating reference frame and the object has a velocity. Then, 
+    the coriollis force is
+    $$F_{cor}=-2m(\vec{\omega}\times \vec{v})$$
+
+    \textbf{Azimuthal} forces are added when the reference frame itself is rotating with an angular acceleration. The azimuthal
+    force is in the opposite direction of a typical tangential acceleration.
+    $$F_{az}=-m\alpha\times r$$
+    Remember that during centripetal motion, there vector $\vec{r}$ points from the center along the radius to the arc/path.
+
+\section{Graphs}
+    Check limiting cases especially on graph questions. Often times, you don't even need
+    to solve completely. You just need to take some limits and maybe derivatives.
+
+\section{Uncertainty}
+    Remember that quadrature is a Guassian approximation. Don't jump into quadrature right away but see if you can use a mathematical
+    exploit with a log or something to make relative uncertainty easier to work with for example. Note that we don't always have to use 
+    quadrature. Try plugging in some delta's to figure changes.
+
+\section{Power}
+    Power is the integral of force with respect to velocity or the derivative of work with respect to time. Note that this means power 
+    is proportional to energy.
+
+\section{Work}
+    For work, remember the linear and rotational analog $W=Fd$ and $W=\tau\theta$. Work is related to energy via the work-kinetic energy
+    theorem.
+
+\end{document}
+ 

@@ -1,0 +1,129 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\chapter{The Gamma Function}
+
+\section{Factorial and an Introduction to the Gamma Function}
+    \subsection{Introduction}
+        Consider $x$ as a positive integer and $n$ as a large natural number.
+        $$(n+x)!=(n+x)(n+x-1)(n+x-2)\cdots n!\approx n^{x}n!$$
+        $$(x+n)!=(x+n)(x+n-1)(x+n-2)\cdots(x+1)x!$$
+        Dividing,
+        $$1\approx\frac{n^{x}n!}{(x+n)(x+n-1)(x+n-2)\cdots(x+1)x!}$$
+        Rearranging,
+        $$x!\approx\frac{n^{x}n!}{(x+n)(x+n-1)(x+n-2)\cdots(x+1)}$$
+        Note that this is true for non-positive x.
+        $$(x-1)!\approx\frac{n^{x}n!}{(x+n)(x+n-1)(x+n-2)\cdots(x+1)(x)}$$
+        $$\lim_{n\rightarrow \infty}\frac{n^{x}n!}{(x+n)(x+n-1)(x+n-2)}=\Gamma(x)$$
+        This is known as the gamma function.
+
+\section{Establishing a General Definition}
+    \subsection{Recurrence Relations and the Factorial Function}
+        $$\Gamma(x+1)=\lim_{n\rightarrow \infty}\frac{n^{x}n!}{(x+1+n)(x+n)\cdots (x+1)}$$
+        $$=\lim_{n\rightarrow \infty}\frac{nx}{x+1+n}\cdots\frac{n^{x}n!}{(x+n)(x+n-1)\cdots (x+1)(x)}$$
+        Separating the product into two limits and simplifying,
+        $$\boxed{\therefore \Gamma(x+1)=x\Gamma(x)}$$
+        Let's look at $\Gamma(1)$.
+        $$\Gamma(1)=\lim_{n\rightarrow\infty}\frac{n\cdot n!}{(1+n)(n)(n-1)\cdots(2)(1)}=\lim_{n\rightarrow\infty}\frac{n\cdot n!}{(n+1)n!}=1$$
+        $$\Gamma(2)=2\cdot\Gamma(1)=2$$
+        $$\vdots$$
+        $$\boxed{\therefore \Gamma(m)=(m-1)!}$$
+        The gamma is also known as the shifted factorial function.
+    
+    \subsection{An Intuitive Derivation}
+        $$\frac{1}{\Gamma(x)}=\lim_{n\rightarrow\infty}\frac{(x+n)(x+n-1)\cdots(x+1)(x)}{n!\cdot n^{x}}$$
+        $$=x\cdot \lim_{n\rightarrow\infty}\frac{x+n}{n}\cdot\frac{x+n-1}{n-1}\cdots\frac{x+2}{2}\cdot\frac{x+1}{1}\cdot n^{-x}$$
+        Shifting,
+        $$\frac{1}{\Gamma(x+1)}=\lim_{n\rightarrow\infty}\left[(1+\frac{x}{n})(1+\frac{x}{n-1})\cdots (1+\frac{x}{2})(1+x)n^{-x}\right]$$
+        $$=\lim_{n\rightarrow\infty}\left[\prod_{k=1}^{n}(1+\frac{x}{k})\cdot n^{-x}\right]$$
+        We want to move the $n^{-x}$ term into the product. We know the following,
+        $$\lim_{n\rightarrow\infty}\left[H_{n}-\ln(n)\right]=\gamma$$
+        where $\gamma$ is the Euler-Mascheroni constant.
+        Using this, we can transform $n^{-x}$ into a product.
+        $$n^{-x}=e^{-x\ln(n)}\approx e^{-x(H_{n}-\gamma)}=e^{\gamma x}e^{-x\sum_{k=1}^{n}\frac{1}{k}}=e^{\gamma x}\prod_{k=1}^{n}e^{\frac{-x}{k}}$$
+        Using this,
+        $$=\lim_{n\rightarrow\infty}\left[\prod_{k=1}^{n}(1+\frac{x}{k})\cdot n^{-x}\right]=\lim_{n\rightarrow\infty}e^{\gamma x}\prod_{k=1}^{n}\left[(1+\frac{x}{k})e^{-\frac{x}{k}}\right]$$
+        Note that for some fixed x, we can go out far enough until the exponent is very small. So for large k,
+        $$(1+\frac{x}{k})e^{-\frac{x}{k}}=(1+\frac{x}{k})(1-\frac{x}{k}+\frac{x^{2}}{2k^{2}}+\cdots)=1-\frac{x^{2}}{k^{2}}+\frac{x^{2}}{2k^{2}}-\cdots\approx 1-\frac{x^{2}}{k^{2}}$$
+        Since $\frac{1}{k^{2}}$'s sum converges, this expression seems to converge. So,
+        $$\frac{1}{\Gamma(1+x)}\text{ is defined for all } x\in\mathbb{C}$$
+
+    \subsection{A Rigorous Proof}
+        This can be rigorously proved using the limit comparison test with $\frac{x^{2}}{k^{2}}$.
+        $$\lim_{k\rightarrow\infty}\frac{(1+\frac{x}{k})e^{\frac{-x}{k}}-1}{\frac{x^{2}}{k^{2}}}$$
+        $$\stackrel{LH}{=}\lim_{k\rightarrow\infty}\frac{\frac{-x}{k^{2}}e^{\frac{-x}{k}}+(1+\frac{x}{k})(\frac{x}{k^{2}})e^{\frac{-x}{k}}}{-2\frac{x^{2}}{k^{3}}}\cdot\frac{k^{2}}{k^{2}}$$
+        $$=\lim_{k\rightarrow\infty}\frac{x^{2}}{-2x^{2}}=\frac{-1}{2}$$
+
+\section{The Reflection Identity}
+    \subsection{Continuing}
+        $$\left[\Gamma(1+x)\Gamma(1-x)\right]^{-1}=e^{\gamma x}\prod_{k=1}^{n}e^{\frac{-x}{k}}\cdot e^{-\gamma x}\prod_{j=1}^{n}e^{\frac{x}{j}}=\prod_{k=1}^{\infty}\left(1-\frac{x^{2}}{k^{2}}\right)$$
+        Using the sin function,
+        $$=\frac{\sin(\pi x)}{\pi x}$$
+        Taking the reciprocal,
+        $$\Gamma(1+x)\Gamma(1-x)=\frac{\pi x}{\sin(\pi x)}$$
+        $$x\Gamma(x)\Gamma(1-x)=\frac{\pi x}{\sin(\pi x)}$$
+        $$\boxed{\therefore \Gamma(x)\Gamma(1-x)=\frac{\pi}{\sin(\pi x)}}$$
+        This is known as the \textbf{Reflection Identity}.
+
+    \subsection{Interesting Values}
+        Using the reflection identity for $x=\frac{1}{2}$,
+        $$\Gamma^{2}(\frac{1}{2})=\pi\Rightarrow\Gamma(\frac{1}{2})=\sqrt{\pi}$$
+        $$\Gamma(\frac{3}{2})=\frac{1}{2}\cdot \sqrt{\pi}=(\frac{1}{2})!$$
+        Now, using the gamma function, we can get the values of all kinds of exotic factorials!
+
+\section{Finding a Maclaurin Expansion}
+    $$\Gamma(1+z)=e^{-\gamma z}\prod_{k=1}^{\infty}\left[(1+\frac{z}{k})^{-1}e^{\frac{z}{k}}\right]$$
+    $$\ln\Gamma(1+z)=-\gamma z + \sum_{k=1}^{\infty}\left[\frac{z}{k}-\ln(1+\frac{z}{k})\right]=-\gamma z + \sum_{k=1}^{\infty}\left[\frac{z}{k}-\sum_{j=1}^{\infty}\frac{(-1)^{j+1}(\frac{z}{k})^{j}}{j}\right]$$
+    Note that the first nested term is $\frac{z}{k}$ which cancels.
+    $$=-\gamma z +\sum_{k=1}^{\infty}\sum_{j=2}^{\infty}\frac{(-1)^{j}z^{j}}{k^{j}j}=-\gamma z +\sum_{j=2}^{\infty}\left(\frac{(-1)^{j}\zeta(j)z^{j}}{j}\right)\text{; }|z|<1$$
+    $$\boxed{\therefore \ln\Gamma(1+z)=-\gamma z +\sum_{k=2}^{\infty}\frac{(-1)^{k}\zeta(k)}{k}z^{k}}$$
+
+\section{Finding an Integral Representation}
+    For large natural $n$, consider
+    $$\int_{0}^{n}t^{z-1}(1-\frac{t}{n})^{n}dt$$
+    Using repeated integration by parts,
+    $$=\left[\frac{t^{z}}{z}(1-\frac{t}{n})^{n}+\frac{t^{z+1}}{z(z+1)}n(1-\frac{t}{n})^{n-1}\frac{1}{n}+\frac{n(n-1)}{n^{2}}(1-\frac{t}{n})^{n-2}\frac{t^{z+2}}{z(z+1)(z+2)}+\cdots\right]_{0}^{n}$$
+    Note that all terms are 0 except for the final one evaluated at n.
+    $$=frac{n!}{n}\frac{n^{z+n}}{z(z+1)(z+2)\cdots (z+n)}=\frac{n! n^{z}}{z(z+1)(z+2)\cdots (z)}$$
+    This looks like the gamma function! We just need to add the limit.
+    $$\boxed{\therefore\Gamma(z)=\int_{0}^{\infty}t^{z-1}e^{-t}dt\text{; }\Re(z)>0}$$
+    This gives us access to a number of integrals.
+
+\section{Integrating with the Gamma Function}
+    Consider this example: $$\int_{0}^{\infty}e^{-2x^{3}}dx$$
+    Setting $t=2x^{3}$ and $x=(\frac{t}{2})^{\frac{1}{3}}$.
+    $$=\int_{0}^{\infty}\frac{1}{2^{\frac{1}{3}}}\frac{1}{3}t^{\frac{-2}{3}}e^{-t}dt$$
+    $$=\frac{1}{2^{\frac{1}{3}}}\cdot\frac{1}{3}\Gamma(\frac{1}{3})=\frac{\Gamma\left(\frac{4}{3}\right)}{\sqrt[3]{2}}$$
+
+\section{Generating Functions}
+    \subsection{$\Gamma(1+\epsilon)$}
+        Consider $\int_{0}^{\infty}\ln x \cdot e^{-x}dx$.
+        First, let's consider $\int_{0}^{\infty}x^{\epsilon}e^{-x}dx$. We know this $=\Gamma(1+\epsilon)$. So one option is differentiating the Gamma function. However, 
+        we can leverage series expansions instead.
+        $$\int_{0}^{\infty}e^{-x}x^{\epsilon}dx=\int_{0}^{\infty}e^{-x}e^{\epsilon\ln x}dx=\int_{0}^{\infty}e^{-x}\sum_{k=0}^{\infty}\frac{(\epsilon\ln x)^{k}}{k!}dx$$
+        $$=\sum_{k=0}^{\infty}\frac{\epsilon^{k}}{k!}\int_{0}^{\infty}e^{-x}\ln^{k}xdx=\Gamma(1+\epsilon)$$
+        We know that,
+        $$\Gamma(1+\epsilon)=\exp(\ln\Gamma(1+\epsilon))=\exp\left(-\gamma\epsilon+\sum_{k=2}^{\infty}\frac{(-1)^k\zeta(k)}{k}\epsilon^{k}\right)$$
+        So,
+        $$\Gamma(1+\epsilon)=1+\left[-\gamma\epsilon+\sum_{k=2}^{\infty}\frac{(-1)^{k}\zeta(k)}{k}\epsilon^{k}\right]+\frac{1}{2!}\left[-\gamma\epsilon + \sum_{k=2}^{\infty}\frac{(-1)^{k}\zeta(k)}{k}\epsilon^{k}\right]^{2}+\cdots$$
+        $$=1-\gamma\epsilon+(\frac{\zeta(2)-\gamma^{2}}{2})\epsilon^{2}+\cdots$$
+        So, we need to find the coefficient of $\epsilon^{1}$ for the original integral. 
+        $$k=0:\int_{0}^{\infty}e^{-x}dx=1$$
+        $$k=1:\frac{\epsilon^{1}}{1!}\int_{0}^{\infty}\ln x\cdot e^{-x}dx=-\gamma\epsilon$$
+        $$k=2:\frac{\epsilon^{2}}{2!}\int_{0}^{\infty}\ln^{2} x\cdot e^{-x}dx=\frac{\zeta(2)+\gamma^{2}}{2}\epsilon^{2}$$
+        So, we call $\Gamma(1+\epsilon)$ the \textbf{generating function} for all these integrals.
+
+    \subsection{Another Example}
+        Consider $\int_{0}^{\infty}x^{2}\ln x\cdot e^{-3x}dx$. Instead, let's consider $\int_{0}^{\infty}x^{2+\epsilon}e^{-3x}dx$. One method is to use a u-substitution for $u=3x$,
+        $$\int_{0}^{\infty}x^{2+\epsilon}e^{-3x}dx=(\frac{1}{3})^{3+\epsilon}\int_{0}^{\infty}u^{2+\epsilon}e^{-u}du=\frac{1}{27}\cdot e^{-\epsilon\ln 3}\cdot \Gamma(3+\epsilon)$$
+        Interpreting this as a Maclaurin series like before,
+        $$\int_{0}^{\infty}x^{2+\epsilon}e^{-3x}dx=\sum_{k=0}^{\infty}\frac{\epsilon^{k}}{k!}\int_{0}^{\infty}x^{2}\ln^{k}x\cdot e^{-3x}dx$$
+        Note we don't have an expansion for $\Gamma(3+\epsilon)$ but we can use the recurrence relation. Then, we can expand as a series as before.
+        $$\frac{1}{27}e^{-\epsilon\ln 3}\Gamma(3+\epsilon)=\frac{1}{27}e^{-\epsilon\ln 3}(2+\epsilon)(1+\epsilon)\Gamma(1+\epsilon)$$
+        $$=\frac{2}{27}(1+\frac{\epsilon}{2})(1+\epsilon)\exp\left(-(\gamma+\ln 3)\epsilon+\sum_{k=2}^{\infty}\frac{(-1)^{k}\zeta(k)}{k}\epsilon^{k}\right)$$
+        Instead of doing all the work again we can use the result from before and replace $\gamma$ for $\gamma+\ln 3$.
+        $$=\frac{2}{27}\left(1+\frac{3}{2}\epsilon+\frac{\epsilon^{2}}{2}\right)\left[1-(\gamma+\ln 3)\epsilon+\left(\frac{\zeta(2)-(\gamma+\ln 3)^{2}}{2}\right)\epsilon^{2}\right]$$
+        $$=\frac{2}{27}\left[1+\left(\frac{3}{2}-\gamma-\ln 3\right)\epsilon+\cdots\right]$$
+        So, our original integral is when $k=1$ and equals the coefficient of $\epsilon$.
+        $$\boxed{\int_{0}^{\infty}x^{2}\ln x\cdot e^{-3x}dx=\frac{2}{27}\left(\frac{3}{2}-\gamma-\ln 3\right)}$$
+
+\end{document}

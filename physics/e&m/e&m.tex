@@ -1,0 +1,799 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\newcommand{\kg}{\text{ kg}}
+
+\title{Notes on 8.02x MIT OCW: Electricity and Magnetism}
+\author{Alvan Caleb Arulandu}
+\date{June 2021}
+
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{graphicx}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+\newcommand{\expect}[1]{\left\langle #1 \right\rangle}
+
+\begin{document}
+
+\maketitle
+\section{Introduction}
+This document contains compiled notes from 8.02x MIT OCW taught by Dr. Walter Lewin. 
+\section{Electric Charges and Forces}
+\subsection{Atoms}
+Atoms consist of a nucleus of protons and neutrons with a cloud of electrons.
+$m_{p}=m_{n}=1.7\times 10^{-27}\kg$  
+
+\subsection{Conservation of Charge}
+There are two different "kinds" of electricity: positive charge and negative charge.
+The sum of all charges is conserved in a system. Charge cannot be created or destroyed.
+
+\subsection{Induction}
+Induction is a process in which a substance polarizes in response to interaction with
+a charged substance. Conducting substances polarize since opposite charge attract.
+Non-conducting substances stil polarize even though they prevent the flow of electrons
+because the atoms slightly polarize (electrons spend more time on one side). This causes
+polarization of the whole substance (electrons "shift"). Friction can transfer electric charge.
+
+\subsection{Coloumb's Law}
+Consider two charges $q_1,q_2$ separated by distance $r$ along direction $\hat{r}_{12}$ (from 1 to 2).
+Let the force of 1 on 2 be $\vec{F}_{1,2}$ and vice versa be $\vec{F}_{2,1}$. Physicist Coloumb found
+$$\vec{F}_{1,2}=\frac{q_{1}q_{2}K}{r^{2}}\hat{r}_{1,2}$$
+Here $K$ is a constant. Coloumb is the SI unit for charge. The charge of a proton 
+is $q_{p^{+}}\approx 1.6\times 10^{-16}C$. $K\approx 9\times 10^{9} \frac{\text{N}\text{m}^{2}}{\text{C}^{2}}$.
+For historical reasons, the constant $K$ is written:
+$$K=\frac{1}{4\pi \epsilon_{0}}$$
+$\epsilon_{0}$ is known as \textbf{the permitivity of free space}. From experimental data, 
+charges follow the law of superposition (add for multiple charges). Comparing Newton's Law
+and Coloumb's Law, we see that electric forces are much stronger than gravitational forces
+(think about two protons). In the nucleus, the protons repel each other strongly by electric forces;
+\textbf{nuclear forces} are what hold the nucleus together. Our immediate surroundings are dictated by electric forces,
+gravity dictates forces on large scales (planetary), and nuclear forces dictate on small scales.
+
+\subsection{Electroscope}
+This instrument consists of a conducting rod and two pieces of aluminum foil. If a charged object touches the top,
+the entire instrument becomes the entire charge and the pieces of foil repel.
+
+\section{Electric Fields}
+The symbol $E$ is used for electric field.
+Electric field is simply the force over the charge. By convention, it is in the direction
+of the force for a positive test charge.
+$$\vec{E}_{p}=\frac{\vec{F}}{q}=\frac{QK}{r^{2}}\hat{r}
+\left[\frac{\text{N}}{\text{C}}\right]$$
+For multiple charges, the force on some charge is calculated by superposition.
+
+\subsection{Field lines}
+In a vector field, the force on some charge is given by the vector at that point.
+For field lines, the force on the charge is given by the direction of the tangent.
+If the field line density is high, the strength of the field is higher (magnitude).
+Field lines are not trajectories.
+
+\subsection{Dipoles}
+A \textbf{dipole} is when two charges have opposite sign but same magnitue.
+In the presence of an electric field, a dipole will rotate as the electric force
+exhibits torque.
+
+\section{Electric Flux}
+Consider a surface with surface element $dA$, normal vector $\hat{n}$,
+and electric field $\vec{E}$ piercing through that element. Then,
+the electric flux is $$d\phi =\vec{E}\cdot \vec{n}dA=\vec{E}\cdot d\vec{A}
+=E\cos \theta\cdot dA$$
+The total flux through a closed surface is the integral of this.
+
+\subsection{Gauss' Law}
+Consider a positive charge inside a sphere of radius $R$. The normal of each element is 
+in the direction of the electric field. So, using the surface area, $\phi=4\pi R^{2}E$.
+Substituting Coloumb's Law, 
+$$\phi=\frac{Q}{4\pi \epsilon_{0}R^{2}}\cdot 4\pi R^{2}=\frac{Q}{\epsilon_{0}}$$
+Note this result holds for any charge inside a closed surface. This is known as \textbf{Guass Law}.
+It states the following,
+$$\phi=\oint_{S}\vec{E}\cdot d\vec{A}=\frac{\sum Q}{\epsilon_{0}}$$
+In other words the flux through a closed surface is the sum of the charge inside the surface
+divided by the permitivity of free space. 
+
+\subsection{Shell Theorem}
+Consider a shell with small thickness and radius $R$ with charge $Q$ uniformly distributed on the surface.
+Consider a point $r$ away from the center and its electric field there. If $r<R$,
+then, by Guass' Law, $4\pi r^{2}E=\frac{Q}{\epsilon_{0}}=0\Rightarrow E=0$. For $r>R$,
+$4\pi r^{2}E=\frac{Q}{\epsilon_{0}}\Rightarrow E=\frac{Q}{4\pi r^{2}\epsilon_{0}}$.
+
+\subsection{Planes}
+Consider a large plane with charge density $\sigma$. Consider $E$ at a distance $d$ from the plane.
+Using a cylinder and symmtery, we can find that $E=\frac{\sigma}{2\epsilon}$. 
+
+\section{Electric Energy}
+\subsection{Electrostatic Potential Energy}
+The electrostatic potential energy is denoted by $U$.
+$$U=U_{\infty}-\int_{\infty}^{R}\frac{q_{1}q_{2}}{4\pi\epsilon_{0}r^{2}}dr
+=\frac{q_{1}q_{2}}{4\pi\epsilon_{0}R}$$
+Remember that only differences in potential energy help with anything. The above 
+result takes $U_{\infty}=0$.
+
+\subsection{Electric Potential}
+The electric potential, $V$, is negative times the work per unit charge to go from $\infty$
+to the location of the charge, $V_{p}$ (work-kinetic energy theorem). Consider two charges separated by $R$
+with target charge being $q$ (both +). Then,
+$$V_{p}=\int_{P}^{\infty}\vec{E}\cdot d\vec{R}=\frac{Q}{4\pi\epsilon_{0}R}=\frac{U}{q}$$
+This is in unit "Volts". Similarly to contours of equal $z$ in multivariable calculus, 
+\textbf{equipotential surfaces} are surfaces of constant electric potential. Electric field 
+lines are always perpendicular to equipotential surfaces. By the defintion of electric potential,
+$$V_{B}-V_{A}=-\int_{A}^{B}\vec{E}\cdot d\vec{r}$$
+So, the energy released from a charge moving from point $A$ to point $B$ is
+$$\Delta E=q(V_{A}-V_{B})=KE_{B}-KE_{A}$$
+If there are no currents inside a metal, it is an \textbf{equipotential}.
+
+\subsection{Relating Electric Potential and Energy}
+We see that the electric field is the derivative of the potential.
+$$V=\frac{Q}{4\pi\epsilon_{0}r} \Rightarrow
+\frac{dV}{dr}\hat{r}=-\frac{Q}{4\pi\epsilon_{0}r^{2}}=-\vec{E}$$
+Rearranging, we see that $E=-\nabla V$.
+
+\subsection{Faraday Cage}
+Consider a hollow closed conductor with some thickness. If a charge is introduced onto the surface (outside) of the
+conductor, it will distribute across the surface but not the inside (using Guass' Law). So,
+even in the presence of an electric field, though the conductor may polarize, no charge will accumulate 
+on the inside. This is known as electrostatic shielding. Additionally, for a charge inside a spherical shell,
+the shell will polarize. It turns out that to acheive this, with the conductor being equipotential, the electric field
+being $0$, the charge will evenly distribute on the surface when polarizing. So moving the charge inside will not 
+influence the outside world.
+
+\section{High-voltage Breakdown}
+\subsection{Charge Disribution}
+Consider a solid conductor $A$ conducted to another conductor $B$ with a conducting wire.
+Note the wire is significant in length. Then, the system is equipotential. So,
+$$V_{A}=\frac{Q_{A}}{4\pi\epsilon_{0}R_{A}}\approx V_{B}=\frac{Q_{B}}{4\pi\epsilon_{0}R_{B}}
+\Rightarrow \frac{Q_{A}}{R_{A}}=\frac{Q_{B}}{R_{B}}$$
+Notice that if $R_{B}=aR_{A}$ for $a > 0$, $Q_{B}=aQ_{A}$. Then, the surface charge density (divide by SA)
+is $\sigma_{B}=\frac{\sigma_{A}}{a}$. So for a solid conductor, the portions with higher curvature will have
+a higher surface charge density and thus electric field.
+
+\subsection{Electric Breakdown}
+In the presence of high electric field, electrons collide with nitrogen/oxygen in the air displacing electrons
+and creating ions. This causes an "avalanche". When the ions become neutral again, they produce light which we see
+as a "spark". This heats up the surrounding air causing a pressure difference resulting in the sound.
+An \textbf{electron volt} is a unit of energy; an electron from rest, when moving across a potential
+difference of $1\text{ V}$ will cause an increase of one electron volt in the kinetic energy of th electron.
+It takes an electric field of $\approx 3\times 10^{6}\frac{\text{V}}{\text{m}}$ for this to happen.
+Using this, you can calculate the maximum voltage / charge on a Vandergraph, for example. 
+
+\subsection{Current}
+Current is charge per unit time and determines what "kills you". Voltage doesn't kill you current does.
+An Ampere, A, is a Coloumb/second. $I=\frac{Q}{t}$.
+
+\subsection{Lightning}
+The bottom of the cloud is negatively charged while the top is positive. The ground has positive charge. A step leader
+is a buildup of charge that travels to the ground producing little light. As charge builds up, 
+return strokes take the charge back. These return strokes produce the most light; one bolt of lightning is many step leaders / strokes
+like this since the pathway of the previous strike leaves a favorable path for the next. The process stops 
+as the electric field decreases lowering the potential. There are other forms of lightning as well.
+
+\subsection{St-Elmo's Fire}
+Carbon arc discharge is formed by continuous current. This can also happen during thunderstorms to grass, corona discharge.
+These discharges form ozone which has a distinct smell. Friction causing charge made the hydrogen catch fire in the Hindenbirg Zepplin.
+
+\section{Electric Field Energy}
+Let's first calculate the electric field from one plate on a point $P$ a distance $z$ 
+from the plate. Only the vertical direction remains.
+$$E=\int_{0}^{\infty}dr\int_{0}^{2\pi}d\theta
+\frac{r\sigma}{4\pi \epsilon_{0}\left(\sqrt{r^{2}+z^{2}}\right)^{2}}\cdot \frac{z}{\sqrt{r^{2}+z^{2}}}
+=\frac{z\sigma}{4\pi \epsilon_{0}}\cdot 2\pi \int_{0}^{\infty}dr\cdot 
+r(r^{2}+z^{2})^{-\frac{3}{2}}$$
+Substituting $u=r^{2}$,
+$$=\frac{z\sigma}{2\epsilon_{0}}\int_{0}^{\infty}\frac{du}{2}\cdot (u+z^{2})^{-\frac{3}{2}}
+=\frac{z\sigma}{2\epsilon_{0}}\cdot \frac{1}{2}\cdot -2(u+z^{2})^{-\frac{1}{2}}\biggr\vert_{0}^{\infty}
+=\frac{z\sigma}{2\epsilon_{0}}\cdot\frac{1}{z}=\frac{\sigma}{2\epsilon_{0}}$$
+Consider two thin plates of opposite and equal charge and equal area. 
+Move one of the plates away by a distance $x$. The work required to do this
+is $W$. Notice that the plate has a layer of charge on its surface if it has a thickness.
+The electric field from this is clearly $\frac{\sigma}{\epsilon_0}$ (summing field of two plates). However, $E=0$ inside
+the plate since it conducts. So,
+$$W=Fx=Q\frac{0+\frac{\sigma}{\epsilon_0}}{2}x
+=\frac{1}{2}\sigma AEx\cdot \frac{\epsilon_{0}}{\epsilon_0}
+=\frac{1}{2}\epsilon_{0}E^{2}Ax$$
+Notice that volume $V=Ax$. So, the \textbf{field energy density} (work / volume),
+is $\frac{1}{2}\epsilon_{0}E^{2}$. So,
+$$U=\int_{\text{all of space}}\frac{1}{2}\epsilon_{0}E^{2}dV$$
+where $V$ is volume. For parallel plates, we simply have $U=\frac{1}{2}\epsilon_{0}E^{2}Ah$.
+Substituting $Q=A\sigma$ and $V=Eh$, $U=\frac{1}{2}QV$.
+
+\subsection{Capacitance}
+Capacitance is the charge over potential: $C=\frac{Q}{V}$ with SI unit Farad.
+Notice that for two objects of opposite polarities, the capacitance of object $A$
+depends on the presence of the other object. So, capacitance is redefined as charge 
+over potential difference.
+$$C=\frac{Q}{V}\text{ or } C=\frac{\text{charge}}{\text{potential difference}}$$
+For parallel plates, $C=\frac{Q}{V}=\frac{\sigma A}{Ed}=\frac{A\epsilon_{0}}{d}$.
+A capacitor can be thought of as a device that can store energy. Photo flashes charge energy 
+in a capacitor and release it through a lightbulb. A \textbf{fuse} is something that breaks if the 
+current is too high.
+
+\section{Dielectrics}
+Dielectrics are substances that polarize in the presence of an electric field.
+Consider a plate capacitor with opposite and equal charge density $\sigma_{f}$.
+Let $E_{f}$ be the field produced by this. If the power supply used to create the potential 
+difference is removed and a dielectric is moved in, there is an opposite $\sigma_{i}$
+and $E_{i}$ that is induced and has opposite orientation. So, $E_{net}=E_{f}-E_{i}$.
+Substituting, $\sigma_{i}=b\sigma_{f}$, $E_{net}=E_{f}(1-b)=\frac{E_{f}}{\kappa}$. Here $\kappa$
+is known as the \textbf{dielectric constant}. So, Gauss' Law simply becomes
+$$\oint \vec{E}\cdot d\vec{A}=\frac{1}{\epsilon_{0}}\cdot\frac{\sum Q_{free}}{\kappa}$$
+Additionally, the capacitance in the plate capactor becomes $C=\frac{A\epsilon_{0}}{d}\kappa$.
+Some substances are naturally dipoles and have much higher $\kappa$ than induced dipoles.
+
+\section{Electric Curents}
+Convention states that current is in the direction of positive charge.
+
+\subsection{Ohm's Law}
+This is hard to derive without quantum mechanics, but we can try.
+Consider copper at 300 K where the free electrons have an average speed of $\expect{v_{e}}$.
+Let $\tau$ be the time between collisions of free electrons with atoms and let $n$ be the number
+of free electrons per cubic meter. If a potential difference is applied, a force is applied to them.
+$$F=eE;\, a=\frac{F}{m_e};\, v_{d}=a\tau =\frac{eE}{m_{e}}\tau$$
+Here $v_d$ is the drift velocity or the velocity picked up by the electrons.
+Now consider a wire with length $l$ and cross-sectional area $A$. Over one second,
+$$I=(v_{d}A\cdot 1\text{ s})\cdot \frac{ne}{1\text{ s}}=\frac{e^{2}n\tau}{m_{e}}AE=\sigma AE$$
+% QUESTION: Doesn't this not work by unit analysis?
+Here, we call the constant in front $\sigma$ known as the \textbf{conductivity}. Using $E=\frac{V}{l}$,
+$$V=\frac{l}{\sigma A}I=RI$$
+This constant of proportionality $R$ is resistance. This is \textbf{Ohm's Law}.
+Resistivity is $\rho=\frac{1}{\sigma}$. So, $R=\frac{l\rho}{A}$. Resistance is in units "Ohm's".
+Resistance depends heavily on temperature which completely breaks Ohm's Law.
+
+\subsection{Multiple Resistors}
+Consider two resistors in series with potential difference $A$ across the entire wire and current $I$.
+Since resistance is linear with length, $V=I(R_{1}+R_{2})$ and the voltage across each resistor is $V_{1}=IR_{1}$
+and $V_{2}=IR_{2}$. For parallel resisitors, by Ohm's Law, we see that $V=I_{1}R_{1}=I_{2}R_{2}$. Notice 
+$I=I_{1}+I_{2}$.
+
+\section{Circuits}
+We know $E=\frac{\Delta V}{\Delta x}$. So, it is in the direction of + to -. So, in a circuit,
+the battery has current opposing the direction of electric field. The chemical energy in the battery
+allows this to happen.
+
+\subsection{Basic Battery}
+In a copper-zinc battery, a plate of $\text{Cu}^+$ and $\text{Zn}^-$ are placed
+in a $\text{H}_{2}\text{SO}_{4}$ solution. This solution disassociated when current runs through it and the
+$\text{SO}_{4}^{-}$ ions carry the charge (negative) from copper to zinc plate. As this happens, copper precipitates
+on the copper plate and some of the zinc dissolves. The reason why the charge carrier travels apposing the 
+electric field is because it undergoes a chemical reaction that releases more energy than required to "go up the electric field".
+Running current in the opposite direction reverses the process and "recharges" the battery.
+
+\subsection{Varying Resistance}
+If $R=\infty$, then $I=0$, so $V_{\text{over battery}}=V_{b}=\varepsilon$.
+This $\varepsilon$ is known as the electromotive force. There is always some small resistance 
+in the wire $r_{i}$. So, for some finite $R$, $\varepsilon = I(R+r_{i})$ and $V_{b}=IR=\varepsilon-r_{i}$. If there 
+is no additional resistance (shorting the battery), $I_{max}=\frac{\varepsilon}{r_{i}}$ and $V_{b}=0$.
+
+\subsection{Power}
+Consider two points such that $V_{A}>V_{B}$ and moving some tiny charge $dq$ from $A$ to $B$.
+The work that the electric field is doing is $dW=dq(V_{A}-V_{B})$. Dividing by $dt$,
+$$P=I\Delta V$$
+If Ohm's Law also holds, $P=\frac{V^{2}}{R}=I^{2}R$. Power is in units J/sec or Watts.
+The body produces power which can be seen as infrared radiation / heat. So, $P_{max}=\frac{\varepsilon^{2}}{r_i}$.
+This power is what causes the heat when shorting out a battery. Electric companies charge for energy not power.
+
+\subsection{Kirchoff's Rules}
+The first rule states that $\oint \vec{E}\cdot d\vec{l}=0$ (closed loops on conservative fields).
+The second rule is conservation of charge.
+
+\subsection{Kelvin Water Dropper}
+One water source has two paths of travel through two open conducting cylinders and landing in two conducting trash cans 
+that are connected to the opposite cylineder. A spark forms between the trashcan as the water spreads out causing it to come back together again.
+
+\section{Magnetism}
+Iron oxide is known as magnetite and has two poles at which maximal attraction occurs. 
+Opposite poles attract and like poles repel. Magnetic monopoles do not exist (as far as we know).
+The \textbf{magnetic field}, $\vec{B}$, goes in the clockwise direction for current going into the board (right-hand), by convention.
+Current generates a magnetic field. Similarly, the magnetic field creates a force on the wire $\hat{F}=\hat{I}\times\hat{B}$.
+
+\subsection{An Observation}
+Consider two parallel wires with current flowing in the same direction. The current in one wire causes a magnetic field 
+resulting in a force on the other wire. This causes the wires to be attracted. If one current changes direction,
+this will cause a repulsion.
+
+\subsection{Lorentz Force}
+Since there are no magnetic monopoles, a force in the form $\vec{F}=q_{B}\vec{B}$ (as in electricity) can't be used.
+Instead, we consider an electric charge $q$ moving with velocity $\vec{v}$. From experiment, the $\vec{F}\perp \vec{v}$,
+$F_{B}\propto v$ and $F_{B}\propto q$. So, $$\vec{F_{b}}=q(\vec{v}\times\vec{B})$$
+This is known as the \textbf{Lorentz Force}. The strength of the magnetic field is in Tesla's 
+or $\frac{\text{N}\cdot \text{sec}}{\text{C}\cdot \text{m}}$. We also use the unit Gauss: $1G=10^{-4}T$
+since $1T$ is extremely large for a magnetic field. So, the total force on a charge is
+$$\vec{F}_{tot}=q\vec{E}+q(\vec{v}\times\vec{B})=q(\vec{E}+\vec{v}\times\vec{B})$$
+Consider a positive charge $+dq$ moving along a current $I$ with drift velocity $v_{d}$ (positive for convention - doesn't matter).
+$$d\vec{F}_{B}=dq(\vec{v_{d}}\times \vec{B})=Idt(\vec{v_{d}}\times \vec{B})$$
+By kinematics, $d\vec{l}=\vec{v_{d}}dt$. So,
+$$d\vec{F}_{B}=I(d\vec{l}\times \vec{B})$$
+This means that the force at the location is the current times the distance the charge travels cross the
+local magnetic field. Integrating through the wire gets the total Lorentz force.
+
+\subsection{Electric Motors}
+Consider a rectangular circuits with a constant $\vec{B}$ perpendicular to the widths of the rectangle.
+Then, the force on one side will be $IaB$ and the force on the other side is $-IaB$ if $a$ is the width of the 
+rectangle. This exhibits a torque of $\tau=2\cdot IaB\cdot \frac{l}{2}=IaBl$. As this rotates, 
+the torque decreases to $0$ when the rectangle is rotated 90 degrees. Now, the net force is $0$.
+A little inertia (nudge) causes the rectangle to rotate further till it hits 180 degrees before it reverses
+and the process continues. Adding a spring between the terminals will create a \textbf{current meter}.
+If we have two wires connected to a battery with a slipping contact (brushes), the wires won't twist and the current 
+will automatically switch directions after 180 degree rotation (\textbf{commutator}) preventing torque reversal, allowing the motor to 
+rotate in one direction only.
+
+\section{Moving Charges}
+Consider a constant $\vec{B}$ out of the page and a charge $q$ with velocity $\vec{v}$.
+Then, the charge travels in a circle of radius $R$. By centirpetal motion,
+$$|\vec{F}|=|q(\vec{v}\times\vec{B})|=qvB=m\frac{v^{2}}{R}\Rightarrow \boxed{R=\frac{\rho}{qB}}$$
+Here $\rho$ is the momentum of the charged particle. Using kinetic energy, $KE=q\Delta V=\frac{1}{2}mv^{2}$.
+We can express $R$ in terms of potential,
+$$R=\frac{mv}{qB}=\frac{m}{qB}\cdot \sqrt{\frac{2qV}{m}}=\sqrt{\frac{2mV}{qB^{2}}}$$
+However, for large energies, we can get a speed larger than the speed of light. 
+If we make relativistic corrections, let the Lorentz factor be $\gamma$ and our results change like so.
+$$\gamma=\frac{1}{\sqrt{1-\frac{v^2}{c^2}}};\,
+R=\gamma\frac{\rho}{qB}=\sqrt{\frac{(\gamma +1)mV}{qB^{2}}};\,
+KE=(\gamma-1)mc^{2}$$
+
+\subsection{Mass Spectrometers}
+Consider two isotopes of uranium $U^{92}_{146},U^{92}_{143}$. These can be separated using a mass spectrometer.
+First, we heat the uranium so it ionizes and accelerate over it a potential difference. 
+Using the radius, since the mass of the particles are different, we can separate the isotopes.
+
+\subsection{Particle Accelerators}
+A \textbf{cyclotron} consists of two chambers with a magnetic field. As an electron is released, it increases its energy 
+due to the potential difference across each chamber. The difference is then switched so it can complete a revolution.
+This increases the radius and the electron continues an outward
+spiral path, gaining speed. This is used to accelerate charged particles to high speeds.
+Note that the time for a revolution is $T=\frac{2\pi R}{v}=\frac{2\pi m}{qB}\gamma$ which is independent of the speed
+of the particle for non-relativistic speeds. Using $T$, we can figure out the frequency to change the potential. \textbf{Synchrotrons}
+or \textbf{synchocyclotrons} account for relativistic effects and don't have a set frequency.
+Modern accelerators have rings of constant radius and increase the magnetic field to maintain the radius to keep the particle in the ring.
+The Large Hadron Collider and others use superconducting magnet techniques to do this. As particles move through the air, they create ions that cause it to lose 
+kinetic energy till it comes to a halt. \textbf{Cloud chambers} are used to see the paths of the particles in accelerators.
+They consist of liquid alcohol that is cooled in the the bottom (undercooled) so that the alcohol freezes in drops around the ions when they are 
+formed. This allows us to visualize paths, ions, and particles. The \textbf{bubble chamber} is an advanced cloud chamber that uses
+liquid hydrogen which formes gas bubbles around the ions.
+
+\section{Biot-Savart Formulation}
+\subsection{Biot-Savart}
+Consider a wire with current $I$. From experiment, if magnetite is put around a wire forming a circle of radius $R$,
+$B\propto\frac{I}{R}$. Notice that for electricity, electric monopoles (one charge) give fields of $\frac{1}{r^{2}}$.
+Integrating this gives the $\frac{1}{R}$ field. Similarly, consider the general magnetic field element for some length of
+wire with current. The \textbf{Biot-Savart Formulation} states that ($\hat{r}$ is the radial direction)
+$$d\vec{B}=\frac{CI}{r^{2}}(d\vec{l}\times\hat{r})$$
+Here $C$ is a constant that is also seen as $C=\frac{\mu_{0}}{4\pi}$.
+Here $\mu_0$ is known as the \textbf{permeability of free space}. For a wire, the magnetic field at point $P$, perpendicular
+distance $R$ from the wire is:
+$$B=\int d\vec{B}=\frac{\mu_{0}I}{4\pi}\int_{-\infty}^{\infty}\frac{1}{r^{2}}(d\vec{l}\times \hat{r})
+=\frac{\mu_{0}I}{2\pi}\int_{-\infty}^{0}\frac{1}{r^{2}}\cdot \sin\theta dl$$
+Evaluating this integral,
+$$\int_{-\infty}^{0}\frac{1}{r^{2}}\cdot \sin\theta dl=\int_{-\infty}^{0}\frac{R}{(R^{2}+l^{2})^{\frac{3}{2}}}dl
+=\frac{x}{R}\cdot\frac{1}{\sqrt{R^{2}+x^{2}}}\biggr\vert_{-\infty}^{0}
+=\lim_{x\rightarrow\infty}\frac{x}{R\sqrt{R^{2}+x^{2}}}$$
+$$=\lim_{x\rightarrow\infty}\frac{1}{R\sqrt{\frac{R^{2}}{x^{2}}+1}}=\frac{1}{R}$$
+So, 
+$$B=\frac{\mu_{0}I}{2\pi R}$$
+For a circular wire,
+$$B=\frac{\mu_{0}I}{4\pi R^{2}}\cdot\int (d\vec{l}\times\hat{r})
+=\frac{\mu_{0}I}{4\pi}\cdot 2\pi R=\frac{\mu_{0}I}{2R}$$
+Unless there is a magnetic monopole,
+$$\boxed{\oint_{S}\vec{B}\cdot d\vec{A}=0 \Rightarrow \nabla B=0}$$
+This is the second of Maxwell's four equations.
+
+\subsection{High-voltage Power Lines}
+Consider a long wire. Then, $V_{A}-V_{B}=IR\rightarrow V_{B}=V_{A}-IR \rightarrow V_{B}I=V_{A}I-I^{2}R$.
+Notice that the power delivered from $A$ releases $I^{2}R$ in heat. This needs to be minimized. At constant
+power, increasing the voltage decreases the current which greatly decreases this loss in energy delivered per unit time.
+This is more cost effective than decreasing $R$ by using gold, expensive superconductors, or using thicker wires.
+However, the voltage has to be at a reasonable level to prevent corona discharge (this is why lines glow during storms).
+
+\subsection{Leyden Jar}
+A Leyden jar consists of two conducting beakers with a nonconducting beaker in between. The conductors are charged 
+and the dielectric gets an induced charge. After disassembling and taking the free charge off, the induced charge must go away,
+but when shorting, there is a spark. This means that there must be free charge on the dielectric. Remember that there is 
+air between the dielectric and the conductor. So, $2E_{air}d_{air}+\frac{E_{air}}{\kappa}d_{glass}$. If you calculate,
+the electric field in the glass is higher than the corona discharge electric field causing charge to be stored on the glass.
+So, when the jar is disassembled, the charge on the glass is what makes the spark after re-assembly.
+
+\section{Ampere's Law}
+Consider a current $I$ running into the page producing $\vec{B}$. We know that $B=\frac{\mu_{0}I}{2\pi R}$. 
+Ampere's Law states that integrating $\vec{B}$ over any closed loop, $C$, perpendicular to the wire will be $\mu_{0}I$.
+Consider the circular loop, then $\oint_{C}\vec{B}\cdot d\vec{r}=\frac{\mu_{0}I}{2\pi R}\cdot 2\pi R=\mu_{0}I$.
+For any open surface attached to the curve,
+$$\oint_{C}\vec{B}\cdot d\vec{l}=\mu_{0}I_{enc}$$
+where $I_{enc}$ is the current enclosed by the surface (penetrating). Now, consider a uniform current through a wire with radius $R$.
+Let $B$ be the magnetic field at $P$ a distance $r$ from the center line of the wire. Using Ampere's Law,
+\[
+B=
+\begin{cases}
+    \frac{\mu_{0}I}{2\pi r} & r>R \\
+    \frac{\mu_{0}Ir}{2\pi R^{2}} & r<R \\ 
+\end{cases}
+\]
+
+\subsection{Solenoids}
+A solenoid is a spiraled wire (slinky). For a circular wire, we know the magnetic field is almost straight through the center.
+The spiral allows for a "straight", constant magentic field inside the spiral and outside the solenoid is almost zero. 
+Using a rectangle with one side through the center
+of the loops along with Ampere's Law allows us to calculate the magnetic field. Note that all sides except the one through the loops
+are $0$ in the integral. Let the solenoid be of length $L$ with $N$ loops. Then for a rectangle with length $l$,
+$$Bl=\frac{l}{L}\cdot N\cdot I\mu_{0}\Rightarrow B=\frac{\mu_{0}IN}{L}\text{ for } L\gg R$$
+
+\subsection{Kelvin Water Dropper}
+Assume there is some small charge on one of the open cans. This will polarize the water source so that the opposite sign charge 
+will fall in the drop. This makes the buckets collect like charges which reinforce the charge on the cans (since it's connected via a conductor).
+So, causes even more polarity and builds the potential difference between the buckets until there is a discharge. 
+Notice the current and electric field direction match at the top and bottom but not in the cans; this is where gravity is doing the work.
+As the charge in the can builds, the negative drops spread out by attraction which is why, right before the spark, the water "frays".
+
+\section{Electromagnetic Induction}
+Faraday setup a solenoid with a second loop around the solenoid. As current ran through the circuit, the magnetic field was constant
+and no current was in the second loop. But, when a switch was toggled, the magnetic field changed, causing a current; he concluded that
+a changing magnetic field causes current. This is known as \textbf{electromagnetic induction}.
+
+\subsection{Lenz Law}
+Consider a bar magnet moving towards a square, closed wire. As it moves, the magnetic field increases, so a magnetic field 
+from current in the wire is produced to oppose this increase. Moving the magnet up will reverse the current. The current wants
+to oppose the change in magnetic field. Systems don't like change. This is useful for direction but not the magnitude.
+From Ohm's Law, the induced electromagnetic force is the resistance times the induced current.
+$$\varepsilon_{ind}=I_{ind}R$$
+
+\subsection{Faraday's Law}
+From experiment, Faraday found that the EMF produced by the second loop is proportional to the change in magnetic field
+over time and the area enclosed by the second loop. $\varepsilon_{2}\propto \frac{dB}{dt}$ and $\propto \text{area}$.
+This suggests that it is proportional to magnetic flux.
+$$\varepsilon=-\frac{d}{dt}\phi_{B}=-\frac{d}{dt}\int_{S}\vec{B}\cdot d\vec{A}=\oint \vec{E}\cdot d\vec{l}$$
+The minus is simply to signify the direction that opposes the change in flux (from Lenz Law). Together, with the minus sign,
+these are known as the \textbf{Faraday-Lenz Law}. The direction of $d\vec{A}$ for pursists follows the right-hand-rule, but using
+Lenz Law should work all the time. For changing magnetic fields, the electric fields are {\it non-conservative} which means Kirchoff's
+Rule doesn't apply. Notice if $\frac{d\phi_{B}}{dt}=0$, Faraday's Law becomes Kirchoff's Law.
+
+\subsection{Transformers}
+Now, consider the second loop having multiple loops around the solenoid. Then, there is more flux which increases EMF.
+This is the idea behind transformers: get "any" EMF by changing the number of loops around the solenoid.
+
+\section{Motional EMF}
+Consider a closed conducting loop (flat - dimensions $x,y$) with constant $\vec{B}$ making angle $\theta$ with the normal.
+Then, $\phi_{B}=xyB\cos\theta$. To induce a current, either the area of the loop, $B$, or $\theta$ can change with time.
+
+\subsection{AC Current}
+Consider the closed loop rotating at angular frequency $\omega$. If $\theta=0$ at $t=0$, $\theta(t)=\omega t$.
+So, $$I(t)=\frac{\varepsilon(t)}{R}=\frac{1}{R}\cdot -\frac{d\phi_{B}}{dt}
+=\frac{1}{R}\cdot -\frac{d}{dt}\left[AB\cos (\omega t)\right]
+=\frac{A}{R}\cdot B\omega \sin (\omega t)
+$$
+Notice that the current alternates direction due to the $\sin$. This is known as \textbf{AC current}. Notice 
+that a closed loop with $N$ windings will have $N$ times as much EMF because $\vec{B}$ penetrates $N$ times more area.
+However, if the loop is rotating about an axis parallel to $\vec{B}$, there will be no EMF since $\vec{B}\cdot d\vec{A}=0$
+always. In the US, $f=60\text{Hz}$; regular lightbulbs still produce light when $\sin$ passes a $0$ but flourescent lights 
+do not - hence, stroboscopes flicker.
+
+\subsection{Dynamo}
+A dynamo is a machine that produces AC current.
+It can do so with a turbine that rotates conducting loops in a magnetic field. Increasing the number of windings, angular frequency,
+loop area, and strength of the magnetic field will all increase EMF. Many objects are synched with the frequency like clocks.
+
+\subsection{Changing Area}
+Consider a loop with a crossbar that moves to increase the area (length $l$ and width $x$). Consider a vertical $\vec{B}$.
+Then,
+$$\varepsilon=-\frac{d\phi_{B}}{dt}=-\frac{d}{dt}lxB=-lBv$$
+For the crossbar, the Lorentz force is $\vec{F}_{l}=l(\vec{I}\times\vec{B})$ and must be surpassed which requires work.
+
+\subsection{Eddy Currents}
+Consider a conductor moving into a magnetic field $\vec{B}$. As it moves in, $\phi_{B}$ increases, so a current is produced
+along some path in the conductor. These are known as Eddy Currents. Moving windings through a magnetic field produces a current that can power things like lightbulbs.
+Cutting into the conductor (ex. teeth) increases resistance and reduces Eddy Currents.
+
+\subsection{Magnetic Braking}
+These currents produce heat from the resistance which causes the loop to lose kinetic energy. This means that the loop slows down.
+This can also seen using the Lorentz force which is in the opposite direction of the loop's movement toward the field source.
+
+\section{Displacement Current}
+Consider a current $I$ running to a capacitor with plate radius $R$. Then,
+$$\frac{dE}{dt}=\frac{d}{dt}\left[\frac{\sigma_{free}}{\kappa\epsilon_0}\right]
+=\frac{I}{\pi R^{2}\kappa \epsilon_0}$$
+Now consider some point $P$ before the capacitor a distance $r$ from the wire. 
+Using Ampere's Law on the flat surface, we get $B=\frac{\mu_{0}I}{2\pi r}$.
+However, consider the net-like surface that paces between the capacitor plates. This surface
+has no current piercing it so $B=0$. This inconsistency was remedied by Maxwell who added a 
+term; since change in magnetic flux resulting in current (Faraday), he proposed that changing
+electric flux resulted in magnetic field. Maxwell added the following term,
+$$\oint_{C}\vec{B}\cdot d\vec{l}=\mu_{0}\left(I_{pierce}+\epsilon_{0}\kappa \frac{d\phi_{E}}{dt}\right)
+\text{ where }
+\phi_{E}=\oint_{S}\vec{E}\cdot d\vec{A}$$
+This added term is known as \textbf{displacement current}. With this, consider $P$ inside the capacitor.
+Then, (neglecting the fringe field)
+$$B\cdot 2\pi r=\mu_{0}\epsilon_{0}\kappa \cdot \pi r^{2}\cdot \frac{I}{\pi R^{2}\kappa \epsilon_{0}}
+\Rightarrow B=\frac{\mu_{0}Ir}{2\pi R^{2}}$$
+
+\subsection{Synchronous Motors}
+Consider a loop of wire, similar to the structure in a motor that is rotating with a constant magnetic field.
+If we add two more loops of wire (identical) at 120 degree offsets, we produce a \textbf{three phase current} that acheive 
+maximums at offset times. Consider this with solenoids that are all at offsets. When one reaches maximum EMF, the others are two times lower but their vectorial sum 
+points in the same direction. As this continues, the magnetic field rotates a full 360 degrees in one period.
+If we now place a magnet in the center of the solenoid ring, the magnet will rotate to follow the magnetic field.
+This is called a \textbf{synchronous motor}. If you use a conducting sphere, the resulting Eddy Currents will cause a torque.
+This does not use brushes and is called an \textbf{induction motor}.
+
+\subsection{Magnetic Top}
+The magnetic top spins and underneath is a box with a battery, solenoid, and transistor-controlled switch.
+The field from the top creates an induced current which is sensed by the transistor and turns on the switch.
+This creates a magnetic field in the solenoid (south pole) and causes the top to rotate a little bit. As the north
+pole recededs / south pole approaches, the EMF reverses which causes the transistor to turn the switch off. This removes the south pole
+and the top keeps spinning. This is a type of induction motor that produces a magnetic field for half the period.
+
+\subsection{Two-phase Current}
+Consider two solenoids at 90 degree offsets with one horizontal and another vertical. The net magnetic field 
+rotates and placing a conductor creates another induction motor.
+
+\section{Magnetic Applications}
+\subsection{Human Heart}
+The heart is divided into two chambers and each cell pumps in/out ions.
+Pacemaker cells change their potential -80 to +20 millivolts. This causes the other cells to follow and a wave forms over the heart as it contracts.
+As the wave crosses the cell, its electrical field takes the shape of a dipole in a process known as \textbf{depolarization}.
+The cell then \textbf{repolarizes} from the bottom back to -80 mV. This causes an electric field and a potential difference 
+between different parts of your body which allows the heart to pump blood. Synchronization is key to proper heart function.
+
+\subsection{Aurora Borealis}
+Charged particles spiral and follow the curved magnetic field lines to earch. The sun emits plasms (highly ionized electrons and protons)
+as a solar wind. This ionizes the upper atmosphere of the earth which produces the Aurora. The color depends on energy, height, and ionization
+or oxygen/nitrogen ionization.
+
+\subsection{Superconductivity}
+If you cool mercury with liquid helium, mercury loses all of its resistivity. Superconducting coils can create strong magnetic fields
+but superconductors cannot have electric field inside of it which means current approaches infinity. The \textbf{magnetic pressure}
+is $P=\frac{B^{2}}{2\mu_{0}}$. The eddy currents are created to make the magnetic fields inside the superconductor $0$.
+This can allow for \textbf{magnetic levitation}.
+
+\subsection{Magnetic Levitation}
+Consider a magnet moving over a conducting plate. If the change in flux is high enough, the magnet can float. This is the concept behind
+mag-lev trains. This greatly reduces the effect of friction. Levitation can also be achieved with AC current and a solenoid.
+This will cause the magnetic field to continuously change, creating an eddy current, which will cause a magnetic field 
+to oppose this change, creating a repulsion.
+
+\section{Inductance}
+Consider a circuit with changing current. This will produce a changing magnetic field and an induced EMF.
+This is known as \textbf{self-inductance}. The term "L self-inductance" refers to the proportionality constant $L$
+in $\phi_{B}=LI$. So, $$\epsilon_{ind}=-\frac{d\phi_{B}}{dt}=-L\frac{dI}{dt}$$
+In the case of a solenoid will length $l$, $N$ loops, loop-radius $r$, and current $I$. Previously, $B=\mu_{0}I\frac{N}{l}$.
+So, $\phi_{B}=\pi r^{2}N\cdot \mu_{0}I\frac{N}{l}=LI$. Thus, $L=\mu_{0}\cdot \pi r^{2}\cdot \frac{N^{2}}{l}$. The SI unit for 
+self-inductance is $\frac{\text{Volt sec}}{\text{A}}$ or a \textbf{Henry}. Every circuit has a finite, non-zero amount of self-inductance.
+
+\subsection{RL Circuits}
+Consider the circuit with battery of potential $V$, resistor of resistance $R$, and self-inductor of inductance $L$.
+this is known as an \textbf{RL circuit}.
+Here, the self-inductance fights against the increase in current.
+We can {\it not} use Kirchoff's Loop Rule here because the magnetic flux is changing. So,
+$$\oint_{C}\vec{E}\cdot d\vec{l}=-\frac{d\phi_{B}}{dt}=-L\frac{dI}{dt}=0+IR-V$$
+This $0$ comes from there being no resistance in the self-inductor / no electric field. Rearranging,
+$$L\frac{dI}{dt}+IR-V=0$$
+Solving the differential equation, 
+$$\frac{L}{V-IR}dI=dt\Rightarrow -\frac{L}{R}\cdot \ln(V-IR)=t+C$$
+$$V-IR=\exp\left[-\frac{R}{L}\cdot (t+C)\right]=Ce^{-\frac{Rt}{L}}\Rightarrow
+I=\frac{V}{R}\cdot (1-\frac{C}{V}\cdot e^{\frac{t}{L}})$$
+At $t=0$, $I=0$. So, $C=V$. Thus,
+$$I(t)=I_{max}\left(1-e^{-\frac{R}{L}t}\right)\text{ where } I_{max}=\frac{V}{R}$$
+If this battery is shorted out, the voltage is now zero and the current is decreasing, but the self-inductance fights that change.
+We solve a similar diff. eq. for this case,
+$$L\frac{dI}{dt}+IR=0\Rightarrow -\frac{L}{IR}dI=dt$$
+$$-\frac{L}{R}\ln(IR)=t+C\Rightarrow I=\frac{1}{R}\exp\left[-\frac{R}{L}\cdot (t+C)\right]$$
+Using boundary conditions,
+$$I(t)=I_{max}e^{-\frac{R}{L}t}$$
+where $I_{max}$ is the current before the voltage is removed. Notice that the exponential term is the same in both cases.
+
+\subsection{Magnetic Field Energy}
+The battery was producing the heat in the resistor as the current increased, but when the battery is taken away,
+the heat is still being produced; this energy is from the magnetic field. We can measure this energy by integrating the 
+power / heat.
+$$\int_{0}^{\infty}Pdt=I_{max}^{2}R\int_{0}^{\infty}e^{-\frac{2R}{L}t}dt=\frac{1}{2}LI_{max}^{2}$$
+This energy is stored exclusively in the solenoid. Using the previous results of $B$ in terms of $I$ and $L$, we substitute to get
+$$=\frac{1}{2}\cdot \mu_{0}\pi r^{2}\frac{N^{2}}{l}\cdot \left(\frac{Bl}{N\mu_{0}}\right)^{2}
+=\frac{B^{2}l\pi r^{2}}{2\mu_{0}}=\frac{B^{2}}{2\mu_{0}}\cdot \pi r^{2}l
+$$
+Notice that $\pi r^{2}l$ is the volume of the solenoid where the magnetic field is (taking outside solenoid to be $0$). So,
+the magnetic field energy density is
+$$\rho_{B}=\frac{B^{2}}{2\mu_{0}} \frac{\text{J}}{\text{m}^{3}}$$
+% QUESTION: in the light bulb experiment, Lewin #20 27:30, the bulb path with higher self-inductance takes longer to light.
+% However, shouldn't that path also take slower to die down? why does it look like they turn off at the same rate?
+% ANSWER: Heat is related to power which is propto I^2. So, though I does fall off as e^(-Rt/L), heat and then brightness 
+% falls off by that to the power 2 which makes the time to die down almost unnoticeable.
+
+\subsection{RL Circuit with AC}
+Consider a RL circuit with alternating voltage $V=V_{0}\cos\omega t$. The differential equation now is
+$$L\frac{dI}{dt}+IR-V_{0}\cos\omega t=0$$
+This is pretty difficult. However, the solution ends up being,
+$$I=\frac{V_0}{\sqrt{R^{2}+(\omega L)^{2}}}\cos(\omega t-\phi)\text{ where }\tan\phi=\frac{\omega L}{R}$$
+This $\phi$ is the delay caused by the self inductance. Notice if $\omega=0$, \textbf{DC current}, 
+the front term is simply $\frac{V_{0}}{R}$ which is expected. This term in the front is $I_{max}$.
+Also notice that the $\omega L$ plays a "pseudo-resistance" from the self-inductance. In a radio, 
+this can be used to cut-out higher frequencies using a self-inductor.
+
+\subsection{Levitation}
+It seems that in the levitation experiment, due to AC current, half the time there will be levitation and the other half
+attraction. But, there is a net repulsion - this is due to self-inductance. So, the \textbf{phase lag} here 
+is $\arctan \frac{\omega L}{R}$. Because of this delay, the net result is repulsion because the induced current and EMF are not in sync.
+
+\section{Magnetic Materials}
+Similar to how electric fields can induce dipoles or orient permanent dipoles,
+magnetic fields can do the same and orient atoms that have magnetic dipole moment.
+Lowering temperature and increasing field strength increases the ability for the field to do this.
+A \textbf{magnetic dipole moment} is $\vec{u}=I\vec{A}$ for a loop with area $\vec{A}$ (normal) 
+in closed loop with current $I$. By quantum mechanics, all materials will produce a magnetic dipole 
+moment to some degree that opposes a permanent magnetic field.
+
+\subsection{Diamagnetism}
+By quantum mechanics, all materials, when they are exposed to a magnetic field, will oppose the field and generate an EMF that opposes the external field.
+Note that this is not Lenz Law since the magnetic field doesn't have to change.
+
+\subsection{Paramagnetism}
+Some molecules and atoms have magnetic dipole moments themselves. If there is no external field, \textbf{vaccum field},
+their orientation will be chaotically distributed. Otherwise, they will have a tendency to orient themselves (north pole)
+in the direction of the field. Consider an atom (closed loop) next to a bar magnet (north). The net force, summing the Lorentz forces,
+will be towards the north of the magnet. So, if a paramagnetic material is put in a non-uniform field, it will be pulled towards 
+the strong side of the field. Oxygen is paramagentic but liquid oxygen is extremely more dense and has a lower temperature which means
+it has a high $\kappa_{m}$ even though it is paramagnetic. So, in the presence of a strong non-uniform field, it can be lifted up.
+
+\subsection{Feromagnetism}
+In a feromagnetic material, the atoms have permanent magnetic dipole moments, but there are domains where the dipoles are 100\% aligned.
+When a magnetic field is applied, the domains can flip. When it is taken away, some domains may stay while others may change due to thermal agitation.
+This means that the material can become magnetic after being in the presence of a magnetic field (think paperclips).
+Feromagnetism also has attraction to the strong side of the field, but the attraction is undoubtedly stronger.
+At a certain temperature, the domains break apart - this is known as the \textbf{Curie temperature}.
+Cobalt, Nickel, and Iron are the most common feromagnetic materials. Gadolinium is paramagnetic in the summer but feromagnetic in the winter.
+
+\subsection{Barkhausen Effect}
+If you connect a solenoid to an amplifier in a circuit and move a magnet fast towards the solenoid, current is induced producing a sound in the AMP.
+If you put a feromagnetic material in the solenoid and move the magnet slowly, some domains begin to flip causing a change in magnetic flux 
+which induces current and creates a crackling noise in the AMP. With this, you can hear the domains flipping.
+
+\subsection{Relative Permeability}
+For some materials, regardless of type of -magnetic, the magnetic field inside is proportional to the vaccum field.
+$$\vec{B}=\kappa_{m}\vec{B}_{vac}$$
+Here, $\kappa_{m}$ is the \textbf{relative permeability}. This is commonly expressed as $\kappa_{m}=1+\xi_{m}$.
+Here, $\xi_{m}$ known as the \textbf{magnetic susceptibility}. 
+\[
+\begin{cases}
+    \text{Diamagnetic} & \xi_{m}<0    \\
+    \text{Paramagnetic} & \xi_{m}>0    \\
+    \text{Feromagnetic} & \xi_{m}\gg 0 \\
+\end{cases}
+\]
+
+\section{Maxwell's Equations}
+\subsection{Magnetic Moment}
+Consider calculating the magnetic moment of an atom of hydrogen. For the electron, we know $m_{e}$ and $e$.
+Let $R$ be the Bohr radius of the atom. So, for the atom, $\mu=IA=I\pi R^{2}$. The Coloumb force of the electron 
+to the nucleus (proton) is what provides its centirpetal acceleration. So,
+$$\frac{e^{2}}{4\pi \epsilon_{0}R^{2}}
+=\frac{mv^{2}}{R}\Rightarrow v=\sqrt{\frac{e^{2}}{4\pi \epsilon_{0}mR}}$$
+To find the current, we need to find the period and then substitute.
+$$T=\frac{2\pi R}{v}\Rightarrow I=\frac{e}{T}$$
+For hydrogen, $\mu\approx 9.3\times 10^{-29}\text{Am}^{2}$ which is known as the \textbf{Bohr magneton}.
+From quantum mechanics, $\mu$ for any electron is quantized by this amount and can even be $0$. This is because the charge 
+itself is "spinning" around the electron. So, $\mu$ for the atom is the vectorial sum of all the dipole moments.
+For most atoms, $\mu$ is either 1 or 2 Bohr magnetons.
+
+\subsection{Hysteresis Curve}
+Let $\vec{B}=\vec{B}_{vac}+\vec{B}'$. As seen previously,
+if $\vec{B}'\propto\vec{B}_{vac}$, then, $\vec{B}'=\xi_{m}\vec{B}_{vac}$. This linearity holds for paramagentic material
+but not for all feromagnetic materials which can acheive \textbf{saturation} where all dipoles are in one direction.
+Lower temperatures increase the curve of $\vec{B}$ vs $\vec{B}'$. After the point of saturation, the only way to increase $\vec{B}$
+is to increase $\vec{B}_{vac}$. Consider a solenoid with a feromagnet inside and plotting $B_{vac}$ and $B$.
+When the current increases clockwise, $B_{vac}$ increases approaching saturation. When this happnes $B'$ still retains magnetic field
+because of the domains. Making the current go back to $0$ decreases the field till $B_{vac}=0$ but $B'$ is still in one direction.
+Then, reversing the direction of the current and increasing it causes $B_{vac}$ to "increase" (as negative) until $B'=0$ again.
+Continuing causes this to reach saturation changing the direction of $B'$. Taking the current to $0$ causes $B'$ to remain but $B_{vac}$
+to go to zero. Finally, increasing again, completes the loop on the graph. The shape formed is known as a \textbf{hysteresis curve}.
+This is a closed curve, so given some $B_{vac}$, there are two possibilities for $B$ / $B'$ which means you can't tell the internal 
+magnetic field of a feromagnet from the external field (you can't know the residual field from the magnet's "history").
+This entire process can be achieved simply using AC current, though the originating \textbf{virginal curve} will be lost in visuals.
+We can make the material \textbf{virginal} again by heating it above the Curie point, hitting it, or de-magnetizing it.
+
+\subsection{Maxwell's Equations}
+Maxwell's Equations are a set of four equations that govern the theory of electricity and magnetism.
+We have Gauss' Law:
+$$\oint \vec{E}\cdot d\vec{A}=\frac{Q_{free}}{\kappa \epsilon_{0}}$$
+We have a result from the Biot-Savart Formulation due to the absence of magnetic monopoles:
+$$\oint\vec{B}\cdot d\vec{A}=0$$
+We have the Faraday-Lenz Law:
+$$\oint \vec{E}\cdot d\vec{l}=-\frac{d\phi_{B}}{dt}$$
+We have the modified Ampere's Law:
+$$\oint \vec{B}\cdot d\vec{l}=\kappa_{m}\mu_{0}\left(I+\epsilon_{0}\kappa\frac{d\phi_{E}}{dt}\right)$$
+All these laws work fine except for Ampere's Law which needs to account for $\kappa_{m}$
+for magnetic materials.
+
+\section{RC Circuits}
+Consider a circuit with a battery, $V_{0}$, a capacitor $C$, a resistor $R$, and a switch completing the full loop. Since there are no magnetic fields,
+going around the circuit,
+$$V_{C}+IR-V_{0}=\oint \vec{E}\cdot d\vec{l}=0$$
+Expressing in terms of time,
+$$\frac{Q}{C}+R\frac{dQ}{dt}-V_{0}=0$$
+Solving the differential equation,
+$$Q=V_{0}C(1-e^{-\frac{t}{RC}});\, I=\frac{V_0}{R}e^{-\frac{t}{RC}};\,
+V_{C}=V_{0}(1-e^{-\frac{t}{RC}})
+$$
+Now, if the switch moves so that it removes the battery from the loop after some time since $I\rightarrow 0$,
+The charge will flow from the capacitor in the opposite direction. Our differential equation will now be
+$$\frac{Q}{C}+R\frac{dQ}{dt}=0$$
+If the switch switches at $t_{0}$,
+$$I=-\frac{V_{0}}{R}e^{-\frac{t-t_{0}}{RC}}$$
+Using this, the other variables can be found.
+
+\subsection{Transformers}
+Consider a coil with $N_{1}$ windings and self-inductance $L_{1}$ (primary) with a current $I_{1}$
+running through it and extremely small $i_{1}$ powering a voltmeter. Consider a secondary coil wound 
+so that there is a magnetic flux coupling between the coils. Let this have parameters $L_{2}$, $I_{2}$, $i_{2}$, $N_{2}$.
+Using Faraday's Law on the primary coil, ignoring the mutual inductance between the two,
+$$0-V_{1}=-L_{1}\frac{dI_{1}}{dt}=\varepsilon_{mid1}=-N_{1}\frac{d\phi_{B}}{dt}$$
+For the other coil,
+$$V_{2}+0=-L_{2}\frac{dI_{2}}{dt}=\varepsilon_{mid2}=-N_{2}\frac{d\phi_{B}}{dt}$$
+So, $\left|\frac{V_{2}}{V_{1}}\right|=\frac{N_{2}}{N_{1}}$. Using AC current,
+by manipulating the coil ratio, transformers are able to "transform" the voltage in a wire. This is helpful
+since power lines need as high voltage as possible, so transformers "step-up" from the generator and "step-down"
+to the consumer. If $R\ll \omega L$, there are no Eddy currents, and the magnetic flux is perfectly coupled,
+then, the power delivered to the primary side is consumed on the secondary side. So, $I_{1}V_{1}=I_{2}V_{2}$ 
+which gives the ratio of the currents (also related to coil ratio). In reality, even though the voltage is $110\sqrt{2}$,
+volt meters only show the $110$.
+
+\subsection{Induction Ovens}
+Consider a copper ring with a slot and an iron nail filling the slot. Even though the ideal conditions are not met,
+the current is high for high coil ratios. This high current means the power is extremely high and the nail will become 
+hot and perhaps melt. This is how induction ovens work for cooking and welding.
+
+\subsection{Spark Plugs}
+Cars have coils that are run by the car battery (AC). To acheive these high currents, consider a similar circuit
+but with a switch that opens/closes the whole circuit. When the switch is closed, if the winding ratio is high, there is
+a high current in the secondary circuit. When the switch is opened, the resistance of the primary circuit increases 'infinitely'
+and the time for the current to change is much smaller so $\frac{dI_{1}}{dt}$ and $\frac{d\phi_{B}}{dt}$ will be extremely large.
+This creates a high induced EMF in the primary, but due to the coil ratio, the EMF in the secondary is now extremely high (kV scale).
+This causes a spark on the spark plug (secondary) due to discharge (think breakdown electric field).
+
+\section{LRC Circuits}
+Consider a AC power supply with a capacitor, self-inductor, and resistor (clockwise in that order).
+Using Faraday's Law,
+$$V_{C}+0+IR-V_{0}\cos (wt)=-\frac{d\phi_{B}}{dt}=-L\frac{dI}{dt}$$
+Substituting $I=\frac{dQ}{dt}$,
+$$L\frac{d^{2}Q}{dt^{2}}+R\frac{dQ}{dt}+\frac{Q}{C}=V_{0}\cos(\omega t)$$
+Solving the differential equation, 
+$$I=\frac{V_{0}}{\sqrt{R^{2}+\left(\omega L-\frac{1}{\omega C}\right)^{2}}}\cos(\omega t-\phi)
+\text{ where }\tan\phi=\frac{\omega L-\frac{1}{\omega C}}{R}$$
+Here, $\xi=\omega L-\frac{1}{\omega C}$ is known as the \textbf{reactance} and 
+$Z=\sqrt{R^{2}+\xi^{2}}$ is known as the \textbf{impedence}. The impedence can be thought of as an 
+as a pseudo-resistance. This is a \textbf{steady-state solution} or something you get after a certain amount of time.
+At the beginning, there are certain transient phenomenon that die out over time. As seen previously, 
+the term in front $\frac{V_{0}}{Z}$ is $I_{max}$. The value of $Z$ that maximizes $I_{max}$
+is known as the \textbf{resonance}. At resonance, $\xi=0$, so
+$$\omega_{0}L-\frac{1}{\omega_{0}C}=0 \Rightarrow \omega_{0}=\frac{1}{\sqrt{LC}}$$
+This $\omega_{0}$ has a subscript because it is associated with the \textbf{resonance frequency}.
+At this point, $I_{max}=\frac{V_{0}}{R}$, $\phi=0$, and $Z=R$.
+
+\subsection{Driving Frequency}
+Let $L,R,C$ be fixed and consider manipulating $\omega$ from to change the value of $Z$.
+As $\omega\rightarrow 0$, $Z\rightarrow \infty$ and $I_{max}\rightarrow 0$.
+This occurs when the capacitor is fully charged and AC becomes DC and current can't flow anymore.
+As $\omega\rightarrow\infty$, $Z\rightarrow\infty$ and $I_{max}\rightarrow 0$. 
+This occurs when the self-inductor is "fighting" against the current. Graphing $I_{max}$ against $\omega$
+is known as a \textbf{resonance curve} with a maximum of $\frac{V_0}{R}$ at $\omega_{0}$. At $\omega<\omega_0$,
+capacitance is dominant, but for $\omega>\omega_0$, inductance is dominant. At some $I\approx 0.7I_{res}$,
+the width of the curve is $\Delta \omega\approx\frac{R}{L}$. The \textbf{quality} of the resonance is 
+defined as $Q=\frac{\omega_{0}}{\Delta \omega}=\frac{1}{R}\cdot \sqrt{\frac{L}{C}}$. The $0.7$ is associated
+with the current at {\it half power} ($0.7^{2}\approx 50\%$). Notice that if you are off-resonance and come on resonance, 
+the increase in current can break a resistor. The idea of a resonance frequency is applicable to mechanical objects like humans.
+
+\subsection{Acheiving Resonance}
+Consider a driven LRC circuit with a fixed frequency and $V_{0}$. The average power of a light-bulb 
+connected to this is $\expect{I^{2}R}=\frac{1}{2}I_{max}^{2}R$. The $\frac{1}{2}$ comes from the time average of $\cos^{2}$.
+Let $\omega$ (fixed), be lower than the resonance frequency. To remedy this, we can increase L or C to lower $\omega_{0}$.
+To increase $L$, we can bring a feromagnetic material inside the self-inductor; this technique can be used to create a variable
+self-inductance.
+
+\subsection{Radios and TVs}
+Radios and TVs work by tuning to some resonance frequency. The antenna receives many frequencies, and the user changes the capacitor
+to change the frequency and tune in to a particular program.
+
+\subsection{Metal Detectors}
+Metal detectors are set to resonance and introducing metal change $L$ which moves the system off resonance, setting off an alarm.
+It does so using two coils with different L, R, C, and I. There is a mutual inductance $M$ since the magnetic field produced by one 
+coil affects the other and vice versa. This creates two differential equations that are coupled. Solving this is hard, but it ends up
+producing two resonant frequencies where at least one depends strongly on $M$. When a metal is introduced, Eddy currents are formed in it 
+which offsets the magnetic field and moves the system off the resonant frequency. The system has a very high quality and is thus extremely sensitive.
+Metal detectors that are hand held use a similar idea but with two concentric coils.
+
+\end{document}
+ 

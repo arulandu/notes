@@ -1,0 +1,133 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+\chapter{Probability Theory}
+\section{Binomial Distribution}
+$$(x_{1}+x_{2})^{n}=\sum_{k=0}^{n}{n \choose k}x_{1}^{k}x_{2}^{n-k}$$
+\section{Basic Probability}
+A fiar 6-sided die is rolled 5 times. What is the probability of exactly two 3's?
+\subsection{Outcomes}
+Divide favorable outcomes by possible outcomes.
+$$=\frac{{5 \choose 2}\cdot 5^{3}}{6^{5}}$$
+\subsection{Raw Probability}
+Find the probability of getting a favorable outcome.
+$${5\choose 2}\left(\frac{1}{6}\right)^{2}\left(\frac{5}{6}\right)^{3}$$
+
+\section{Basics of Expected Value}
+$$\text{expected value}=\sum_{\text{results}}(\text{value})(\text{probability})$$
+For a die,
+$$\langle k\rangle=\frac{1}{6}(1+2+3+4+5+6)=\frac{6\cdot 7}{6\cdot 2}=3.5$$
+$$\langle k^{2}\rangle=\frac{1}{6}(1^{2}+2^{2}+\cdots+6^{2})=\frac{6\cdot 7\cdot 13}{6}frac{1}{6}=\frac{91}{6}\neq \langle k\rangle^{2}$$
+\subsection{Expectation of Square vs Square of the Expectation}
+Consider,
+$$\langle (k-\langle k \rangle)^{2}\rangle = \langle k^{2}-2k\langle k \rangle+\langle k \rangle^{2}\rangle=\langle k^{2}\rangle-\langle 2k\langle k\rangle\rangle+\langle \langle k\rangle^{2}\rangle$$
+$$\langle k^{2} \rangle-\langle k\rangle^{2}$$
+Since the LHS is $\geq 0$, this value is $>0$ so $\langle k^{2} \rangle > \langle k\rangle^{2}$.
+The variance is equal to this LHS value: $\sigma_{k}^{2}=\langle (k-\langle k \rangle)^{2}\rangle$.
+So, for the die, $\sigma_{k}=\sqrt{\frac{91}{6}-\frac{49}{4}}$. The probability of being in a standard deviation of a expected value is
+$P(2\leq k\leq 5)=\frac{2}{3}$. If this distribution was normal, this value would be $\approx 68.2\%$.
+
+\subsection{Independence and Products}
+Given that $k_{1}$ and $k_{2}$ are two independent measurements, determine $\expect{k_{1}+k_{2}}$ and $\sigma_{k_{1}+k_{2}}^{2}$.
+$$\expect{k_1 + k_2}=\expect{k_1}+\expect{k_2}$$
+$$\sigma_{k_1 + k_{2}}^{2}=\expect{(k_1 + k_2)^{2}}-\expect{k_1 + k_2}^{2}$$
+$$=\expect{k_{1}^{2}+2k_{1}k_{2}+k_{2}^{2}}-(\expect{k_{1}}^{2}+2\expect{k_{1}}\expect{k_{2}}+\expect{k_{2}}^{2})$$
+$$=\expect{k_{1}^{2}}-\expect{k_{1}}^{2}+\expect{2k_{1}k_{2}}-2\expect{k_{1}}\expect{k_{2}}+\expect{k_{2}^{2}}-\expect{k_{2}}^{2}$$
+Two outcomes are independent if and only if $\expect{k_{1}k_{2}}=\expect{k_{1}}\expect{k_{2}}$ always. So, given independence, we can simplify
+$$\sigma_{k_1 + k_{2}}^{2}=\sigma_{k_1}^{2}+\sigma_{k_2}^{2}$$
+The value $\expect{k_{1}k_{2}}-\expect{k_{1}}\expect{k_{2}}$ measures the correlation between $k_1$ and $k_2$.
+
+\section{Multinomial Distribution}
+This can be used to model distributions with more than 2 objects. Consider $n$ objects being placed in $m$ boxes.
+The number of ways to place $r_{1}$ in box 1, $r_{2}$ in box 2, $\cdots$, and $r_{m}$ in box $m$ is
+$${n \choose r_{1}r_{2}\cdots r_{m}}=\frac{n!}{r_{1}!r_{2}!\cdots r_{m}!};\sum_{i=1}^{m}r_{i}=n$$
+Representing the distribution,
+$$(x_{1}+x_{2}+\cdots+x_{m})^{n}=\sum_{r_{1}+r_{2}+\cdots r_{m}=n}{n \choose r_{1}r_{2}\cdots r_{m}}x_{1}^{r_{1}}x_{2}^{r_{2}}\cdots x_{m}^{r_{m}}$$
+\subsection{Application}
+A fair 6-sided die is rolled four times. $k_{1}$ is the number of 3's and $k_{2}$ is the number of 5's.
+$$\expect{k_{1}}=\sum_{k=0}^{4}{4\choose k}k\left(\frac{1}{6}\right)^{k}\left(\frac{5}{6}\right)^{4-k}$$
+Taking a derivative of the binomial expansion and multiplying by $x_{1}$,
+$$x_{1}\frac{\partial }{\partial x_{1}}(x_{1}+x_{2})^{n}=nx_{1}(x_{1}+x_{2})^{n-1}=\sum_{k=0}^{n}{n\choose k}kx_{1}^{k}x_{2}^{n-k}$$
+Applying this,
+$$\expect{k_{1}}=4\cdot\frac{1}{6}=\frac{2}{3}$$
+
+\section{Experimentation}
+A certain quantity is measured $n$ times with the results $k_1 , k_2 , \cdots k_n$.
+Asume the expected value of $k$ is $\bar{k}$ (unknown) and its standard deviation in $\sigma_{k}$ (unknown).
+$$k_{\text{mean}}=\frac{1}{n}\sum_{i=1}^{n}k_{i}$$
+Note that $k_{\text{mean}}\neq \bar{k}$. However,
+$$\expect{k_{\text{mean}}}=\frac{1}{n}\sum_{i=1}^{n}\expect{k_{i}}=\frac{1}{n}\sum_{i=1}^{n}\bar{k}=\bar{k}$$
+Note that the expected value of both $k$ and $k_{\text{mean}}$ is $\bar{k}$. So, let's analyze the standard deviation,
+$$\sigma_{k_1 + k_2 + \cdots + k_n}^{2}=\sum_{i=1}^{n}\sigma_{i}^{2}=n\sigma_{k}^{2}
+\Rightarrow \sigma_{\sum}=\sqrt{n}\sigma{k}
+\Rightarrow \sigma_{\text{mean}}=\sqrt{n}\frac{\sigma_{k}}{n}=\frac{\sigma_{k}}{\sqrt{n}}
+$$
+Thus, taking the mean keeps the same expected value but divides the std. dev. by $\sqrt{n}$.
+Note that we don't know the values of $\bar{k}$ and $\sigma_{k}$. So, let's calculate $\sigma_{k_{\text{mean}}}$.
+$$\expectl{\sum_{i=1}^{n}(k_{i}-k_{\text{mean}})^{2}}=\sum_{i=1}^{n}\expect{(k_{i}-k_{\text{mean}})^{2}}=n\expect{(k_{1}-k_{\text{mean}})^{2}}$$
+$$=n\expect{
+    (k_{1}-\bar{k})^{2}
+    -2(k_{1}-\bar{k})(k_{\text{mean}}-\bar{k})
+    +(k_{\text{mean}}-\bar{k})^{2}
+    }$$
+$$=n\left[\sigma_{k}^{2}+\frac{\sigma_{k}^{2}}{n}-2\expect{(k_{1}-\bar{k})(k_{\text{mean}-\bar{k}})}\right]$$
+Since $k_{1}$ and $k_{\text{mean}}$ are dependent, let's look at $k_{2}$.
+$$\expect{(k_{1}-\bar{k})(k_{\text{mean}}-\bar{k})}=\frac{\sigma_{k}^{2}}{n}$$
+Plugging this in,
+$$\expectl{\sum_{i=1}^{n}(k_{i}-k_{\text{mean}})^{2}}=
+n\left[\sigma_{k}^{2}+\frac{\sigma_{k}^{2}}{n}-2\frac{\sigma_{k}^{2}}{n}\right]=(n-1)\sigma_{k}^{2}$$
+So,
+$$\expectl{\frac{1}{n-1}\sum_{i=1}^{n}(k_{i}-k_{\text{mean}})^{2}}$$
+
+\section{Large $n$}
+Suppose we roll a fair six-sided die 6000 times. What is the probability a $2$ comes up between $990$ and $1050$ times?
+$$P=\sum_{k=990}^{1050}{6000 \choose k}\left(\frac{1}{6}\right)^{k}\left(\frac{5}{6}\right)^{6000-k}$$
+This is computationally intensive, so we can approximate this instead with an integral. Generalizing, say there are $n$ rolls and a $p$
+probability. Using Sterling's approximation, $\ln n! \approx n\ln n- n + \frac{1}{2}\ln(2\pi n)$,
+
+$$\ln {n\choose k}p^{k}(1-p)^{n-k}=\ln n! - \ln k! - \ln (n-k)! + k\ln p + (n-k)\ln (1-p)$$
+$$\approx n\ln n - n+ \frac{1}{2}\ln (2\pi n)-k\ln k+k-\frac{1}{2}\ln(2\pi k)-(n-k)\ln(n-k)$$
+$$+n-k-\frac{1}{2}\ln(2\pi (n-k))+k\ln p + (n-k)\ln (1-p)$$
+We want to look at this for large $n$. Let $k=xn$.
+$$\ln P_{k}\approx n\ln n - xn\ln(xn)-n(1-x)\ln(n-xn)+\frac{1}{2}\ln \frac{n}{2\pi xn^{2}(1-x)}$$
+$$+xn\ln p + n(1-x)\ln(1-p)$$
+$$=n\ln n - xn\ln n - xn\ln x - n(1-x)\ln n - n(1-x)\ln(1-x)$$
+$$+\frac{1}{2}\ln\frac{1}{2\pi x(1-x)}-\frac{1}{2}\ln n+xn\ln p+n(1-x)\ln(1-p)$$
+Cancelling and rearranging,
+$$=n\left[x\ln p -x\ln x+(1-x)\ln(1-p)-(1-x)\ln (1-x)\right]+\frac{1}{2}\ln\frac{1}{2\pi n x(1-x)}$$
+$$=n\left[x\ln\frac{p}{x}+(1-x)\ln \frac{1-p}{1-x}\right]+\frac{1}{2}\ln\frac{1}{2\pi n x(1-x)}$$
+Similar to asymptotic expansions, let's look at the maximum. For large $n$, the last term is negligible.
+Note that when $x=p$, the derivative and this expression vanish. 
+$$\frac{\partial^{2}}{\partial x^{2}}\Rightarrow -\frac{1}{x}-\frac{1}{1-x}=\frac{-1}{x(1-x)}$$
+So,
+$$\ln P_{k}\approx -\frac{n}{2}\frac{(x-p)^{2}}{p(1-p)}+\frac{1}{2}\ln\frac{1}{2\pi n p(1-p)}$$
+Substituting back to $k$,
+$$=-\frac{1}{2n}\frac{(k-pn)^{2}}{p(1-p)}+\frac{1}{2}\ln\frac{1}{2\pi n (p)(1-p)}$$
+Remember that $\sigma_{k}=np(1-p)$ from the binomial distribution:
+$$P_{k}\approx \frac{\exp\left[-\frac{(k-np)^{2}}{2\sigma_{k}^{2}}\right]}{\sqrt{2\pi \sigma_{k}^{2}}}$$
+This is the bell curve and is valid for large $n$. We also note that $np=\expect{k}$
+Rewriting this, we get
+$$\approx \frac{1}{\sigma_{k}\sqrt{2\pi}}e^{-\frac{1}{2}\cdot \left(\frac{k-\expect{k}}{\sigma_{k}}\right)^{2}}$$
+So, back to our example,
+$$P=\sum_{k=990}^{1050}{6000 \choose k}\left(\frac{1}{6}\right)^{k}\left(\frac{5}{6}\right)^{6000-k}
+\approx\int_{989.5}^{1050.5}\frac{1}{\sigma_{k}\sqrt{2\pi}}e^{-\frac{1}{2}\cdot \left(\frac{k-1000}{\sigma_{k}}\right)^{2}}dk$$
+Since numerical integrations don't work that well with large values, we can substitute to rescale with $u=\frac{k-\expect{k}}{\sigma_{k}};du=\frac{dk}{\sigma_{k}}$.
+Recall that this $u$ is the $z^{*}$ score from statistics.
+$$=\int_{z_{min}}^{z_{max}}\frac{e^{-\frac{u^{2}}{2}}}{\sqrt{2\pi}}du$$
+
+\section{Birthday Problem}
+There are $n$ problem in a room with random birthdays (none born on Feb. 29). How large must $n$ be
+in order that the probability that at least two share the same birthday exceeds $\frac{1}{2}$.
+
+\subsection{Solution}
+Suppose we choose some fixed birthdays and then assign them:
+$$P=1-{365\choose n}n!\left(\frac{1}{365}\right)^{n}$$
+From a multinomial perspective, the probability of all different days is
+$${365\choose n,365-n}{n\choose 1,1,\cdots,1}\left(\frac{1}{365}\right)^{n}$$
+This generalizes well. Consider the case for one pair,
+$${365 \choose 1,n-2,366-n}{n\choose 2,1,1\cdots 1}\left(\frac{1}{365}\right)^{n}$$
+For two pairs,
+$${365\choose 2,n-4, 367-n}{n\choose 2,2,1,1\cdots 1}\left(\frac{1}{365}\right)^{n}$$
+
+
+\end{document}

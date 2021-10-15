@@ -1,0 +1,31 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\chapter{Integration}
+\section{Integration Techniques}
+    \subsection{Auxiliary Parameters}
+        $$\text{Evaluate } \int_{-\infty}^{\infty}\frac{dx}{(x^{2}+1)^{4}}$$
+        Instead consider, 
+        $$\int_{-\infty}^{\infty}\frac{dx}{ax^{2}+b}=\frac{1}{a}\int_{-\infty}^{\infty}\frac{dx}{x^{2}+\frac{b}{a}}=\frac{1}{a}\cdot\frac{1}{\sqrt{\frac{b}{a}}}\arctan(\frac{x}{\sqrt{\frac{b}{a}}})\mid_{-\infty}^{\infty}=\pi a^{-\frac{1}{2}}b^{-\frac{1}{2}}$$
+        Now, look at the derivatives with respect to the parameters.
+        $$\frac{\partial^{3}}{\partial b^{3}}\int_{-\infty}^{\infty}\frac{dx}{ax^{2}+b}=-6\int_{-\infty}^{\infty}\frac{dx}{(ax^{2}+b)^{4}}=\pi\frac{-1}{2}\cdot\frac{3}{2}\cdot\frac{5}{2}a^{-\frac{1}{2}}b^{-\frac{7}{2}}$$
+        Now, plug in values for the parameters,
+        $$\therefore \int_{-\infty}^{\infty}\frac{dx}{(x^{2}+1)^{4}}=\pi\frac{-1}{6}\cdot\frac{-1}{2}\cdot\frac{3}{2}\cdot\frac{5}{2}\cdot 1\cdot 1=\frac{5\pi}{16}$$
+
+    \subsection{Gaussian Integral}
+        The gaussian integral is defined as follows:
+        $$\int_{-\infty}^{\infty}e^{-\alpha x^{2}}dx$$
+        Let, $$I=\int_{-\infty}^{\infty}e^{-x^{2}}dx$$
+        Then, $$I^{2}=\left(\int_{-\infty}^{\infty}e^{-x^{2}}dx\right)\left(\int_{-\infty}^{\infty}e^{-y^{2}}dy\right)$$
+        $$=\int_{-\infty}^{\infty}dx\int_{-\infty}^{\infty}dy e^{-(x^{2}+y^{2})}$$
+        Switching to polar,
+        $$=\int_{0}^{\infty}rdr\int_{}^{2\pi}\theta e^{-r^{2}}=2\pi\int_{0}^{\infty}re^{-r^{2}}$$
+        Using a u-substitution with $u=-r^{2}$,
+        $$=-\pi \int_{0}^{-\infty}e^{u}du=\pi$$
+        Returning to the first integral,
+        $$I=\int_{-\infty}^{\infty}e^{-x^{2}}dx=\sqrt{\pi}$$
+        For the original integral,
+        $$\int_{-\infty}^{\infty}e^{-\alpha x^{2}}dx=\frac{1}{\sqrt{\alpha}}\int_{-\infty}^{\infty}e^{-u^{2}}du=\sqrt{\frac{\pi}{\alpha}}$$
+        Now, taking derivatives,
+        $$\frac{\partial}{\partial \alpha}\Rightarrow -\int_{-\infty}^{\infty}x^{2}e^{-\alpha x^{2}}=\frac{-1}{2}\sqrt{pi}\alpha^{\frac{-3}{2}}$$
+
+\end{document}
